@@ -1091,29 +1091,27 @@ done
 
 ## Software Versions
 
+
 | Tool | Version / Source |
 |------|-----------------|
-| samtools | — |
-| lima | — |
-| pbmarkdup | — |
-| meryl | — |
-| winnowmap | — |
-| NanoPlot | — |
-| Picard | — |
+| samtools | 1.20 |
+| lima | 2.13.0 |
+| pbmarkdup | 1.1.0 |
+| meryl | 1.4.1 |
+| winnowmap | 2.03 |
+| NanoPlot | 1.43.0 |
+| Picard | [source](https://broadinstitute.github.io/picard/) |
 | GATK | 4.6.0.0 |
 | JDK | 17.0.12 |
-| WhatsHap | — |
-| bcftools | — |
-| VCFtools | — |
-| PLINK / PLINK2 | — |
-| IQ-TREE2 | — |
+| WhatsHap | 2.4 |
+| bcftools | 1.19 |
+| VCFtools | 0.1.16 |
+| IQ-TREE2 | 2.3.0 |
 | msa_split (PHAST) | — |
 | PopLDdecay | 3.43 |
-| GraffiTE | — |
-| Nextflow | — |
+| GraffiTE | [source](https://github.com/cgroza/GraffiTE) |
 | Sniffles2 | (via GraffiTE) |
-| seqtk | — |
-| BEDTools | — |
+| seqtk | 1.3-r106 |
+| BEDTools | 2.31.1 |
 | InterProScan | 5.69-101.0 |
-| genomics_general | — |
-| GNU Parallel | — |
+| genomics_general | [source](https://github.com/simonhmartin/genomics_general) |
