@@ -1,4 +1,4 @@
-# Population Genomics Pipeline for Seven Mite Species
+<img width="468" height="24" alt="image" src="https://github.com/user-attachments/assets/ee8eb8ea-15a6-48ad-a92d-e901ced59d2b" /># Population Genomics Pipeline for Seven Mite Species
 
 This document describes the bioinformatics pipelines used to perform population genomic analyses on seven mite species using PacBio HiFi long reads. The species analyzed are:
 
@@ -1093,27 +1093,24 @@ done
 
 | Tool | Version / Source |
 |------|-----------------|
-| samtools | — |
-| lima | — |
-| pbmarkdup | — |
-| meryl | — |
-| winnowmap | — |
-| NanoPlot | — |
-| Picard | — |
+| samtools | 1.20 |
+| lima | 2.13.0 |
+| pbmarkdup | 1.1.0 |
+| meryl | 1.4.1 |
+| winnowmap | 2.03 |
+| NanoPlot | 1.43.0 |
+| Picard | [source](https://broadinstitute.github.io/picard/) |
 | GATK | 4.6.0.0 |
 | JDK | 17.0.12 |
-| WhatsHap | — |
-| bcftools | — |
-| VCFtools | — |
-| PLINK / PLINK2 | — |
-| IQ-TREE2 | — |
+| WhatsHap | 2.4 |
+| bcftools | 1.19 |
+| VCFtools | 0.1.16 |
+| IQ-TREE2 | 2.3.0 |
 | msa_split (PHAST) | — |
 | PopLDdecay | 3.43 |
-| GraffiTE | — |
-| Nextflow | — |
+| GraffiTE | [source](https://github.com/cgroza/GraffiTE) |
 | Sniffles2 | (via GraffiTE) |
-| seqtk | — |
-| BEDTools | — |
+| seqtk | 1.3-r106 |
+| BEDTools | 2.31.1 |
 | InterProScan | 5.69-101.0 |
-| genomics_general | — |
-| GNU Parallel | — |
+| genomics_general | [source](https://github.com/simonhmartin/genomics_general) |
