@@ -1,0 +1,104 @@
+GO.ID	Term	Annotated	Significant	Expected	classicFisher	FDR	ontology	Species
+GO:0005178	integrin binding	35	18	8.53	0.00049	0.06	MF	Hga
+GO:0005524	ATP binding	1436	400	349.79	0.00068	0.06	MF	Hga
+GO:0004497	monooxygenase activity	284	84	69.18	0.00128	0.06	MF	Hga
+GO:0015276	ligand-gated monoatomic ion channel acti...	231	77	56.27	0.00166	0.06	MF	Hga
+GO:0140359	ABC-type transporter activity	166	58	40.44	0.0017	0.06	MF	Hga
+GO:0003724	RNA helicase activity	47	21	11.45	0.0018	0.06	MF	Hga
+GO:0003872	6-phosphofructokinase activity	12	8	2.92	0.00231	0.066	MF	Hga
+GO:0004181	metallocarboxypeptidase activity	26	13	6.33	0.00406	0.1015	MF	Hga
+GO:0008528	G protein-coupled peptide receptor activ...	127	35	30.94	0.00519	0.115333333333333	MF	Hga
+GO:0003968	RNA-dependent RNA polymerase activity	27	13	6.58	0.00611	0.1222	MF	Hga
+GO:0005254	chloride channel activity	69	25	16.81	0.00842	0.131333333333333	MF	Hga
+GO:0003684	damaged DNA binding	28	13	6.82	0.0089	0.131333333333333	MF	Hga
+GO:0016887	ATP hydrolysis activity	314	95	76.49	0.00934	0.131333333333333	MF	Hga
+GO:0005230	extracellular ligand-gated monoatomic io...	108	40	26.31	0.01188	0.131333333333333	MF	Hga
+GO:0140326	ATPase-coupled intramembrane lipid trans...	12	7	2.92	0.01227	0.131333333333333	MF	Hga
+GO:0030246	carbohydrate binding	132	46	32.15	0.01307	0.131333333333333	MF	Hga
+GO:0004860	protein kinase inhibitor activity	9	5	2.19	0.01444	0.131333333333333	MF	Hga
+GO:0047840	dCTP diphosphatase activity	3	3	0.73	0.01444	0.131333333333333	MF	Hga
+GO:0008422	beta-glucosidase activity	3	3	0.73	0.01444	0.131333333333333	MF	Hga
+GO:0005391	P-type sodium:potassium-exchanging trans...	15	8	3.65	0.01472	0.131333333333333	MF	Hga
+GO:0048029	monosaccharide binding	36	11	8.77	0.01478	0.131333333333333	MF	Hga
+GO:0015116	sulfate transmembrane transporter activi...	18	9	4.38	0.01627	0.131333333333333	MF	Hga
+GO:0042813	Wnt receptor activity	21	10	5.12	0.01715	0.131333333333333	MF	Hga
+GO:0004567	beta-mannosidase activity	10	6	2.44	0.01731	0.131333333333333	MF	Hga
+GO:0004558	alpha-1,4-glucosidase activity	24	11	5.85	0.01754	0.131333333333333	MF	Hga
+GO:0017147	Wnt-protein binding	27	12	6.58	0.01758	0.131333333333333	MF	Hga
+GO:0004553	hydrolase activity, hydrolyzing O-glycos...	384	116	93.54	0.01773	0.131333333333333	MF	Hga
+GO:0004252	serine-type endopeptidase activity	300	89	73.08	0.01946	0.139	MF	Hga
+GO:0004890	GABA-A receptor activity	16	8	3.9	0.02324	0.157483870967742	MF	Hga
+GO:0005337	nucleoside transmembrane transporter act...	9	6	2.19	0.02439	0.157483870967742	MF	Hga
+GO:0004435	phosphatidylinositol phospholipase C act...	8	5	1.95	0.02441	0.157483870967742	MF	Hga
+GO:0016747	acyltransferase activity, transferring g...	321	80	78.19	0.02942	0.183818181818182	MF	Hga
+GO:0070095	fructose-6-phosphate binding	11	6	2.68	0.03033	0.183818181818182	MF	Hga
+GO:0020037	heme binding	246	73	59.92	0.03159	0.185297297297297	MF	Hga
+GO:0003676	nucleic acid binding	2325	553	566.35	0.03318	0.185297297297297	MF	Hga
+GO:0042626	ATPase-coupled transmembrane transporter...	246	83	59.92	0.03367	0.185297297297297	MF	Hga
+GO:0004705	JUN kinase activity	6	4	1.46	0.03428	0.185297297297297	MF	Hga
+GO:0003678	DNA helicase activity	48	15	11.69	0.03995	0.204936170212766	MF	Hga
+GO:0043047	single-stranded telomeric DNA binding	9	5	2.19	0.04405	0.204936170212766	MF	Hga
+GO:0030594	neurotransmitter receptor activity	109	35	26.55	0.04604	0.204936170212766	MF	Hga
+GO:0034450	ubiquitin-ubiquitin ligase activity	4	3	0.97	0.04723	0.204936170212766	MF	Hga
+GO:0004586	ornithine decarboxylase activity	4	3	0.97	0.04723	0.204936170212766	MF	Hga
+GO:0000774	adenyl-nucleotide exchange factor activi...	4	3	0.97	0.04723	0.204936170212766	MF	Hga
+GO:0001614	purinergic nucleotide receptor activity	4	3	0.97	0.04723	0.204936170212766	MF	Hga
+GO:0005344	oxygen carrier activity	4	3	0.97	0.04723	0.204936170212766	MF	Hga
+GO:0008843	endochitinase activity	4	3	0.97	0.04723	0.204936170212766	MF	Hga
+GO:0016705	oxidoreductase activity, acting on paire...	348	96	84.77	0.04816	0.204936170212766	MF	Hga
+GO:0005324	long-chain fatty acid transporter activi...	15	7	3.65	0.04976	0.207333333333333	MF	Hga
+GO:0006508	proteolysis	1137	312	275.4	7e-04	0.082	BP	Hga
+GO:0000724	double-strand break repair via homologou...	58	26	14.05	0.00082	0.082	BP	Hga
+GO:0007033	vacuole organization	73	19	17.68	0.00344	0.177052631578947	BP	Hga
+GO:0006629	lipid metabolic process	884	202	214.12	0.00563	0.177052631578947	BP	Hga
+GO:0016485	protein processing	80	29	19.38	0.00739	0.177052631578947	BP	Hga
+GO:1901642	nucleoside transmembrane transport	9	6	2.18	0.00845	0.177052631578947	BP	Hga
+GO:0005975	carbohydrate metabolic process	545	160	132.01	0.01081	0.177052631578947	BP	Hga
+GO:0032874	positive regulation of stress-activated ...	7	5	1.7	0.01115	0.177052631578947	BP	Hga
+GO:0006002	fructose 6-phosphate metabolic process	12	7	2.91	0.01187	0.177052631578947	BP	Hga
+GO:1902476	chloride transmembrane transport	64	24	15.5	0.01208	0.177052631578947	BP	Hga
+GO:0008582	regulation of synaptic assembly at neuro...	5	4	1.21	0.01385	0.177052631578947	BP	Hga
+GO:0036498	IRE1-mediated unfolded protein response	3	3	0.73	0.0142	0.177052631578947	BP	Hga
+GO:0006253	dCTP catabolic process	3	3	0.73	0.0142	0.177052631578947	BP	Hga
+GO:0030422	siRNA processing	39	16	9.45	0.015	0.177052631578947	BP	Hga
+GO:0030007	intracellular potassium ion homeostasis	18	9	4.36	0.01566	0.177052631578947	BP	Hga
+GO:0036376	sodium ion export across plasma membrane	18	9	4.36	0.01566	0.177052631578947	BP	Hga
+GO:0006883	intracellular sodium ion homeostasis	18	9	4.36	0.01566	0.177052631578947	BP	Hga
+GO:0000723	telomere maintenance	47	20	11.38	0.01599	0.177052631578947	BP	Hga
+GO:0061621	canonical glycolysis	10	6	2.42	0.01682	0.177052631578947	BP	Hga
+GO:0055085	transmembrane transport	931	244	225.5	0.02277	0.199050847457627	BP	Hga
+GO:0016477	cell migration	87	25	21.07	0.03185	0.199050847457627	BP	Hga
+GO:0033314	mitotic DNA replication checkpoint signa...	14	7	3.39	0.03243	0.199050847457627	BP	Hga
+GO:0045332	phospholipid translocation	35	10	8.48	0.03256	0.199050847457627	BP	Hga
+GO:0008360	regulation of cell shape	23	10	5.57	0.03313	0.199050847457627	BP	Hga
+GO:0000902	cell morphogenesis	112	37	27.13	0.03318	0.199050847457627	BP	Hga
+GO:0000290	deadenylation-dependent decapping of nuc...	6	4	1.45	0.0336	0.199050847457627	BP	Hga
+GO:0033627	cell adhesion mediated by integrin	17	8	4.12	0.03361	0.199050847457627	BP	Hga
+GO:0007156	homophilic cell adhesion via plasma memb...	46	17	11.14	0.03648	0.199050847457627	BP	Hga
+GO:0006364	rRNA processing	162	37	39.24	0.04078	0.199050847457627	BP	Hga
+GO:0006281	DNA repair	209	67	50.62	0.04168	0.199050847457627	BP	Hga
+GO:0006384	transcription initiation at RNA polymera...	10	6	2.42	0.043	0.199050847457627	BP	Hga
+GO:0042246	tissue regeneration	9	5	2.18	0.04305	0.199050847457627	BP	Hga
+GO:0034058	endosomal vesicle fusion	4	3	0.97	0.04648	0.199050847457627	BP	Hga
+GO:0015910	long-chain fatty acid import into peroxi...	4	3	0.97	0.04648	0.199050847457627	BP	Hga
+GO:0042760	very long-chain fatty acid catabolic pro...	4	3	0.97	0.04648	0.199050847457627	BP	Hga
+GO:0097039	protein linear polyubiquitination	4	3	0.97	0.04648	0.199050847457627	BP	Hga
+GO:0044778	meiotic DNA integrity checkpoint signali...	4	3	0.97	0.04648	0.199050847457627	BP	Hga
+GO:0033387	putrescine biosynthetic process from orn...	4	3	0.97	0.04648	0.199050847457627	BP	Hga
+GO:0033198	response to ATP	4	3	0.97	0.04648	0.199050847457627	BP	Hga
+GO:0006516	glycoprotein catabolic process	18	7	4.36	0.04719	0.199050847457627	BP	Hga
+GO:0032870	cellular response to hormone stimulus	42	16	10.17	0.04815	0.199050847457627	BP	Hga
+GO:0016197	endosomal transport	90	23	21.8	0.0482	0.199050847457627	BP	Hga
+GO:0005925	focal adhesion	37	18	8.79	0.00082	0.164	CC	Hga
+GO:0016020	membrane	3200	801	759.9	0.00186	0.186	CC	Hga
+GO:0031380	nuclear RNA-directed RNA polymerase comp...	28	13	6.65	0.00709	0.425	CC	Hga
+GO:0009986	cell surface	51	18	12.11	0.00899	0.425	CC	Hga
+GO:0030897	HOPS complex	5	4	1.19	0.01286	0.425	CC	Hga
+GO:0005945	6-phosphofructokinase complex	10	6	2.37	0.01523	0.425	CC	Hga
+GO:0031234	extrinsic component of cytoplasmic side ...	35	9	8.31	0.01845	0.425	CC	Hga
+GO:0005662	DNA replication factor A complex	8	5	1.9	0.02189	0.425	CC	Hga
+GO:1902711	GABA-A receptor complex	14	7	3.32	0.02924	0.425	CC	Hga
+GO:0008305	integrin complex	17	8	4.04	0.03003	0.425	CC	Hga
+GO:0030896	checkpoint clamp complex	6	4	1.42	0.03133	0.425	CC	Hga
+GO:0030915	Smc5-Smc6 complex	6	4	1.42	0.03133	0.425	CC	Hga
+GO:0030288	outer membrane-bounded periplasmic space	4	3	0.95	0.04399	0.425	CC	Hga

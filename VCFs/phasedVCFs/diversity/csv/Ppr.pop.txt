@@ -1,0 +1,12 @@
+Ppr.479-171_hap1	Ppr1
+Ppr.479-171_hap2	Ppr2
+Ppr.479-172_hap1	Ppr1
+Ppr.479-172_hap2	Ppr2
+Ppr.479-64_hap1	Ppr1
+Ppr.479-64_hap2	Ppr2
+Ppr.479-68_sa_hap1	Ppr1
+Ppr.479-68_sa_hap2	Ppr2
+Ppr.479-71_hap1	Ppr1
+Ppr.479-71_hap2	Ppr2
+Ppr.479-72_sa_hap1	Ppr1
+Ppr.479-72_sa_hap2	Ppr2

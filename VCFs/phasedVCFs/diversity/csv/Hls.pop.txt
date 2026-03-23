@@ -1,0 +1,10 @@
+Hls.479-153m_hap1	Hls1
+Hls.479-153m_hap2	Hls2
+Hls.479-154m_hap1	Hls1
+Hls.479-154m_hap2	Hls2
+Hls.479-155m_hap1	Hls1
+Hls.479-155m_hap2	Hls2
+Hls.479-156m_hap1	Hls1
+Hls.479-156m_hap2	Hls2
+Hls.479-89_sa_hap1	Hls1
+Hls.479-89_sa_hap2	Hls2

@@ -1,0 +1,81 @@
+GO.ID	Term	Annotated	Significant	Expected	classicFisher	FDR	ontology	Species
+GO:0003676	nucleic acid binding	1831	239	253.18	5.5e-07	0.00011	MF	Ass
+GO:0016614	oxidoreductase activity, acting on CH-OH...	214	38	29.59	0.00011	0.008	MF	Ass
+GO:0004190	aspartic-type endopeptidase activity	27	12	3.73	0.00012	0.008	MF	Ass
+GO:0000166	nucleotide binding	1482	243	204.92	0.00028	0.0116666666666667	MF	Ass
+GO:0003887	DNA-directed DNA polymerase activity	34	13	4.7	0.00035	0.0116666666666667	MF	Ass
+GO:0004252	serine-type endopeptidase activity	236	52	32.63	0.00035	0.0116666666666667	MF	Ass
+GO:0004672	protein kinase activity	524	97	72.45	0.00043	0.0122857142857143	MF	Ass
+GO:0008417	fucosyltransferase activity	53	18	7.33	0.00075	0.01875	MF	Ass
+GO:0010997	anaphase-promoting complex binding	5	4	0.69	0.00162	0.036	MF	Ass
+GO:0140359	ABC-type transporter activity	129	30	17.84	0.0025	0.05	MF	Ass
+GO:0050660	flavin adenine dinucleotide binding	136	31	18.81	0.00297	0.054	MF	Ass
+GO:0003990	acetylcholinesterase activity	33	11	4.56	0.00355	0.0591666666666667	MF	Ass
+GO:0003824	catalytic activity	5338	818	738.1	0.00397	0.0610769230769231	MF	Ass
+GO:0005251	delayed rectifier potassium channel acti...	7	4	0.97	0.00899	0.128428571428571	MF	Ass
+GO:0020037	heme binding	220	43	30.42	0.01089	0.1452	MF	Ass
+GO:0005506	iron ion binding	261	49	36.09	0.01416	0.177	MF	Ass
+GO:0004714	transmembrane receptor protein tyrosine ...	35	10	4.84	0.01717	0.186260869565217	MF	Ass
+GO:0019948	SUMO activating enzyme activity	2	2	0.28	0.01911	0.186260869565217	MF	Ass
+GO:0004174	electron-transferring-flavoprotein dehyd...	2	2	0.28	0.01911	0.186260869565217	MF	Ass
+GO:0005524	ATP binding	1012	162	139.93	0.02089	0.186260869565217	MF	Ass
+GO:0004500	dopamine beta-monooxygenase activity	5	3	0.69	0.02123	0.186260869565217	MF	Ass
+GO:0004586	ornithine decarboxylase activity	5	3	0.69	0.02123	0.186260869565217	MF	Ass
+GO:0030246	carbohydrate binding	93	20	12.86	0.02142	0.186260869565217	MF	Ass
+GO:0016712	oxidoreductase activity, acting on paire...	27	8	3.73	0.02559	0.21325	MF	Ass
+GO:0004497	monooxygenase activity	208	45	28.76	0.03257	0.220861538461538	MF	Ass
+GO:0004843	cysteine-type deubiquitinase activity	125	25	17.28	0.03461	0.220861538461538	MF	Ass
+GO:0043035	chromatin insulator sequence binding	10	4	1.38	0.0383	0.220861538461538	MF	Ass
+GO:0004866	endopeptidase inhibitor activity	89	16	12.31	0.03858	0.220861538461538	MF	Ass
+GO:0003755	peptidyl-prolyl cis-trans isomerase acti...	25	7	3.46	0.04783	0.220861538461538	MF	Ass
+GO:0006468	protein phosphorylation	569	103	73.55	1.2e-05	0.0024	BP	Ass
+GO:0006508	proteolysis	1136	198	146.85	2.7e-05	0.00253333333333333	BP	Ass
+GO:0006260	DNA replication	103	19	13.31	3.8e-05	0.00253333333333333	BP	Ass
+GO:0006581	acetylcholine catabolic process	33	11	4.27	0.0021	0.084	BP	Ass
+GO:0019695	choline metabolic process	33	11	4.27	0.0021	0.084	BP	Ass
+GO:0016579	protein deubiquitination	138	30	17.84	0.0036	0.12	BP	Ass
+GO:0044419	biological process involved in interspec...	71	17	9.18	0.0054	0.138	BP	Ass
+GO:0007169	transmembrane receptor protein tyrosine ...	62	15	8.01	0.0061	0.138	BP	Ass
+GO:0044773	mitotic DNA damage checkpoint signaling	56	15	7.24	0.0064	0.138	BP	Ass
+GO:0033674	positive regulation of kinase activity	52	15	6.72	0.0069	0.138	BP	Ass
+GO:0000413	protein peptidyl-prolyl isomerization	15	6	1.94	0.0082	0.149090909090909	BP	Ass
+GO:0005975	carbohydrate metabolic process	377	55	48.73	0.0123	0.172533333333333	BP	Ass
+GO:0000723	telomere maintenance	28	8	3.62	0.016	0.172533333333333	BP	Ass
+GO:0086011	membrane repolarization during action po...	2	2	0.26	0.0167	0.172533333333333	BP	Ass
+GO:0045053	protein retention in Golgi apparatus	2	2	0.26	0.0167	0.172533333333333	BP	Ass
+GO:0006805	xenobiotic metabolic process	27	8	3.49	0.0176	0.172533333333333	BP	Ass
+GO:0016358	dendrite development	11	4	1.42	0.0176	0.172533333333333	BP	Ass
+GO:0033387	putrescine biosynthetic process from orn...	5	3	0.65	0.0176	0.172533333333333	BP	Ass
+GO:0071051	polyadenylation-dependent snoRNA 3'-end ...	5	3	0.65	0.0176	0.172533333333333	BP	Ass
+GO:0006082	organic acid metabolic process	504	62	65.15	0.0182	0.172533333333333	BP	Ass
+GO:0015074	DNA integration	13	5	1.68	0.0188	0.172533333333333	BP	Ass
+GO:0006032	chitin catabolic process	34	9	4.4	0.0253	0.172533333333333	BP	Ass
+GO:0016925	protein sumoylation	14	5	1.81	0.0262	0.172533333333333	BP	Ass
+GO:0032147	activation of protein kinase activity	14	5	1.81	0.0262	0.172533333333333	BP	Ass
+GO:0016558	protein import into peroxisome matrix	10	4	1.29	0.0318	0.172533333333333	BP	Ass
+GO:0006303	double-strand break repair via nonhomolo...	15	5	1.94	0.0352	0.172533333333333	BP	Ass
+GO:0007165	signal transduction	1225	171	158.35	0.041	0.172533333333333	BP	Ass
+GO:0006814	sodium ion transport	113	19	14.61	0.0423	0.172533333333333	BP	Ass
+GO:0006139	nucleobase-containing compound metabolic...	2280	242	294.73	0.0442	0.172533333333333	BP	Ass
+GO:0006486	protein glycosylation	190	29	24.56	0.0452	0.172533333333333	BP	Ass
+GO:0006516	glycoprotein catabolic process	10	3	1.29	0.0458	0.172533333333333	BP	Ass
+GO:0006542	glutamine biosynthetic process	3	2	0.39	0.0458	0.172533333333333	BP	Ass
+GO:1904668	positive regulation of ubiquitin protein...	3	2	0.39	0.0458	0.172533333333333	BP	Ass
+GO:1905786	positive regulation of anaphase-promotin...	3	2	0.39	0.0458	0.172533333333333	BP	Ass
+GO:0030299	intestinal cholesterol absorption	3	2	0.39	0.0458	0.172533333333333	BP	Ass
+GO:1904262	negative regulation of TORC1 signaling	16	5	2.07	0.046	0.172533333333333	BP	Ass
+GO:0050801	monoatomic ion homeostasis	124	14	16.03	0.0461	0.172533333333333	BP	Ass
+GO:0005615	extracellular space	403	69	48.6	0.0019	0.246666666666667	CC	Ass
+GO:0043564	Ku70:Ku80 complex	6	4	0.72	0.0026	0.246666666666667	CC	Ass
+GO:0016020	membrane	2700	358	325.58	0.0037	0.246666666666667	CC	Ass
+GO:0043190	ATP-binding cassette (ABC) transporter c...	4	3	0.48	0.0064	0.32	CC	Ass
+GO:1990130	GATOR1 complex	13	5	1.57	0.0141	0.414285714285714	CC	Ass
+GO:0016580	Sin3 complex	5	3	0.6	0.0145	0.414285714285714	CC	Ass
+GO:0031510	SUMO activating enzyme complex	2	2	0.24	0.0145	0.414285714285714	CC	Ass
+GO:0005662	DNA replication factor A complex	6	3	0.72	0.0264	0.524347826086957	CC	Ass
+GO:0000445	THO complex part of transcription export...	6	3	0.72	0.0264	0.524347826086957	CC	Ass
+GO:0043231	intracellular membrane-bounded organelle	4096	447	493.92	0.0268	0.524347826086957	CC	Ass
+GO:0034515	proteasome storage granule	3	2	0.36	0.0401	0.524347826086957	CC	Ass
+GO:0005680	anaphase-promoting complex	17	5	2.05	0.0452	0.524347826086957	CC	Ass
+GO:0002116	semaphorin receptor complex	12	4	1.45	0.047	0.524347826086957	CC	Ass
+GO:0043235	receptor complex	101	21	12.18	0.0473	0.524347826086957	CC	Ass

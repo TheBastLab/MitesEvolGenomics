@@ -1,0 +1,5 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0005615",1,"GO:0005615",2.72124639904717,702,"extracellular space","extracellular space",0.997,1,0
+"GO:0043564",2,"GO:0043564",2.58502665202918,2,"Ku70:Ku80 complex","Ku70:Ku80 complex",0.9645,1,0
+"GO:0016020",3,"GO:0016020",2.431798275933,2903,"membrane","membrane",0.92925,1,0
+"GO:0043190",4,"GO:0043190",2.19382002601611,8,"ATP-binding cassette (ABC) transporter complex","ATP-binding cassette (ABC) transporter complex",0.89675,1,0

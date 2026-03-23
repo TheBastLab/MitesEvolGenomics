@@ -1,0 +1,27 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0003676",1,"GO:0003676",16.9208187539524,2260,"nucleic acid binding","nucleic acid binding",0.920153846153846,0.661333333333333,0
+"GO:0044547",2,"GO:0044547",7.4089353929735,3,"DNA topoisomerase binding","DNA topoisomerase binding",0.981307692307692,1,0
+"GO:0046975",3,"GO:0046975",7.24412514432751,6,"histone H3K36 methyltransferase activity","histone H3K36 methyltransferase activity",0.874423076923077,0.6065,0
+"GO:0005524",4,"GO:0005524",7.11350927482752,639,"ATP binding","ATP binding",0.923730769230769,0.76,0
+"GO:0000014",5,"GO:0000014",6.92081875395237,15,"single-stranded DNA endodeoxyribonuclease activity","single-stranded DNA endodeoxyribonuclease activity",0.909769230769231,0.72475,0
+"GO:0042800",3,"GO:0046975",6.76955107862173,12,"histone H3K4 methyltransferase activity","histone H3K36 methyltransferase activity",0.867923076923077,0.6065,0.787
+"GO:0015276",6,"GO:0015276",3.79588001734407,144,"ligand-gated monoatomic ion channel activity","ligand-gated monoatomic ion channel activity",0.909384615384615,0.411,0
+"GO:0005272",6,"GO:0015276",3.74472749489669,45,"sodium channel activity","ligand-gated monoatomic ion channel activity",0.926884615384615,0.52475,0.707
+"GO:0003690",1,"GO:0003676",3.42021640338319,595,"double-stranded DNA binding","nucleic acid binding",0.923538461538462,0.622,0.602
+"GO:0016290",5,"GO:0000014",3.17392519729917,1,"palmitoyl-CoA hydrolase activity","single-stranded DNA endodeoxyribonuclease activity",0.918615384615385,0.744,0.365
+"GO:0004305",7,"GO:0004305",3.07058107428571,2,"ethanolamine kinase activity","ethanolamine kinase activity",0.8675,0.642428571428571,0
+"GO:0004103",7,"GO:0004305",2.92811799269387,2,"choline kinase activity","ethanolamine kinase activity",0.8695,0.647571428571429,0.365
+"GO:0003697",1,"GO:0003676",2.89279003035213,47,"single-stranded DNA binding","nucleic acid binding",0.938076923076923,0.684666666666667,0.414
+"GO:0047499",5,"GO:0000014",2.83863199776503,3,"calcium-independent phospholipase A2 activity","single-stranded DNA endodeoxyribonuclease activity",0.906576923076923,0.6825,0.385
+"GO:0004672",7,"GO:0004305",2.72584215073632,219,"protein kinase activity","ethanolamine kinase activity",0.800807692307692,0.491571428571429,0.526
+"GO:0004694",7,"GO:0004305",2.66958622665081,2,"eukaryotic translation initiation factor 2alpha kinase activity","ethanolamine kinase activity",0.854615384615385,0.617714285714286,0.37
+"GO:0005246",8,"GO:0005246",2.6458915608526,8,"calcium channel regulator activity","calcium channel regulator activity",1,1,0
+"GO:0004341",5,"GO:0000014",2.56863623584101,1,"gluconolactonase activity","single-stranded DNA endodeoxyribonuclease activity",0.913153846153846,0.69775,0.351
+"GO:0020037",9,"GO:0020037",2.21538270736712,137,"heme binding","heme binding",0.946576923076923,1,0
+"GO:0004674",7,"GO:0004305",2.21183162885883,177,"protein serine/threonine kinase activity","ethanolamine kinase activity",0.804846153846154,0.495,0.502
+"GO:0005536",4,"GO:0005524",2.1505805862031,5,"glucose binding","ATP binding",0.965615384615385,0.76,0.48
+"GO:0008865",7,"GO:0004305",2.1505805862031,4,"fructokinase activity","ethanolamine kinase activity",0.848884615384615,0.573285714285714,0.37
+"GO:0004340",7,"GO:0004305",2.1505805862031,4,"glucokinase activity","ethanolamine kinase activity",0.848884615384615,0.573285714285714,0.37
+"GO:1904315",6,"GO:0015276",2.12726117252733,38,"transmitter-gated monoatomic ion channel activity involved in regulation of postsynaptic membrane potential","ligand-gated monoatomic ion channel activity",0.913192307692308,0.43575,0.836
+"GO:0004197",10,"GO:0004197",2.07572071393812,22,"cysteine-type endopeptidase activity","cysteine-type endopeptidase activity",0.883115384615385,1,0
+"GO:0005231",6,"GO:0015276",2.04575749056068,21,"excitatory extracellular ligand-gated monoatomic ion channel activity","ligand-gated monoatomic ion channel activity",0.914692307692308,0.4455,0.813

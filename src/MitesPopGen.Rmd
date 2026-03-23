@@ -1,0 +1,4501 @@
+---
+title: "MitePopGen"
+author: "Errbii M."
+date: "2025-02-07"
+output: html_document
+---
+
+please not that I have uploaded all the datasets to the data folder. To make plots and so on, you might need to adjust the path to the location of the data file in question.
+
+```{r}
+library(ggpubr)
+library(ggtree)
+library(patchwork)
+library(gtools)
+library(tidyverse)
+library(data.table)
+library(reshape2)
+library(ggrepel)
+library(ggbeeswarm)
+library(ape)
+library(caper)
+```
+
+## SNP filtering
+
+Use VCFtools output files to visualize and decide for thresholds for various SNP metrics.
+
+#### *allele frequency*
+```{r}
+# Visualize Allele frquencies, coverage and missingness:
+
+# list of species to loop over:
+species <- c("Ass", "Hga", "Hls", "Hrs", "Hti", "Ppr", "Sms") 
+
+# load Freq
+listOfAllFreqs<-list()
+
+
+for (sp in species) { 
+  file_path <- paste0("~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/QCs/",sp,".varSNPs.biallpass.hom_QC/",sp,".varSNPs.biallpass.hom.freq.frq")
+  
+  if (file.exists(file_path)) {  # Check if file exists before reading
+    listOfAllFreqs[[sp]] <- read.csv(file_path, sep='\t', header=TRUE)  # Read file
+    listOfAllFreqs[[sp]]$species <- sp
+    
+  } else {
+    warning(paste("File not found:", file_path))  # Print a warning if file is missing
+  }
+}
+
+# Combine all tables into a single data frame by row binding
+final_combined_freq <- bind_rows(listOfAllFreqs)
+
+# set colors
+cols <-c(
+  "Ref_Allele"="#ff6666",
+  "Alt_Allele"="#00cc44")
+
+# Get unique species
+species_list <- unique(final_combined_freq$species)
+
+# Generate plots for each species and store them in a list
+plot_list <- lapply(species_list, function(sp) {
+  species_data <- final_combined_freq %>% filter(species == sp)
+  
+  ggplot(species_data) + 
+    geom_histogram(aes(x = Ref_Allele, after_stat(density), fill = "Ref_Allele"), binwidth = 0.05, alpha = 0.5)+
+    geom_histogram(aes(x = Alt_Allele, after_stat(density), fill = "Alt_Allele"), binwidth = 0.05, alpha =0.5)+
+    labs(title = "Allele frequency", x = "Frequency", y = "Density")+
+    scale_fill_manual(name="Allele",values=cols)+ 
+    theme_bw() + theme(
+      plot.title = element_text(size=8),
+      legend.title = element_text(size = 8),
+      legend.text = element_text(size = 6),
+      axis.text=element_text(size=8),
+      axis.title=element_text(size=8,face="bold"),
+      panel.border = element_blank(), panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(), axis.line = element_line(colour = "black")
+    ) + ggtitle(sp)# Title for each species
+  
+  
+})
+
+# Combine all species plots into one figure and collect a single legend
+final_plot <- wrap_plots(plot_list) + 
+  plot_layout(ncol = 3, guides = "collect") &  # Collects legends from all subplots into one
+  theme(legend.position = "bottom")  # Places the legend at the bottom
+
+# Display the final plot
+print(final_plot)
+
+dev.print(pdf,"~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/QCs/Freq.pdf",width=9,height=6)
+
+
+# clean working space:
+rm(list = names(which(!unlist(eapply(.GlobalEnv, \(x) inherits(x, what = "function"))))))
+
+```
+
+#### *mean depth per site*
+
+```{r depth,  echo=FALSE, message=FALSE, warning=FALSE}
+
+# list of species to loop over:
+species <- c("Ass", "Hga", "Hls", "Hrs", "Hti", "Ppr", "Sms")
+
+# load Freq
+listOfAllmeandepth<-list()
+
+
+for (sp in species) { 
+  file_path <- paste0("~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/QCs/",sp,".varSNPs.biallpass.hom_QC/",sp,".varSNPs.biallpass.hom.site.depth.ldepth.mean")
+  
+  if (file.exists(file_path)) {  # Check if file exists before reading
+    listOfAllmeandepth[[sp]] <- read.csv(file_path, sep='\t', header=TRUE)  # Read file
+    listOfAllmeandepth[[sp]]$species <- sp
+    
+  } else {
+    warning(paste("File not found:", file_path))  # Print a warning if file is missing
+  }
+}
+
+# Combine all tables into a single data frame by row binding
+final_combined_meandepth <- bind_rows(listOfAllmeandepth)
+
+# Get unique species
+species_list <- unique(final_combined_meandepth$species)
+
+# Generate plots for each species and store them in a list
+plot_list <- lapply(species_list, function(sp) {
+  species_data <- final_combined_meandepth %>% filter(species == sp)
+  
+  ggplot(species_data) + 
+    geom_histogram(aes(x = MEAN_DEPTH, stat(density)), binwidth = 1, fill = "grey")+ 
+    labs(title = "Mean depth per site")+
+    xlim(c(0,200))+
+    theme_bw() + theme(
+      plot.title = element_text(size=8),
+      legend.title = element_text(size = 8),
+      legend.text = element_text(size = 6),
+      axis.text=element_text(size=8),
+      axis.title=element_text(size=8,face="bold"),
+      panel.border = element_blank(), panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(), axis.line = element_line(colour = "black")
+    ) + ggtitle(paste0(sp, ": ", quantile(species_data$MEAN_DEPTH, 0.05, na.rm = T), " - ", quantile(species_data$MEAN_DEPTH, 0.95, na.rm = T))) # Title for each species 
+  
+})
+
+# Combine all species plots into one figure and collect a single legend
+final_plot <- wrap_plots(plot_list) + 
+  plot_layout(ncol = 3, guides = "collect") &  # Collects legends from all subplots into one
+  theme(legend.position = "bottom")  # Places the legend at the bottom
+
+# Display the final plot
+print(final_plot)
+
+dev.print(pdf,"~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/QCs/Depth.pdf",width=9,height=6)
+
+# clean working space:
+rm(list = names(which(!unlist(eapply(.GlobalEnv, \(x) inherits(x, what = "function"))))))
+
+```
+#### *missing data: SNP*
+
+```{r missingness,  echo=FALSE, message=FALSE, warning=FALSE}
+
+# list of species to loop over:
+species <- c("Ass", "Hga", "Hls", "Hrs", "Hti", "Ppr", "Sms")
+
+# load Freq
+listOfAllmiss<-list()
+
+
+for (sp in species) { 
+  file_path <- paste0("~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/QCs/",sp,".varSNPs.biallpass.hom_QC/",sp,".varSNPs.biallpass.hom.missing.site.lmiss")
+  
+  if (file.exists(file_path)) {  # Check if file exists before reading
+    listOfAllmiss[[sp]] <- read.csv(file_path, sep='\t', header=TRUE)  # Read file
+    listOfAllmiss[[sp]]$species <- sp
+    
+  } else {
+    warning(paste("File not found:", file_path))  # Print a warning if file is missing
+  }
+}
+
+# Combine all tables into a single data frame by row binding
+final_combined_miss <- bind_rows(listOfAllmiss)
+
+# Get unique species
+species_list <- unique(final_combined_miss$species)
+
+# Generate plots for each species and store them in a list
+plot_list <- lapply(species_list, function(sp) {
+  species_data <- final_combined_miss %>% filter(species == sp)
+  
+  ggplot(species_data) + 
+    geom_histogram(aes(x = F_MISS, stat(density)),  binwidth = 0.1, fill = "grey")+
+    labs(title = "Missingness on a per-site basis", x = "Frequency (binwidth = 0.1)", y = "Density")+
+    theme_bw() + theme(
+      plot.title = element_text(size=8),
+      legend.title = element_text(size = 8),
+      legend.text = element_text(size = 6),
+      axis.text=element_text(size=8),
+      axis.title=element_text(size=8,face="bold"),
+      panel.border = element_blank(), panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(), axis.line = element_line(colour = "black")
+    ) + ggtitle(paste0(sp)) # Title for each species 
+  
+})
+
+# Combine all species plots into one figure and collect a single legend
+final_plot <- wrap_plots(plot_list) + 
+  plot_layout(ncol = 3, guides = "collect") &  # Collects legends from all subplots into one
+  theme(legend.position = "bottom")  # Places the legend at the bottom
+
+# Display the final plot
+print(final_plot)
+
+dev.print(pdf,"~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/QCs/Miss.pdf",width=9,height=6)
+
+# clean working space:
+rm(list = names(which(!unlist(eapply(.GlobalEnv, \(x) inherits(x, what = "function"))))))
+
+```
+
+#### *missing data: INDV*
+
+Just do `for i in */*SNPspass.biall.recode.missing.indv.imiss; do echo ${i}; cat ${i};done` in bash and check if there are any outliers.
+
+
+#### *ME analysis: SFS plots*
+
+```{r SFSs, echo=FALSE, message=FALSE, warning=FALSE}
+
+# load all needed libraries:
+library(tidyverse)
+library(jcolors)
+library(grid)
+
+# devtools::install_github("jaredhuling/jcolors")
+
+# Load genotype data:
+gt <- read_delim("~/sciebo/Postdoc/sexAsex/popGen/sfs/Hrs.SFS.N7.txt", delim = "\t", col_names = F)
+colnames(gt) <- c("occ", "profile", "alt")
+head(gt)
+
+
+# annotate data: add order based on frequency of occurrence:
+df <- gt %>% group_by(alt) %>% mutate(ID = as.numeric(row_number()))
+
+
+# show only N (here 20) most frequent genotypes:
+df <- mutate(as_tibble(df), ID = ifelse(ID < 21, ID, "others"), profile = ifelse(ID == "others", "others", profile))
+
+# group and count other:
+df2 <- df %>% group_by(alt, profile, ID) %>% summarise(occ = sum(occ))
+
+df2$ID <- ifelse((nchar(df2$ID) ==1) ,paste0("0",df2$ID),df2$ID)
+
+sum(df2$occ)
+
+# add NAs if count is less than N most frequent genotypes (here 20):
+# Group by 'alt' and count the number of rows
+result <- df2 %>%
+  group_by(alt) %>%
+  summarise(n_rows = n()) %>%
+  ungroup() %>%
+  mutate(n_add_rows = ifelse(n_rows < 21, 21 - n_rows, 0)) %>%
+  mutate(add_rows = ifelse(n_rows < 21, TRUE, FALSE))
+
+# Print the result
+result[result$add_rows=="TRUE",]
+
+# add rows
+# eur
+df2 <- df2 %>% ungroup() %>% 
+  add_row(alt = c(replicate(14, 1), replicate(14, 13)), # n_add_rows, alt
+          profile = c(replicate(13, "N/A"),"others", replicate(13, "N/A"),"others"), # n_add_rows - 1
+          ID = c(seq(8,20,1),"others", seq(8,20,1),"others"), # n_rows + 1
+          occ = c(replicate(14, 0), replicate(14, 0))) # same as alt
+
+
+# order data:
+df2$ID <- ifelse((nchar(df2$ID) ==1) ,paste0("0",df2$ID),df2$ID)
+
+final <- df2[,c(1,4,3,2)] %>% 
+  as.data.frame() %>% 
+  arrange(alt, ID) 
+
+# save this file:
+write_delim(final, "~/sciebo/Postdoc/sexAsex/popGen/sfs/Hrs.SFS.N7.forR.ed.txt", delim = "\t")
+
+# THEN GO AN USE THE SCRIPT INSIDE SRC OR RUN THE FOLLOWING SECTION
+
+```
+
+```{r SFSs, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(grid)
+library(jcolors)
+
+# Define file path
+sfs_dir <- "~/sciebo/Postdoc/sexAsex/popGen/sfs/"
+
+# List all files matching pattern *ed.txt
+sfs_files <- list.files(path = sfs_dir, pattern = "*ed.txt", full.names = TRUE)
+
+# Define color function
+colfunc <- jcolors_contin(palette = "rainbow")
+
+# Loop through each file
+for (file in sfs_files) {
+  
+  # Extract species name (first 3 characters) and number of individuals (after 'N')
+  filename <- basename(file)
+  species <- substr(filename, 1, 3)
+  N <- as.numeric(sub(".*N([0-9]+).*", "\\1", filename))
+  allTOT <- N * 2  # Total alleles
+  
+  # Read data
+  SFS <- read.table(file, header = TRUE)
+  
+  # Generate output PDF file
+  pdfSFSplot <- paste0(sfs_dir, species, ".SFS.N", N, ".pdf")
+  
+  # Define max number of profiles
+  max_profiles <- 20  
+  max_lines_per_column <- (max_profiles + 2) * 4
+  
+  # Assign colors
+  jcols <- colfunc(max_profiles + 1)
+  
+  # Determine number of legend columns
+  colNb <- 1.0
+  nb_lines <- 0
+  
+  for (i in 1:nrow(SFS)) {
+    if (SFS[i,3] == "01") {
+      SFSI <- subset(SFS, alt == SFS[i,1])
+      if (length(SFSI$occ[SFSI$occ > 0]) + 1 + nb_lines > max_lines_per_column) {
+        colNb <- colNb + 1.0
+        nb_lines <- 0
+      }
+      nb_lines <- nb_lines + 1
+    }
+    if (SFS[i,2] > 0) {
+      nb_lines <- nb_lines + 1
+    }
+  }
+  
+  # Set plot size
+  ratioPointvsInch <- 0.013837
+  legendfontsize <- 12.0
+  charwidth <- ratioPointvsInch * legendfontsize
+  nbCharperInd <- 2.0
+  
+  colwidth <- (N * nbCharperInd * charwidth) + (3.0 * charwidth)
+  legendWidth <- 1.0 + (colNb * colwidth)
+  plotWidth <- N + legendWidth
+  legendlineheight <- 12.0 * ratioPointvsInch * 1.25
+  plotHeight <- legendlineheight * max_lines_per_column + 2.0 * legendlineheight
+  
+  # Create PDF
+  pdf(pdfSFSplot, width = plotWidth, height = plotHeight)
+  
+  # Create SFS bar plot
+  p <- ggplot(data = SFS, aes(x = alt, y = occ/10000, fill = ID)) +
+    ggtitle(species) +
+    geom_bar(stat = "identity", colour = "black", show.legend = FALSE) +
+    xlab("# alternative alleles") + ylab("Frequency") +
+    scale_x_discrete(expand = c(0, 0), name = "# alternative alleles", limits = factor(c(1:allTOT))) +
+    scale_y_continuous(expand = c(0, 0)) +
+    theme_bw() +
+    theme(panel.border = element_blank(), 
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(), 
+          axis.line = element_line(colour = 'black', linewidth = 1.25),
+          axis.ticks = element_line(colour = 'black', linewidth = 1.25),
+          axis.ticks.length=unit(.25, "cm"),
+          plot.margin = unit(c(0, legendWidth, 0, 0), "inches"),
+          plot.title = element_text(colour = "black", size = 26, hjust = .5, face = "bold.italic"),
+          axis.text.x = element_text(colour = "black", size = 20, angle = 0, hjust = .5, vjust = -.5, face = "plain"),
+          axis.text.y = element_text(colour = "black", size = 20, angle = 0, hjust = .5, vjust = .5, face = "plain"),
+          axis.title.x = element_text(colour = "black", size = 24, angle = 0, hjust = .5, vjust = .2, face = "italic"),
+          axis.title.y = element_text(colour = "black", size = 24, angle = 90, hjust = .5, vjust = .5, face = "italic")) +
+    scale_fill_manual(name = allTOT / 2, labels = SFS$profile[SFS$alt == allTOT / 2], values = jcols)
+  
+  print(p)
+  
+  # ---- Optimized Legend Section ----
+  yinit <- plotHeight
+  ypad <- legendlineheight
+  ydec <- yinit
+  xpad <- charwidth
+  xdec <- plotWidth - (colNb * colwidth)
+  column <- 0.0
+  nb_lines <- 0
+  matrixcolor <- rep(jcols, allTOT)
+  
+  # Print legend title
+  # grid.text("LEGEND:", x = unit(xdec, "inches"), y = unit(yinit, "inches"), just = "left", gp = gpar(fontsize = 14))
+  
+  for (i in 1:nrow(SFS)) {
+    currentcolor <- matrixcolor[i]
+    
+    if (SFS[i,3] == "01") {
+      SFSI <- subset(SFS, alt == SFS[i,1])
+      if (length(SFSI$occ[SFSI$occ > 0]) + 1 + nb_lines > max_lines_per_column) {
+        column <- column + 1.0
+        nb_lines <- 0
+        ydec <- yinit
+      }
+      nb_lines <- nb_lines + 1
+      ydec <- ydec - ypad
+      grid.text(SFS[i,1], x = unit(xdec + (column * colwidth), "inches"), y = unit(ydec, "inches"), just = "left", gp = gpar(fontsize = 14))
+    }
+    
+    if (SFS[i,2] > 0) {
+      nb_lines <- nb_lines + 1
+      ydec <- ydec - ypad
+      
+      # Add color square
+      grid.polygon(x = c(xdec + (column * colwidth), xdec + (column * colwidth), 
+                         xdec + (column * colwidth) + 2.0 * charwidth, 
+                         xdec + (column * colwidth) + 2.0 * charwidth), 
+                   y = c(ydec - (legendlineheight / 3.0), ydec + (legendlineheight / 3.0), 
+                         ydec + (legendlineheight / 3.0), ydec - (legendlineheight / 3.0)), 
+                   default.units = "inches", gp = gpar(fill = currentcolor))
+      
+      # Add text for each square
+      grid.text(SFS[i,4], x = unit(xdec + (column * colwidth) + 3.0 * charwidth, "inches"), 
+                y = unit(ydec, "inches"), just = "left", gp = gpar(col = "darkgrey", fontsize = legendfontsize))
+    }
+  }
+  
+  dev.off()
+}
+
+```
+
+#### *ME analysis: haplotype trees*
+
+```{r ME trees, echo=FALSE, message=FALSE, warning=FALSE}
+library(ape)
+
+# Define the path to the main directory
+base_dir <- "~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/MEtrees/100kbins/trees"
+
+# List of species subfolders
+species_dirs <- c("Hga", "Hti", "Ppr", "Sms", "Hrs", "Hls", "Nps", "Ass", "Aca")
+
+# Safe tree reader that cleans NA node labels
+read_safe_tree <- function(file) {
+  tree <- tryCatch(read.tree(file), error = function(e) {
+    message("Failed to read tree: ", file)
+    return(NULL)
+  })
+  if (!is.null(tree) && !is.null(tree$node.label)) {
+    tree$node.label[is.na(tree$node.label)] <- ""
+  }
+  return(tree)
+}
+
+for (sp in species_dirs) {
+  message("\nProcessing species: ", sp)
+  
+  sp_dir <- file.path(base_dir, sp)
+  if (!dir.exists(sp_dir)) {
+    message("Directory does not exist: ", sp_dir, " -- skipping.")
+    next
+  }
+  
+  tree_files <- list.files(sp_dir, pattern = "\\.contree2$", full.names = TRUE)
+  
+  if (length(tree_files) < 2) {
+    message("Not enough tree files in ", sp_dir, " -- skipping.")
+    next
+  }
+  
+  # Read and filter trees
+  tree_list <- Filter(Negate(is.null), lapply(tree_files, read_safe_tree))
+  
+  if (length(tree_list) < 2) {
+    message("Too few valid trees after filtering for ", sp, " -- skipping.")
+    next
+  }
+  
+  # Assign multiPhylo class
+  class(tree_list) <- "multiPhylo"
+  
+  # Build majority-rule consensus tree
+  consensus_tree <- consensus(tree_list, p = 0.5, check.labels = TRUE)
+  
+  # Write consensus tree to file
+  out_file <- file.path(sp_dir, paste0(sp, "_consensus.tree"))
+  write.tree(consensus_tree, file = out_file)
+  
+  message("Consensus tree saved to: ", out_file)
+}
+```
+
+```{r MA trees, echo=FALSE, message=FALSE, warning=FALSE}
+library(ape)
+
+# Define the base directory containing species folders
+base_dir <- "~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/MEtrees/100kbins/trees"
+
+# List of species folders
+species_dirs <- c("Hga", "Hti", "Ppr", "Sms", "Hrs", "Hls", "Nps", "Ass", "Aca")
+
+# Safe tree reading function to handle malformed node labels
+read_safe_tree <- function(file) {
+  tree <- tryCatch(read.tree(file), error = function(e) {
+    message("Failed to read tree: ", file)
+    return(NULL)
+  })
+  if (!is.null(tree) && !is.null(tree$node.label)) {
+    tree$node.label[is.na(tree$node.label)] <- ""
+  }
+  return(tree)
+}
+
+# Loop over each species
+for (sp in species_dirs) {
+  message("\nProcessing species: ", sp)
+  
+  sp_dir <- file.path(base_dir, sp)
+  if (!dir.exists(sp_dir)) {
+    message("Directory does not exist: ", sp_dir, " -- skipping.")
+    next
+  }
+  
+  tree_files <- list.files(sp_dir, pattern = "\\.contree2$", full.names = TRUE)
+  
+  if (length(tree_files) < 1) {
+    message("No tree files found in ", sp_dir, " -- skipping.")
+    next
+  }
+  
+  # Read all valid trees into a list
+  tree_list <- Filter(Negate(is.null), lapply(tree_files, read_safe_tree))
+  
+  if (length(tree_list) < 1) {
+    message("No valid trees after reading in ", sp, " -- skipping.")
+    next
+  }
+  
+  class(tree_list) <- "multiPhylo"
+  
+  # Write all trees to one file per species
+  out_file <- file.path(sp_dir, paste0(sp, "_multi.trees"))
+  write.tree(tree_list, file = out_file)
+  
+  message("Multi-tree file written to: ", out_file)
+}
+```
+
+#### *ME analysis: haplotype specific dynamics*
+
+```{r popGen: haplotypic, echo=FALSE, message=FALSE, warning=FALSE}
+# Load required library
+library(data.table)
+
+# Define directories
+bed_dir <- "~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/haploblocks"
+csv_dir <- "~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/diversity/csv/"
+output_dir <- "~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/diversity/annotated_csv"
+
+# Create output directory if it doesn't exist
+if (!dir.exists(output_dir)) dir.create(output_dir)
+
+# List of species prefixes based on file names
+species_list <- c("Ass", "Hga", "Hls", "Hrs", "Hti", "Ppr", "Sms")
+
+# Loop through species
+for (sp in species_list) {
+  
+  # Define file paths
+  bed_file <- file.path(bed_dir, paste0(sp, ".blocks.atleast100kb.forR.bed"))
+  csv_file <- file.path(csv_dir, paste0(sp, ".var.invar.filtered.csv"))
+  out_file <- file.path(output_dir, paste0(sp, ".annotated.csv"))
+  
+  # Read files
+  large_windows <- fread(bed_file, header = FALSE)
+  pop_data <- fread(csv_file)
+  
+  # Add column names
+  colnames(large_windows) <- c("scaffold", "start_large", "end_large", "window_size", "window_name")
+  
+  # Convert to data.table and set keys
+  setDT(large_windows)
+  setDT(pop_data)
+  
+  # Ensure columns are in the correct type
+  pop_data[, start := as.integer(start)]
+  pop_data[, end := as.integer(end)]
+  pop_data[, mid1 := as.integer(mid)]
+  pop_data[, mid2 := as.integer(mid+2)]
+  
+  
+  large_windows[, start_large := as.integer(start_large)]
+  large_windows[, end_large := as.integer(end_large)]
+  
+  # Set keys for overlap
+  setkey(large_windows, scaffold, start_large, end_large)
+  setkey(pop_data, scaffold, mid1, mid2)
+  
+  # Overlap join
+  annotated_data <- foverlaps(pop_data, large_windows,
+                              by.x = c("scaffold", "mid1", "mid2"),
+                              by.y = c("scaffold", "start_large", "end_large"),
+                              type = "within", nomatch = 0)
+  
+  # Select and reorder columns
+  # Inside your loop
+  pi1_col <- paste0("pi_", sp, "1")
+  pi2_col <- paste0("pi_", sp, "2")
+  dxy_col <- paste0("dxy_", sp, "1_", sp, "2")
+  fst_col <- paste0("Fst_", sp, "1_", sp, "2")
+  
+  # Subset and rename
+  annotated_data <- annotated_data[, .(
+    scaffold,
+    start,
+    end,
+    mid,
+    sites,
+    pi1 = get(pi1_col),
+    pi2 = get(pi2_col),
+    dxy = get(dxy_col),
+    fst = get(fst_col),
+    window_size,
+    window_name
+  )]  
+  # Write output
+  fwrite(annotated_data, out_file)
+  
+  message("Annotated: ", sp)
+}
+```
+
+```{r popGen: haplotypic, echo=FALSE, message=FALSE, warning=FALSE}
+# Define the input and output directories
+annotated_dir <- "~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/diversity/annotated_csv"
+merged_file <- "~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/diversity/annotated_combined.csv"
+
+# Get list of all annotated CSVs
+csv_files <- list.files(annotated_dir, pattern = "\\.annotated\\.csv$", full.names = TRUE)
+
+# Read and combine, adding a species column inferred from filename
+all_data <- rbindlist(lapply(csv_files, function(f) {
+  dt <- fread(f)
+  dt[, species := sub("\\.annotated\\.csv$", "", basename(f))]  # extract species name from filename
+  return(dt)
+}))
+
+# Save the combined file
+fwrite(all_data, merged_file)
+
+message("Combined CSV written to: ", merged_file)
+```
+
+
+```{r popGen: haplotypic, echo=FALSE, message=FALSE, warning=FALSE}
+# Mean diversity stats per window (across species)
+summary_stats <- all_data[, .(
+  mean_pi1 = mean(pi1, na.rm = TRUE),
+  mean_pi2 = mean(pi2, na.rm = TRUE),
+  mean_dxy = mean(dxy, na.rm = TRUE),
+  mean_fst = mean(fst, na.rm = TRUE)
+), by = .(species, scaffold, window_name, window_size)]
+
+head(summary_stats)
+
+
+```
+
+```{r popGen: haplotypic, echo=FALSE, message=FALSE, warning=FALSE}
+library(data.table)
+library(ggplot2)
+
+# Assuming all_data is already loaded (merged annotated CSV)
+# If not, read it:
+all_data <- fread("~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/diversity/annotated_combined.csv")
+
+# Ensure data.table
+setDT(all_data)
+
+# First, calculate unique window ranks
+window_ranks <- unique(all_data[, .(species, scaffold, window_name, window_size)])
+window_ranks[, window_rank := frank(-window_size, ties.method = "min"), by = .(species, scaffold)]
+
+# Merge ranks back into the full dataset
+all_data <- merge(all_data, window_ranks[, .(species, scaffold, window_name, window_rank)],
+                  by = c("species", "scaffold", "window_name"), all.x = TRUE)
+
+
+# reformat
+plot_data <- reshape2::melt(all_data, id=c("species", "scaffold", "window_name", "start", "end", "mid", "sites", "window_size", "window_rank"))
+
+plot_data$stat <- gsub("[^A-Za-z]", "", plot_data$variable)
+
+# Violin plot: Pi
+dt <- plot_data %>% filter(plot_data$stat =="pi" &
+                             plot_data$window_rank < 5 &
+                             plot_data$window_size > 1e6 &
+                             plot_data$species == "Ppr")
+
+dt$window_rank <- as_factor(dt$window_rank)
+
+# pi <- ggplot(dt,aes(variable, log10(value)))+  theme_bw()+
+#   geom_quasirandom(aes(color=variable, fill = variable), alpha=.3,size=.1, dodge.width = 0.9, width = 0.2)+
+#   geom_boxplot(aes(color= variable, fill = variable), color = "black", width=0.1,alpha=.5, linewidth=.3, position = position_dodge(width = 0.9),outlier.shape = NA)+
+#   geom_violin(aes(color= variable, fill = variable), alpha=.4, linewidth=.3, scale = "width") +
+#   theme(panel.border = element_blank(), 
+#         panel.grid.major = element_blank(),
+#         panel.grid.minor = element_blank(), 
+#         axis.line = element_line(colour = "black")) +
+#   stat_compare_means(comparisons = list(c("pi1", "pi2")), aes(label = ..p.signif..), label.x = 3, label.y = -2)+
+#   facet_grid(species~scaffold+window_rank,  scales = "free", space = "free_x", switch = "x") +
+#   scale_fill_manual(name="haplotype",values = c(
+#     "pi1"="#F56B39",
+#     "pi2"="#979797"))+
+#   scale_color_manual(name="haplotype",values = c(
+#     "pi1"="#F56B39",
+#     "pi2"="#979797"))+
+#   # # coord_cartesian(ylim = c(-6,-3))+
+#   scale_y_continuous(name=expression(paste("log"[10]," nucleotide diversity")), breaks = c(-3,-2,-1))+
+#   theme(legend.position = "top")+xlab(NULL)+
+#   theme(panel.spacing.x=unit(-.1,"lines"),
+#         panel.spacing.y=unit(.5,"lines"),
+#         panel.background = element_blank(),
+#         axis.text.x = element_blank(), #element_text(size=9),
+#         axis.ticks.x = element_blank(),
+#         panel.spacing = unit(.1, "cm"),
+#         strip.background=element_rect(fill='white', colour='black'),
+#         axis.text.y=element_text(size=10),
+#         plot.title = element_text(size = 10)
+#   ) #+ ggtitle("A")
+# 
+# 
+# pi
+
+```
+
+```{r popGen: haplotypic, echo=FALSE, message=FALSE, warning=FALSE}
+library(data.table)
+library(ggplot2)
+
+# Directory containing the annotated CSVs
+input_dir <- "~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/diversity/csv/"
+csv_files <- list.files(input_dir, pattern = "\\.csv$", full.names = TRUE)
+
+# Function to load and standardize each file
+load_and_standardize <- function(f) {
+  # Extract species from filename
+  sp <- sub(".var.invar.filtered.csv$", "", basename(f))
+  
+  # Read data
+  dt <- fread(f)
+  
+  # Dynamically identify original column names
+  pi1_col <- paste0("pi_", sp, "1")
+  pi2_col <- paste0("pi_", sp, "2")
+  dxy_col <- paste0("dxy_", sp, "1_", sp, "2")
+  fst_col <- paste0("Fst_", sp, "1_", sp, "2")
+  
+  # Rename relevant columns for merging
+  setnames(dt, c(pi1_col, pi2_col, dxy_col, fst_col),
+           c("pi1",    "pi2",    "dxy",    "fst"), skip_absent = TRUE)
+  
+  # Add species column
+  dt[, species := sp]
+  
+  return(dt)
+}
+
+# Load and combine all
+all_data <- rbindlist(lapply(csv_files, load_and_standardize), fill = TRUE)
+
+# Preview
+head(all_data)
+
+```
+
+```{r popGen: haplotypic, echo=FALSE, message=FALSE, warning=FALSE}
+
+# Violin plot: Pi
+
+# reformat
+plot_data <- reshape2::melt(all_data, id=c("scaffold", "start", "end", "mid", "sites", "species"))
+
+plot_data$stat <- gsub("[^A-Za-z]", "", plot_data$variable)
+
+
+# plot delta Pi for each species:
+
+all_data$deltaPi <- abs(all_data$pi1 - all_data$pi2)
+
+# extract species of interest:
+all_data <- all_data %>% filter(species != "Ona"|
+                                  species != "Osa"|
+                                  species != "Nps"|
+                                  species != "Aca")
+# reproductive mode:
+all_data <- mutate(all_data, reproMode = ifelse(all_data$species == "Ppr" |
+                                                  all_data$species == "Hrs" |
+                                                  all_data$species == "Hls" |
+                                                  all_data$species == "Ass", "asexual", "sexual"))
+
+all_data$species <- factor(all_data$species, levels = c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls"))
+
+
+# Add full species name:
+species_lookup <- c(
+  "Hrs" = "H. rufulus",
+  "Sms" = "S. magnus",
+  "Ass" = "A. striculus",
+  "Hga" = "H. gibba",
+  "Ppr" = "P. peltifer",
+  "Hti" = "H. thienemanni",
+  "Hls" = "H. lacustris"
+)
+
+
+# Map the species names
+all_data[, Species := species_lookup[species]]
+
+
+# Set the order of the Species factor
+all_data[, Species := factor(Species, levels = rev(c(
+  "H. rufulus", "S. magnus", "A. striculus", "H. gibba",
+  "P. peltifer", "H. thienemanni", "H. lacustris"
+)))]
+
+
+# Plot:
+dpi <- ggplot(all_data,aes(species, log10(deltaPi)))+  theme_bw()+
+  # geom_quasirandom(aes(color=reproMode, fill = reproMode), alpha=.3,size=.1, dodge.width = 0.9, width = 0.2)+
+  geom_boxplot(aes(color= reproMode, fill = reproMode), color = "black", width=0.1,alpha=.5, linewidth=.3, position = position_dodge(width = 0.9),outlier.shape = NA)+
+  geom_violin(aes(color= reproMode, fill = reproMode), alpha=.4, linewidth=.3, scale = "width") +
+  theme(panel.border = element_blank(), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(), 
+        axis.line = element_line(colour = "black")) +
+  scale_fill_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  scale_y_continuous(name=expression(paste("log"[10]," delta nuc. diversity")))+
+  theme(legend.position = "none")+xlab(NULL)+
+  theme(#panel.spacing.x=unit(-.1,"lines"),
+        #panel.spacing.y=unit(.5,"lines"),
+        # panel.background = element_blank(),
+        # axis.text.x = element_text(angle = 45, hjust = 1),
+        # axis.ticks.x = element_blank(),
+        # panel.spacing = unit(.1, "cm"),
+        # strip.background=element_rect(fill='white', colour='black'),
+        # axis.text.y=element_text(size=10),
+        # plot.title = element_text(size = 10)
+  ) #+ ggtitle("A")
+
+
+dpi
+
+# ggsave("~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/diversity/DeltaPi_Boxplot.pdf", dpi, width = 3, height = 2.2)
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/tmp/DeltaPi_Boxplot.pdf", dpi, width = 2.6, height = 2.2)
+
+
+# Make stats:
+
+# Perform Kruskal-Wallis test to compare distributions
+kruskal_test <- kruskal.test(deltaPi ~ Species, data = all_data)
+
+# Print test result
+print(kruskal_test)
+
+# Post-hoc pairwise Wilcoxon test
+pwc <- pairwise.wilcox.test(all_data$deltaPi, all_data$Species, p.adjust.method = "BH")
+
+pwc
+
+# this function should help convert sig into letters:
+tri.to.squ<-function(x)
+{
+  rn<-row.names(x)
+  cn<-colnames(x)
+  an<-unique(c(cn,rn))
+  myval<-x[!is.na(x)]
+  mymat<-matrix(1,nrow=length(an),ncol=length(an),dimnames=list(an,an))
+  for(ext in 1:length(cn))
+  {
+    for(int in 1:length(rn))
+    {
+      if(is.na(x[row.names(x)==rn[int],colnames(x)==cn[ext]])) next
+      mymat[row.names(mymat)==rn[int],colnames(mymat)==cn[ext]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+      mymat[row.names(mymat)==cn[ext],colnames(mymat)==rn[int]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+    }
+    
+  }
+  return(mymat)
+}
+
+mymat<-tri.to.squ(pwc$p.value)
+
+# load thsi
+library(multcompView)
+
+myletters<-multcompLetters(mymat,compare="<=",threshold=0.05,Letters=letters)
+
+myletters
+
+# Dxy
+# Plot:
+dxy <- ggplot(all_data,aes(species, log10(dxy)))+  theme_bw()+
+  # geom_quasirandom(aes(color=reproMode, fill = reproMode), alpha=.3,size=.1, dodge.width = 0.9, width = 0.2)+
+  geom_boxplot(aes(color= reproMode, fill = reproMode), color = "black", width=0.1,alpha=.5, linewidth=.3, position = position_dodge(width = 0.9),outlier.shape = NA)+
+  geom_violin(aes(color= reproMode, fill = reproMode), alpha=.4, linewidth=.3, scale = "width") +
+  theme(panel.border = element_blank(), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(), 
+        axis.line = element_line(colour = "black")) +
+  scale_fill_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  scale_y_continuous(name=expression(paste("log"[10]," ", italic(d)[xy])), breaks=c(-4,-3,-2))+
+  theme_classic2() +
+  theme(legend.position = "top")+xlab(NULL)+
+  theme(#panel.spacing.x=unit(-.1,"lines"),
+        # panel.spacing.y=unit(.5,"lines"),
+        # panel.background = element_blank(),
+        # axis.text.x = element_text(angle = 45, hjust = 1),
+        # axis.ticks.x = element_blank(),
+        # panel.spacing = unit(.1, "cm"),
+        # strip.background=element_rect(fill='white', colour='black'),
+        # axis.text.y=element_text(size=10),
+        # plot.title = element_text(size = 10)
+  ) #+ ggtitle("A")
+
+dxy
+
+# ggsave("~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/diversity/dxy_Boxplot.pdf", dxy, width = 3, height = 2.2)
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/tmp/dxy_Boxplot.pdf", dxy, width = 3, height = 2.5)
+
+# Make stats:
+
+# Perform Kruskal-Wallis test to compare distributions
+kruskal_test <- kruskal.test(dxy ~ Species, data = all_data)
+
+# Print test result
+print(kruskal_test)
+
+# Post-hoc pairwise Wilcoxon test
+pwc <- pairwise.wilcox.test(all_data$dxy, all_data$Species, p.adjust.method = "BH")
+
+print(pwc)
+
+# this function should help convert sig into letters:
+tri.to.squ<-function(x)
+{
+  rn<-row.names(x)
+  cn<-colnames(x)
+  an<-unique(c(cn,rn))
+  myval<-x[!is.na(x)]
+  mymat<-matrix(1,nrow=length(an),ncol=length(an),dimnames=list(an,an))
+  for(ext in 1:length(cn))
+  {
+    for(int in 1:length(rn))
+    {
+      if(is.na(x[row.names(x)==rn[int],colnames(x)==cn[ext]])) next
+      mymat[row.names(mymat)==rn[int],colnames(mymat)==cn[ext]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+      mymat[row.names(mymat)==cn[ext],colnames(mymat)==rn[int]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+    }
+    
+  }
+  return(mymat)
+}
+
+mymat<-tri.to.squ(pwc$p.value)
+
+
+myletters<-multcompLetters(mymat,compare="<=",threshold=0.05,Letters=letters)
+
+myletters
+
+
+# Fst
+all_data[all_data$fst <0,]$fst <- 0
+
+# Plot:
+fst <- ggplot(all_data,aes(species, (fst)))+  theme_bw()+
+  # geom_quasirandom(aes(color=reproMode, fill = reproMode), alpha=.3,size=.1, dodge.width = 0.9, width = 0.2)+
+  geom_boxplot(aes(color= reproMode, fill = reproMode), color = "black", width=0.1,alpha=.5, linewidth=.3, position = position_dodge(width = 0.9),outlier.shape = NA)+
+  geom_violin(aes(color= reproMode, fill = reproMode), alpha=.4, linewidth=.3, scale = "width") +
+  theme(panel.border = element_blank(), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(), 
+        axis.line = element_line(colour = "black")) +
+  scale_fill_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  ylab(expression(italic("F")[ST]))+
+  theme(legend.position = "none")+xlab(NULL)+
+  theme(panel.spacing.x=unit(-.1,"lines"),
+        panel.spacing.y=unit(.5,"lines"),
+        panel.background = element_blank(),
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        # axis.ticks.x = element_blank(),
+        panel.spacing = unit(.1, "cm"),
+        strip.background=element_rect(fill='white', colour='black'),
+        axis.text.y=element_text(size=10),
+        plot.title = element_text(size = 10)
+  ) #+ ggtitle("A")
+
+
+fst
+
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/diversity/Fst_Boxplot.pdf", fst, width = 3, height = 2.2)
+
+# Make stats:
+
+# Perform Kruskal-Wallis test to compare distributions
+kruskal_test <- kruskal.test(fst ~ Species, data = all_data)
+
+# Print test result
+print(kruskal_test)
+
+# Post-hoc pairwise Wilcoxon test
+pwc <- pairwise.wilcox.test(all_data$fst, all_data$Species, p.adjust.method = "BH")
+
+print(pwc)
+
+# this function should help convert sig into letters:
+tri.to.squ<-function(x)
+{
+  rn<-row.names(x)
+  cn<-colnames(x)
+  an<-unique(c(cn,rn))
+  myval<-x[!is.na(x)]
+  mymat<-matrix(1,nrow=length(an),ncol=length(an),dimnames=list(an,an))
+  for(ext in 1:length(cn))
+  {
+    for(int in 1:length(rn))
+    {
+      if(is.na(x[row.names(x)==rn[int],colnames(x)==cn[ext]])) next
+      mymat[row.names(mymat)==rn[int],colnames(mymat)==cn[ext]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+      mymat[row.names(mymat)==cn[ext],colnames(mymat)==rn[int]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+    }
+    
+  }
+  return(mymat)
+}
+
+mymat<-tri.to.squ(pwc$p.value)
+
+
+myletters<-multcompLetters(mymat,compare="<=",threshold=0.05,Letters=letters)
+
+myletters
+
+```
+
+```{r popGen: general, echo=FALSE, message=FALSE, warning=FALSE}
+# plot heterozygosity:
+
+# Load required libraries
+library(ggplot2)
+library(dplyr)
+
+# Set working directory (change this to your folder)
+path = "~/sciebo/Postdoc/sexAsex/popGen/diversity/het/"
+
+# List all .het.txt files in the directory
+files<-dir(path,pattern =".txt")
+
+# Initialize an empty dataframe to store results
+heterozygosity_data <- data.frame()
+
+# Loop through each file and read data
+for (file in files) {
+  # Extract species name from the filename (assuming format: Species.het.txt)
+  species_name <- gsub(".het.txt", "", file)
+  
+  # Read data
+  df <- read.table(paste(path, file, sep = ""), header = TRUE, sep = "\t")
+  
+  # Add species column
+  df$Species <- species_name
+  
+  # Combine data
+  heterozygosity_data <- rbind(heterozygosity_data, df)
+}
+
+# Convert species to a factor
+heterozygosity_data$Species <- as.factor(heterozygosity_data$Species)
+
+heterozygosity_data <- heterozygosity_data %>% filter(Species != "Ona"|
+                                                        Species != "Osa"|
+                                                        Species != "Nps"|
+                                                        Species != "Aca")
+
+
+# add reproductive mode
+heterozygosity_data <- mutate(heterozygosity_data, reproMode = ifelse(heterozygosity_data$Species == "Ppr" |
+                                                                        heterozygosity_data$Species == "Hrs" |
+                                                                        heterozygosity_data$Species == "Hls" |
+                                                                        heterozygosity_data$Species == "Ass", "asexual", "sexual"))
+
+# order species:
+heterozygosity_data$Species <- factor(heterozygosity_data$Species, levels = rev(c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls")))
+
+
+# Plot boxplot of heterozygosity rate
+p <- ggplot(heterozygosity_data, aes(x = Species, y = Heterozygosity_Rate*100, fill = Species)) +
+  geom_violin(aes(fill = reproMode, color = reproMode), alpha=.5, linewidth=.3,  drop = FALSE, scale = "width") +
+  geom_boxplot(aes(fill = reproMode), color = "black", width=0.1, alpha=.8, linewidth=.3, position = position_dodge(width = 0.9),outlier.shape = NA)+
+  theme_classic2() +
+  scale_fill_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  scale_y_continuous(breaks = c(.5,1))+
+  labs(title = NULL,
+       x = NULL,
+       y = "SNP heterozygosity") +
+  theme(#axis.text.x = element_text(angle = 90, hjust = 1),
+        # panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+        legend.position = "none") + coord_flip()
+
+
+p
+
+# Save plot
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/Heterozygosity_Boxplot.pdf", p, width = 2.2, height = 2.5)
+
+
+# Perform Kruskal-Wallis test to compare distributions
+kruskal_test <- kruskal.test(Heterozygosity_Rate ~ Species, data = heterozygosity_data)
+
+# Print test result
+print(kruskal_test)
+
+# Post-hoc pairwise Wilcoxon test
+pwc <- pairwise.wilcox.test(heterozygosity_data$Heterozygosity_Rate, heterozygosity_data$Species, p.adjust.method = "BH")
+
+pwc
+
+# this function should help convert sig into letters:
+tri.to.squ<-function(x)
+{
+  rn<-row.names(x)
+  cn<-colnames(x)
+  an<-unique(c(cn,rn))
+  myval<-x[!is.na(x)]
+  mymat<-matrix(1,nrow=length(an),ncol=length(an),dimnames=list(an,an))
+  for(ext in 1:length(cn))
+  {
+    for(int in 1:length(rn))
+    {
+      if(is.na(x[row.names(x)==rn[int],colnames(x)==cn[ext]])) next
+      mymat[row.names(mymat)==rn[int],colnames(mymat)==cn[ext]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+      mymat[row.names(mymat)==cn[ext],colnames(mymat)==rn[int]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+    }
+    
+  }
+  return(mymat)
+}
+
+mymat<-tri.to.squ(pwc$p.value)
+
+# load thsi
+library(multcompView)
+
+myletters<-multcompLetters(mymat,compare="<=",threshold=0.05,Letters=letters)
+
+myletters
+
+```
+
+```{r popGen: haplotypic, echo=FALSE, message=FALSE, warning=FALSE}
+# plot nucleotide diversity:
+## Distribution:
+
+# Set working directory (change this to your folder)
+path = "~/sciebo/Postdoc/sexAsex/popGen/diversity/div/csv/"
+
+# List all .het.txt files in the directory
+files<-dir(path,pattern =".csv")
+
+# Initialize an empty dataframe to store results
+diversity_data <- data.frame()
+
+# Loop through each file and read data
+for (file in files) {
+  # Extract species name from the filename (assuming format: Species.var.invar.filtered.csv)
+  species_name <- gsub(".var.invar.filtered.csv", "", file)
+  
+  # Read data
+  df <- read.table(paste(path, file, sep = ""), header = TRUE, sep = ",")
+  names(df)[names(df) == paste("pi_",species_name, sep = "")] <- "pi"
+  
+  # Add species column
+  df$Species <- species_name
+  
+  # Combine data
+  diversity_data <- rbind(diversity_data, df)
+}
+
+# Convert species to a factor
+diversity_data$Species <- as.factor(diversity_data$Species)
+
+# add reproductive mode
+diversity_data <- mutate(diversity_data, reproMode = ifelse(diversity_data$Species == "Ppr" |
+                                                              # diversity_data$Species == "Nps" |
+                                                              # diversity_data$Species == "Ona" |
+                                                              diversity_data$Species == "Hrs" |
+                                                              diversity_data$Species == "Hls" |
+                                                              diversity_data$Species == "Ass", "asexual", "sexual"))
+
+# order species:
+diversity_data$Species <- factor(diversity_data$Species, levels = rev(c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls")))
+
+# Plot boxplot of heterozygosity rate
+p <- ggplot(diversity_data, aes(x = Species, y = log10(pi), fill = Species)) +
+  geom_violin(aes(fill = reproMode, color = reproMode), alpha=.5, linewidth=.3,  drop = FALSE, scale = "width") +
+  geom_boxplot(aes(fill = reproMode), color = "black", width=0.1,alpha=.8, linewidth=.3, position = position_dodge(width = 0.9),outlier.shape = NA)+
+  theme_classic2() +
+  labs(title = NULL,
+       x = NULL,
+       y = expression(paste("log"[10], " nucleotide diversity"))) +
+  scale_fill_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  theme(#axis.text.x = element_text(angle = 45, hjust = 1),
+        #panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+        legend.position = "none") + coord_flip()
+
+
+p
+
+# Save plot
+# ggsave("~/sciebo/Postdoc/sexAsex/popGen/diversity/div/Diversity_Boxplot.pdf", p, width = 3, height = 2.2)
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/Diversity_Boxplot.pdf", p, width = 2.2, height = 2.5)
+
+# Perform Kruskal-Wallis test to compare distributions
+kruskal_test <- kruskal.test(pi ~ Species, data = diversity_data)
+
+# Print test result
+print(kruskal_test)
+
+# Post-hoc pairwise Wilcoxon test
+pwc <- pairwise.wilcox.test(diversity_data$pi, diversity_data$Species, p.adjust.method = "BH")
+
+pwc
+
+# this function should help convert sig into letters:
+tri.to.squ<-function(x)
+{
+  rn<-row.names(x)
+  cn<-colnames(x)
+  an<-unique(c(cn,rn))
+  myval<-x[!is.na(x)]
+  mymat<-matrix(1,nrow=length(an),ncol=length(an),dimnames=list(an,an))
+  for(ext in 1:length(cn))
+  {
+    for(int in 1:length(rn))
+    {
+      if(is.na(x[row.names(x)==rn[int],colnames(x)==cn[ext]])) next
+      mymat[row.names(mymat)==rn[int],colnames(mymat)==cn[ext]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+      mymat[row.names(mymat)==cn[ext],colnames(mymat)==rn[int]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+    }
+    
+  }
+  return(mymat)
+}
+
+mymat<-tri.to.squ(pwc$p.value)
+
+# load thsi
+library(multcompView)
+
+myletters<-multcompLetters(mymat,compare="<=",threshold=0.05,Letters=letters)
+
+myletters
+
+## Genome-wide distribution:
+
+# Extract numeric part of scaffold names
+diversity_data$CHR <- as.numeric(gsub("\\D", "", diversity_data$scaffold))
+
+# Filter scaffolds larger than 1Mb
+large_scaffolds <- diversity_data %>%
+  group_by(Species, scaffold) %>%
+  filter((max(mid) - min(mid)) >= 2e6) %>%
+  ungroup()
+
+# Generate short names for scaffolds
+short <- unique(large_scaffolds$CHR)
+names(short) <- unique(large_scaffolds$CHR)
+
+# Get unique species
+large_scaffolds$Species <- factor(large_scaffolds$Species, levels = rev(rev(c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls"))))  
+species_list <- levels(large_scaffolds$Species)
+
+# Generate plots for each species and store them in a list
+plot_list <- lapply(species_list, function(sp) {
+  species_data <- large_scaffolds %>% filter(Species == sp)
+  
+  ggplot(species_data, aes(x = mid, y = log10(pi))) +
+    geom_jitter(aes(color=reproMode), size=.3, alpha=.2) +
+    geom_smooth(aes(color=reproMode, fill = reproMode), method = "loess", span = .1, se=T, size=.4, alpha=.2) +
+    facet_grid(cols = vars(CHR), labeller = labeller(scaffold=short),
+               scales = 'free_x', space = 'free_x', switch = 'x') +  # Arrange scaffolds in rows
+    theme_classic() +
+    scale_fill_manual(name="reproMode",values = c(
+      "sexual"="#F56B39",
+      "asexual"="#11A7BB"))+
+    scale_color_manual(name="reproMode",values = c(
+      "sexual"="#F56B39",
+      "asexual"="#11A7BB"))+
+    ggtitle(sp) +  # Title for each species
+    theme(panel.spacing = unit(.1, "cm"),
+          panel.background = element_blank(),
+          axis.text.x = element_blank(),
+          axis.ticks.x = element_blank(),
+          legend.position = "bottom") +
+    coord_cartesian(ylim = c(-4, -1)) +
+    scale_y_continuous(breaks = c(-4, -3, -2, -1), labels = c(-4, -3, -2, -1)) +
+    scale_x_continuous(expand = c(0, 0)) +
+    xlab(NULL) +
+    ylab(expression(paste("nuc. diversity")))
+})
+
+# Combine all species plots into one figure and collect a single legend
+final_plot <- wrap_plots(plot_list) + 
+  plot_layout(ncol = 1, guides = "collect") &  # Collects legends from all subplots into one
+  theme(legend.position = "bottom")  # Places the legend at the bottom
+
+# Display the final plot
+print(final_plot)
+
+dev.print(pdf,"~/sciebo/Postdoc/sexAsex/popGen/diversity/div/Diversity_distribution.w25k10ksites.pdf",width=16,height=12)
+
+
+```
+
+```{r popGen: haplotypic, echo=FALSE, message=FALSE, warning=FALSE}
+#############################
+# plot Tajima's D:
+## Distribution:
+
+# Set working directory (change this to your folder)
+path = "~/sciebo/Postdoc/sexAsex/popGen/diversity/tajD/"
+
+# List all .het.txt files in the directory
+files<-dir(path,pattern =".Tajima.D")
+
+# Initialize an empty dataframe to store results
+tajima_data <- data.frame()
+
+# Loop through each file and read data
+for (file in files) {
+  # Extract species name from the filename (assuming format: Species.var.invar.filtered.tajD.Tajima.D)
+  species_name <- gsub(".var.invar.filtered.tajD.Tajima.D", "", file)
+  
+  # Read data
+  df <- read.table(paste(path, file, sep = ""), header = TRUE, sep = "\t")
+  names(df)[names(df) == paste("pi_",species_name, sep = "")] <- "Tajima"
+  
+  # Add species column
+  df$Species <- species_name
+  
+  # Combine data
+  tajima_data <- rbind(tajima_data, df)
+}
+
+# Convert species to a factor
+tajima_data$Species <- as.factor(tajima_data$Species)
+
+# add reproductive mode
+tajima_data <- mutate(tajima_data, reproMode = ifelse(tajima_data$Species == "Ppr" |
+                                                        # tajima_data$Species == "Nps" |
+                                                        # tajima_data$Species == "Ona" |
+                                                        tajima_data$Species == "Hrs" |
+                                                        tajima_data$Species == "Hls" |
+                                                        tajima_data$Species == "Ass", "asexual", "sexual"))
+
+# order species:
+tajima_data$Species <- factor(tajima_data$Species, levels = rev(c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls"))) 
+
+# Plot boxplot of heterozygosity rate
+p <- ggplot(tajima_data, aes(x = Species, y = TajimaD, fill = Species)) +
+  geom_violin(aes(fill = reproMode, color = reproMode), alpha=.5, linewidth=.3,  drop = FALSE, scale = "width") +
+  geom_boxplot(aes(fill = reproMode), color = "black", width=0.1,alpha=.8, linewidth=.3, position = position_dodge(width = 0.9),outlier.shape = NA)+
+  theme_classic2() +
+  labs(title = NULL,
+       x = NULL,
+       y = expression(paste("Tajima's ",italic(D)))) +
+  scale_fill_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  theme(#axis.text.x = element_text(angle = 45, hjust = 1),
+        #panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+        legend.position = "none") + coord_flip()
+
+
+p
+
+# Save plot
+# ggsave("~/sciebo/Postdoc/sexAsex/popGen/diversity/tajD/tajima_Boxplot.pdf", p, width = 3, height = 2.2)
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/tajima_Boxplot.pdf", p, width = 2.2, height = 2.5)
+
+# Perform Kruskal-Wallis test to compare distributions
+kruskal_test <- kruskal.test(TajimaD ~ Species, data = tajima_data)
+
+# Print test result
+print(kruskal_test)
+
+# Post-hoc pairwise Wilcoxon test
+pwc <- pairwise.wilcox.test(tajima_data$TajimaD, tajima_data$Species, p.adjust.method = "BH")
+
+pwc
+
+# this function should help convert sig into letters:
+tri.to.squ<-function(x)
+{
+  rn<-row.names(x)
+  cn<-colnames(x)
+  an<-unique(c(cn,rn))
+  myval<-x[!is.na(x)]
+  mymat<-matrix(1,nrow=length(an),ncol=length(an),dimnames=list(an,an))
+  for(ext in 1:length(cn))
+  {
+    for(int in 1:length(rn))
+    {
+      if(is.na(x[row.names(x)==rn[int],colnames(x)==cn[ext]])) next
+      mymat[row.names(mymat)==rn[int],colnames(mymat)==cn[ext]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+      mymat[row.names(mymat)==cn[ext],colnames(mymat)==rn[int]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+    }
+    
+  }
+  return(mymat)
+}
+
+mymat<-tri.to.squ(pwc$p.value)
+
+# load thsi
+library(multcompView)
+
+myletters<-multcompLetters(mymat,compare="<=",threshold=0.05,Letters=letters)
+
+myletters
+
+## Genome-wide distribution:
+
+# Extract numeric part of scaffold names
+tajima_data$CHR <- as.numeric(gsub("\\D", "", tajima_data$CHROM))
+
+# Filter scaffolds larger than 1Mb
+large_scaffolds <- tajima_data %>%
+  group_by(Species, CHROM) %>%
+  filter((max(BIN_START) - min(BIN_START)) >= 2e6) %>%
+  ungroup()
+
+# Generate short names for scaffolds
+short <- unique(large_scaffolds$CHR)
+names(short) <- unique(large_scaffolds$CHR)
+
+# Get unique species
+large_scaffolds$Species <- factor(large_scaffolds$Species, levels = rev(rev(c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls"))))  
+species_list <- levels(large_scaffolds$Species)
+
+# Generate plots for each species and store them in a list
+plot_list <- lapply(species_list, function(sp) {
+  species_data <- large_scaffolds %>% filter(Species == sp)
+  
+  ggplot(species_data, aes(x = BIN_START, y = (TajimaD))) +
+    geom_jitter(aes(color=reproMode), size=.3, alpha=.2) +
+    geom_smooth(aes(color=reproMode, fill = reproMode), method = "loess", span = .1, se=T, size=.4, alpha=.2) +
+    facet_grid(cols = vars(CHR), labeller = labeller(scaffold=short),
+               scales = 'free_x', space = 'free_x', switch = 'x') +  # Arrange scaffolds in rows
+    theme_classic() +
+    scale_fill_manual(name="reproMode",values = c(
+      "sexual"="#F56B39",
+      "asexual"="#11A7BB"))+
+    scale_color_manual(name="reproMode",values = c(
+      "sexual"="#F56B39",
+      "asexual"="#11A7BB"))+
+    ggtitle(sp) +  # Title for each species
+    theme(panel.spacing = unit(.1, "cm"),
+          panel.background = element_blank(),
+          axis.text.x = element_blank(),
+          axis.ticks.x = element_blank(),
+          legend.position = "bottom") +
+    # coord_cartesian(ylim = c(-4, -1)) +
+    scale_y_continuous(breaks = c(-3, -2, -1, 1, 2, 3), labels = c(-3, -2, -1, 1, 2, 3)) +
+    scale_x_continuous(expand = c(0, 0)) +
+    xlab(NULL) +
+    ylab(expression(paste("Tajima's ", italic(D))))
+})
+
+# Combine all species plots into one figure and collect a single legend
+final_plot <- wrap_plots(plot_list) + 
+  plot_layout(ncol = 1, guides = "collect") &  # Collects legends from all subplots into one
+  theme(legend.position = "bottom")  # Places the legend at the bottom
+
+# Display the final plot
+print(final_plot)
+
+dev.print(pdf,"~/sciebo/Postdoc/sexAsex/popGen/diversity/tajD/Tajima_distribution.w25k.pdf",width=16,height=16)
+
+```
+
+```{r Hyphy, echo=FALSE, message=FALSE, warning=FALSE}
+# fitmg94
+fitmg94 <- read_delim("~/sciebo/Postdoc/sexAsex/popGen/hyphy/FitMG94.100perc.scOGs.summary.tsv")
+
+# add gene/species columns:
+fitmg94[c("geneID", "sp")] <- str_split_fixed(fitmg94$Gene, '_', 4)[,c(1,3)]
+
+# add haplotype
+dt <- fitmg94 %>% filter(!grepl(glob2rx('Node*'), ignore.case = T,fitmg94$geneID))
+
+dt <- mutate(dt, haplotype = ifelse(grepl(glob2rx('*_1'), ignore.case = F,dt$Gene), "A","B"))
+
+# order spcies
+dt$Species <- factor(dt$sp, levels = rev(rev(c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls"))))  
+
+
+#
+# make Paired line plots
+good <- dt[!dt$OG %in% dt[dt$MLE > 1,]$OG,]
+
+
+# # make plots:
+# ggplot(good,aes(Species, MLE))+  theme_bw()+
+#   geom_quasirandom(aes(color=haplotype, fill = haplotype), alpha=.5,size=.1, dodge.width = 0.9, width = 0.2)+
+#   geom_boxplot(aes(color= haplotype, fill = haplotype), color = "black", width=0.1,alpha=.5, linewidth=.3, position = position_dodge(width = 0.9),outlier.shape = NA)+
+#   geom_violin(aes(color= haplotype, fill = haplotype), alpha=.4, linewidth=.3, scale = "width", drop = FALSE) +
+#   theme(panel.border = element_blank(), 
+#         panel.grid.major = element_blank(),
+#         panel.grid.minor = element_blank(), 
+#         axis.line = element_line(colour = "black")) +
+#   scale_y_continuous(name=expression(paste("dN/dS")))+
+#   theme(legend.position = "top")+xlab(NULL)+
+#   theme(panel.spacing.x=unit(-.1,"lines"),
+#         panel.spacing.y=unit(.5,"lines"),
+#         panel.background = element_blank(),
+#         axis.text.x = element_text(size=9),
+#         panel.spacing = unit(.1, "cm"),
+#         strip.background=element_rect(fill='white', colour='black'),
+#         axis.text.y=element_text(size=10),
+#         plot.title = element_text(size = 10)
+#   ) 
+
+
+# add directionality:
+# Ensure haplotypes are labeled as "A" and "B" consistently
+df <- good 
+
+# Compare MLE values for haplotypes A and B within each geneID and population
+df_comparison <- df %>%
+  dplyr::group_by(geneID, Species) %>%
+  dplyr::reframe(
+    geneID = first(geneID),
+    population = first(Species),
+    MLE_A = MLE[haplotype == "A"],
+    MLE_B = MLE[haplotype == "B"]
+  ) %>%
+  dplyr::mutate(
+     IntensePurOn = case_when(
+      MLE_A < MLE_B ~ "A",
+      MLE_A > MLE_B ~ "B",
+      TRUE ~ "same"
+    )
+  )
+
+
+# write.table(df_comparison, "~/sciebo/Postdoc/sexAsex/popGen/hyphy/FitMG94_df_comparison_final.tsv",
+#             sep = "\t",col.names = T, quote = F, row.names = F, na = "NA")
+
+
+# calculate difference between A and B:
+df_comparison$difference <- abs(df_comparison$MLE_A - df_comparison$MLE_B)
+
+
+# only different
+df_final <- reshape2::melt(df_comparison, id=c("geneID", "population","Species", "difference", "IntensePurOn")) #[df_comparison$IntensePurOn != "same",]
+
+
+df_final$allele = gsub("MLE_", "", df_final$variable)
+
+df_final <- mutate(df_final, reproMode = ifelse(df_final$Species == "Ppr" |
+                                                # df_final$Species == "Nps" |
+                                                # df_final$Species == "Ona" |
+                                                df_final$Species == "Hrs" |
+                                                df_final$Species == "Hls" |
+                                                df_final$Species == "Ass", "asexual", "sexual"))
+
+
+
+# # plot:
+# f <- ggplot(df_final, aes(x = allele, y = value)) +
+#   stat_summary(
+#     aes(group = geneID, color = IntensePurOn),
+#     fun = mean, geom = "path", alpha = 0.1, linewidth = .4
+#   ) +
+#   geom_quasirandom(aes(color = variable), alpha=.5,size=.5, dodge.width = 0.9, width = 0.2)+
+#   # geom_point(aes(color = variable), alpha = .2, size = 0.5) +
+#   scale_x_discrete("") +
+#   scale_y_continuous(breaks = c(0.2, 0.4, 0.6, 0.8, 1.0)) +  # <-- Add this line
+#   scale_color_manual(values=c("#003B73","#BFD7ED", "grey30", "#FFA405", "#59981A")) +
+#   facet_grid(~population, scales = "free", space = "free_x", switch = "x") +
+#   theme_classic2() +
+#   theme(#panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+#         panel.grid.major = element_blank(),
+#         panel.grid.minor = element_blank(),
+#         axis.line = element_line(colour = "black"),
+#         axis.ticks = element_line(color = "black", linewidth = 0.3),
+#         axis.ticks.length = unit(0.2, "cm"),
+#         axis.text.x = element_text(angle = 0, hjust = 0.5, size = 10),
+#         axis.title.x = element_blank(),
+#         legend.title = element_text(size = 10),
+#         legend.text = element_text(size = 10),
+#         legend.position = "none"
+#   ) +
+#   ylab("omega") +
+#   xlab("allele")
+
+# ggsave("~/sciebo/Postdoc/sexAsex/popGen/hyphy/FitMG94_hapA_vs_hapB.pdf",plot = f,width=5,height=2.5)
+# ggsave("~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/tmp/FitMG94_hapA_vs_hapB.png",plot = f,width=5,height=3, dpi = 1500)
+
+
+
+# Stats
+su <- group_by(df_final, population, IntensePurOn) %>%
+  dplyr::summarise(
+    count = length(unique(geneID))
+  )
+
+su
+
+# write_delim(su, "~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/tmp/FitMG94_hapA_vs_hapB_counts.txt", delim = "\t")
+
+
+# plot:
+dif <- df_final %>% filter(variable == "MLE_A")
+
+# ff <- ggplot(dif, aes(x = population, y = -log10(difference))) +
+#   geom_quasirandom(aes(colour = reproMode), alpha=.3,size=.7, dodge.width = 0.9, width = 0.2)+
+#   geom_boxplot(aes(fill = reproMode), color = "black", width=0.1,alpha=.5, linewidth=.3, position = position_dodge(width = 0.9),outlier.shape = NA)+
+#   scale_color_manual(
+#     name = "reproMode",
+#     values = c("sexual" = "#F56B39", "asexual" = "#11A7BB")
+#     ) +
+#   scale_fill_manual(
+#     name = "reproMode",
+#     values = c("sexual" = "#F56B39", "asexual" = "#11A7BB")
+#   ) +
+#   theme_classic2() +
+#   theme(#panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+#         # panel.grid.major = element_blank(),
+#         # panel.grid.minor = element_blank(),
+#         # axis.line = element_line(colour = "black"),
+#         # axis.ticks = element_line(color = "black", linewidth = 0.3),
+#         # axis.ticks.length = unit(0.2, "cm"),
+#         # axis.text.x = element_text(angle = 0, hjust = 0.5, size = 10),
+#         # axis.title.x = element_blank(),
+#         # legend.title = element_text(size = 10),
+#         # legend.text = element_text(size = 10),
+#         legend.position = "top"
+#   ) +
+#   ylab(expression(paste(Delta," ", omega, ("A~B")))) +
+#   xlab(NULL)
+
+
+# ggsave("~/sciebo/Postdoc/sexAsex/popGen/hyphy/diff_FitMG94_hapA_vs_hapB.pdf",plot = ff,width=3.5,height=2.5)
+# ggsave("~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/tmp/diff_FitMG94_hapA_vs_hapB.pdf",plot = ff,width=3,height=2.5)
+
+# stats:
+su2 <- dif %>%
+  group_by(population) %>%
+  summarise(
+    count_gt1 = sum(difference > 0, na.rm = TRUE),
+    meanDif   = mean(difference, na.rm = TRUE),
+    medianDif = median(difference, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+su2
+
+# Perform Kruskal-Wallis test to compare distributions
+kruskal_test <- kruskal.test(difference ~ population, data = dif)
+
+# Print test result
+print(kruskal_test)
+
+# Post-hoc pairwise Wilcoxon test
+pwc <- pairwise.wilcox.test(dif$difference, dif$population, p.adjust.method = "BH")
+
+pwc
+
+# this function should help convert sig into letters:
+tri.to.squ<-function(x)
+{
+  rn<-row.names(x)
+  cn<-colnames(x)
+  an<-unique(c(cn,rn))
+  myval<-x[!is.na(x)]
+  mymat<-matrix(1,nrow=length(an),ncol=length(an),dimnames=list(an,an))
+  for(ext in 1:length(cn))
+  {
+    for(int in 1:length(rn))
+    {
+      if(is.na(x[row.names(x)==rn[int],colnames(x)==cn[ext]])) next
+      mymat[row.names(mymat)==rn[int],colnames(mymat)==cn[ext]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+      mymat[row.names(mymat)==cn[ext],colnames(mymat)==rn[int]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+    }
+    
+  }
+  return(mymat)
+}
+
+mymat<-tri.to.squ(pwc$p.value)
+
+# load this
+library(multcompView)
+
+myletters<-multcompLetters(mymat,compare="<=",threshold=0.05,Letters=letters)
+
+myletters
+
+```
+
+
+```{r Phasing quality, echo=FALSE, message=FALSE, warning=FALSE}
+# Load required libraries
+library(ggplot2)
+library(data.table)
+library(ggpubr)
+library(dplyr)
+
+# Define folder with .bed files
+bed_folder <- "/Users/mohammederrbii/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/haploblocks"
+
+# List .bed files
+bed_files <- list.files(path = bed_folder, pattern = "atleast100kb.bed$", full.names = TRUE)
+
+# Read and combine all BED files
+haplotype_data <- do.call(rbind, lapply(bed_files, function(file) {
+  df <- fread(file, header = FALSE)
+  species <- sub("\\..*$", "", basename(file))  # Extract species from filename
+  df <- df[, .(Species = species, length = V4)]
+  return(df)
+}))
+
+# Add reproductive mode using your logic
+haplotype_data <- haplotype_data %>%
+  mutate(reproMode = ifelse(Species %in% c("Ppr", "Hrs", "Hls", "Ass"), 
+                            "asexual", "sexual"))
+
+# Set factor levels for species (for plot order)
+haplotype_data$Species <- factor(haplotype_data$Species, levels = c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls"))
+
+# Plot
+p <- ggplot(haplotype_data, aes(x = Species, y = log10(length / 1e5), fill = Species)) +
+  geom_violin(aes(fill = reproMode, color = reproMode), alpha = .5, linewidth = .3, scale = "width") +
+  geom_boxplot(aes(fill = reproMode), color = "black", width = 0.1, alpha = .8,
+               linewidth = .3, position = position_dodge(width = 0.9), outlier.shape = NA) +
+  theme_classic2() +
+  labs(title = NULL,
+       x = NULL,
+       y = expression(paste("haploblocks length (kb)"))) +
+  scale_fill_manual(name = "reproMode", values = c("sexual" = "#F56B39", "asexual" = "#11A7BB")) +
+  scale_color_manual(name = "reproMode", values = c("sexual" = "#F56B39", "asexual" = "#11A7BB")) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+        legend.position = "none")
+
+# Show plot
+print(p)
+
+# Save plot
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/haploblocks/haploblocks_Boxplot.pdf", p, width = 3, height = 2.2)
+
+# Perform Kruskal-Wallis test to compare distributions
+kruskal_test <- kruskal.test(length ~ Species, data = haplotype_data)
+
+# Print test result
+print(kruskal_test)
+
+# Post-hoc pairwise Wilcoxon test
+pwc <- pairwise.wilcox.test(haplotype_data$length, haplotype_data$Species, p.adjust.method = "BH")
+
+pwc
+
+# this function should help convert sig into letters:
+tri.to.squ<-function(x)
+{
+  rn<-row.names(x)
+  cn<-colnames(x)
+  an<-unique(c(cn,rn))
+  myval<-x[!is.na(x)]
+  mymat<-matrix(1,nrow=length(an),ncol=length(an),dimnames=list(an,an))
+  for(ext in 1:length(cn))
+  {
+    for(int in 1:length(rn))
+    {
+      if(is.na(x[row.names(x)==rn[int],colnames(x)==cn[ext]])) next
+      mymat[row.names(mymat)==rn[int],colnames(mymat)==cn[ext]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+      mymat[row.names(mymat)==cn[ext],colnames(mymat)==rn[int]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+    }
+    
+  }
+  return(mymat)
+}
+
+mymat<-tri.to.squ(pwc$p.value)
+
+# load thsi
+library(multcompView)
+
+myletters<-multcompLetters(mymat,compare="<=",threshold=0.05,Letters=letters)
+
+myletters
+
+```
+
+#### *SV analysis*
+
+```{r Sniffles, echo=FALSE, message=FALSE, warning=FALSE}
+
+# List all .table files in the directory
+table_files <- list.files(path = "~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/sniffles2", pattern = "\\.sniffles2_variants\\.table$", full.names = TRUE)
+species_list <- sub("\\.sniffles2_variants\\.table$", "", basename(table_files))
+
+# Initialize list to store data
+data_list <- list()
+
+# Loop over species
+for (species in species_list) {
+  cat("Processing:", species, "\n")
+  
+  table_file <- file.path("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/sniffles2", paste0(species, ".sniffles2_variants.table"))
+  
+  if (!file.exists(table_file)) {
+    warning("Missing table file: ", table_file)
+    next
+  }
+  
+  # Read the data and assign to list using species name as key
+  data_list[[species]] <- read.table(table_file, header = TRUE, sep = "\t", stringsAsFactors = FALSE)
+  
+  data_list[[species]]$DP <- rowSums(data_list[[species]][, 13:ncol(data_list[[species]])])
+  
+  data_list[[species]] <- data_list[[species]][, c(1:12,ncol(data_list[[species]]))]
+  
+  data_list[[species]]$Species <- species
+
+}
+
+# Combine all tables into a single data frame by row binding
+sfinal_data_list <- bind_rows(data_list)
+
+# set colors
+cols <-c(
+  "AF"="#ff6666")
+
+# Get unique species
+species_list <- unique(sfinal_data_list$Species)
+
+# AF
+# Generate plots for each species and store them in a list
+plot_list <- lapply(species_list, function(species) {
+  species_data <- sfinal_data_list %>% filter(Species == species)
+  
+  ggplot(species_data) + 
+    geom_histogram(aes(x = AF, after_stat(density), fill = "AF"), binwidth = 0.05, alpha = 0.5)+
+    labs(title = "Allele frequency", x = "Frequency", y = "Density")+
+    scale_fill_manual(name="Allele",values=cols)+ 
+    theme_bw() + theme(
+      plot.title = element_text(size=8),
+      legend.title = element_text(size = 8),
+      legend.text = element_text(size = 6),
+      axis.text=element_text(size=8),
+      axis.title=element_text(size=8,face="bold"),
+      panel.border = element_blank(), panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    ) + ggtitle(species)# Title for each species
+  
+  
+})
+
+# Combine all species plots into one figure and collect a single legend
+final_plot <- wrap_plots(plot_list) + 
+  plot_layout(ncol = 3, guides = "collect") &  # Collects legends from all subplots into one
+  theme(legend.position = "none")  # Places the legend at the bottom
+
+# Display the final plot
+print(final_plot)
+
+dev.print(pdf,"~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/sniffles2/Freq.pdf",width=9,height=6)
+
+#MAF
+# Generate plots for each species and store them in a list
+plot_list <- lapply(species_list, function(species) {
+  species_data <- sfinal_data_list %>% filter(Species == species)
+  
+  ggplot(species_data) + 
+    geom_histogram(aes(x = MAF, after_stat(density), fill = "MAF"), binwidth = 0.05, alpha = 0.5)+
+    labs(title = "Allele frequency", x = "Frequency", y = "Density")+
+    scale_fill_manual(name="Allele",values="green")+ 
+    theme_bw() + theme(
+      plot.title = element_text(size=8),
+      legend.title = element_text(size = 8),
+      legend.text = element_text(size = 6),
+      axis.text=element_text(size=8),
+      axis.title=element_text(size=8,face="bold"),
+      panel.border = element_blank(), panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    ) + ggtitle(species)# Title for each species
+  
+  
+})
+
+# Combine all species plots into one figure and collect a single legend
+final_plot <- wrap_plots(plot_list) + 
+  plot_layout(ncol = 3, guides = "collect") &  # Collects legends from all subplots into one
+  theme(legend.position = "none")  # Places the legend at the bottom
+
+# Display the final plot
+print(final_plot)
+
+dev.print(pdf,"~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/sniffles2/MAF.pdf",width=9,height=6)
+
+#DP
+# Generate plots for each species and store them in a list
+plot_list <- lapply(species_list, function(species) {
+  species_data <- sfinal_data_list %>% filter(Species == species)
+  
+  ggplot(species_data) + 
+    geom_histogram(aes(x = DP/NS, stat(density)), binwidth = 1, fill = "grey")+ 
+    labs(title = "Mean depth per site")+
+    xlim(c(0,150))+
+    theme_bw() + theme(
+      plot.title = element_text(size=8),
+      legend.title = element_text(size = 8),
+      legend.text = element_text(size = 6),
+      axis.text=element_text(size=8),
+      axis.title=element_text(size=8,face="bold"),
+      panel.border = element_blank(), panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(), axis.line = element_line(colour = "black")
+    ) + ggtitle(paste0(species, ": ", round(quantile(species_data$DP/species_data$NS, 0.05, na.rm = T),digits = 0), " - ", round(quantile(species_data$DP/species_data$NS, 0.95, na.rm = T), 0))) # Title for each species 
+  
+})
+
+
+# Combine all species plots into one figure and collect a single legend
+final_plot <- wrap_plots(plot_list) + 
+  plot_layout(ncol = 3, guides = "collect") &  # Collects legends from all subplots into one
+  theme(legend.position = "none")  # Places the legend at the bottom
+
+# Display the final plot
+print(final_plot)
+
+# dev.print(pdf,"~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/sniffles2/Depth.pdf",width=9,height=6)
+
+dev.print(pdf,"~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/sniffles2/Depth.ave.pdf",width=9,height=6)
+
+#F_MISSING
+# Generate plots for each species and store them in a list
+plot_list <- lapply(species_list, function(species) {
+  species_data <- sfinal_data_list %>% filter(Species == species)
+  
+  ggplot(species_data) + 
+    geom_histogram(aes(x = F_MISSING, stat(density)),  binwidth = 0.1, fill = "grey")+
+    labs(title = "Missingness on a per-site basis", x = "Frequency (binwidth = 0.1)", y = "Density")+
+    theme_bw() + theme(
+      plot.title = element_text(size=8),
+      legend.title = element_text(size = 8),
+      legend.text = element_text(size = 6),
+      axis.text=element_text(size=8),
+      axis.title=element_text(size=8,face="bold"),
+      panel.border = element_blank(), panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(), axis.line = element_line(colour = "black")
+    ) + ggtitle(paste0(species)) # Title for each species 
+  
+})
+
+# Combine all species plots into one figure and collect a single legend
+final_plot <- wrap_plots(plot_list) + 
+  plot_layout(ncol = 3, guides = "collect") &  # Collects legends from all subplots into one
+  theme(legend.position = "none")  # Places the legend at the bottom
+
+# Display the final plot
+print(final_plot)
+
+dev.print(pdf,"~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/sniffles2/Miss.pdf",width=9,height=6)
+
+#QUAL
+# Generate plots for each species and store them in a list
+plot_list <- lapply(species_list, function(species) {
+  species_data <- sfinal_data_list %>% filter(Species == species)
+  
+  ggplot(species_data) + 
+    geom_histogram(aes(x = abs(QUAL), stat(density)),  binwidth = 1, fill = "grey")+
+    labs(title = "Missingness on a per-site basis", x = "Frequency (binwidth = 0.1)", y = "Density")+
+    theme_bw() + 
+    # xlim(c(0,10))+
+    theme(
+      plot.title = element_text(size=8),
+      legend.title = element_text(size = 8),
+      legend.text = element_text(size = 6),
+      axis.text=element_text(size=8),
+      axis.title=element_text(size=8,face="bold"),
+      panel.border = element_blank(), panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(), axis.line = element_line(colour = "black")
+    ) + ggtitle(paste0(species)) # Title for each species 
+  
+})
+
+# Combine all species plots into one figure and collect a single legend
+final_plot <- wrap_plots(plot_list) + 
+  plot_layout(ncol = 3, guides = "collect") &  # Collects legends from all subplots into one
+  theme(legend.position = "none")  # Places the legend at the bottom
+
+# Display the final plot
+print(final_plot)
+
+dev.print(pdf,"~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/sniffles2/QUAL.pdf",width=9,height=6)
+
+#SV LENTH
+# Generate plots for each species and store them in a list
+plot_list <- lapply(species_list, function(species) {
+  species_data <- sfinal_data_list %>% filter(Species == species)
+  
+  ggplot(species_data) + 
+    geom_histogram(aes(x = abs(SVLEN)/1000, stat(density)),  binwidth = 0.1, fill = "grey")+
+    labs(title = "Missingness on a per-site basis", x = "Frequency (binwidth = 0.1)", y = "Density")+
+    theme_bw() + 
+    xlim(c(0,10))+
+    theme(
+      plot.title = element_text(size=8),
+      legend.title = element_text(size = 8),
+      legend.text = element_text(size = 6),
+      axis.text=element_text(size=8),
+      axis.title=element_text(size=8,face="bold"),
+      panel.border = element_blank(), panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(), axis.line = element_line(colour = "black")
+    ) + ggtitle(paste0(species)) # Title for each species 
+  
+})
+
+# Combine all species plots into one figure and collect a single legend
+final_plot <- wrap_plots(plot_list) + 
+  plot_layout(ncol = 3, guides = "collect") &  # Collects legends from all subplots into one
+  theme(legend.position = "none")  # Places the legend at the bottom
+
+# Display the final plot
+print(final_plot)
+
+dev.print(pdf,"~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/sniffles2/SVLEN.lim.pdf",width=9,height=6)
+
+write_delim(sfinal_data_list, "~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/sfinal_data_list.txt", delim = "\t")
+
+```
+
+
+```{r GraffiTE, echo=FALSE, message=FALSE, warning=FALSE}
+
+# List all .table files in the directory
+table_files <- list.files(path = "~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/graffite/", pattern = "\\.GraffiTE.merged.genotypes.annotated.biall\\.table$", full.names = TRUE)
+species_list <- sub("\\.GraffiTE.merged.genotypes.annotated.biall\\.table$", "", basename(table_files))
+
+# Initialize list to store data
+data_list <- list()
+
+# Loop over species
+for (species in species_list) {
+  cat("Processing:", species, "\n")
+  
+  table_file <- file.path("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/graffite/", paste0(species, ".GraffiTE.merged.genotypes.annotated.biall.table"))
+  
+  if (!file.exists(table_file)) {
+    warning("Missing table file: ", table_file)
+    next
+  }
+  
+  # Read the data and assign to list using species name as key
+  data_list[[species]] <- read.table(table_file, header = TRUE, sep = "\t", stringsAsFactors = FALSE)
+  
+  # data_list[[species]]$DP <- rowSums(data_list[[species]][, 13:ncol(data_list[[species]])])
+  
+  # data_list[[species]] <- data_list[[species]][, c(1:12,ncol(data_list[[species]]))]
+  
+  data_list[[species]]$Species <- species
+
+}
+
+# Combine all tables into a single data frame by row binding
+gfinal_data_list <- bind_rows(data_list)
+
+# set colors
+cols <-c(
+  "AF"="#ff6666")
+
+# Get unique species
+species_list <- unique(gfinal_data_list$Species)
+
+# AF
+# Generate plots for each species and store them in a list
+plot_list <- lapply(species_list, function(species) {
+  species_data <- gfinal_data_list %>% filter(Species == species)
+  
+  ggplot(species_data) + 
+    geom_histogram(aes(x = as.numeric(as.character(AF)), after_stat(density), fill = "AF"), binwidth = 0.05, alpha = 0.5)+
+    labs(title = "Allele frequency", x = "Frequency", y = "Density")+
+    scale_fill_manual(name="Allele",values=cols)+ 
+    theme_bw() + theme(
+      plot.title = element_text(size=8),
+      legend.title = element_text(size = 8),
+      legend.text = element_text(size = 6),
+      axis.text=element_text(size=8),
+      axis.title=element_text(size=8,face="bold"),
+      panel.border = element_blank(), panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    ) + ggtitle(species)# Title for each species
+  
+  
+})
+
+# Combine all species plots into one figure and collect a single legend
+final_plot <- wrap_plots(plot_list) + 
+  plot_layout(ncol = 3, guides = "collect") &  # Collects legends from all subplots into one
+  theme(legend.position = "none")  # Places the legend at the bottom
+
+# Display the final plot
+print(final_plot)
+
+dev.print(pdf,"~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/graffite/Freq.pdf",width=9,height=6)
+
+#MAF
+# Generate plots for each species and store them in a list
+plot_list <- lapply(species_list, function(species) {
+  species_data <- gfinal_data_list %>% filter(Species == species)
+  
+  ggplot(species_data) + 
+    geom_histogram(aes(x = as.numeric(as.character(MAF)), after_stat(density), fill = "MAF"), binwidth = 0.05, alpha = 0.5)+
+    labs(title = "Allele frequency", x = "Frequency", y = "Density")+
+    scale_fill_manual(name="Allele",values="green")+ 
+    theme_bw() + theme(
+      plot.title = element_text(size=8),
+      legend.title = element_text(size = 8),
+      legend.text = element_text(size = 6),
+      axis.text=element_text(size=8),
+      axis.title=element_text(size=8,face="bold"),
+      panel.border = element_blank(), panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    ) + ggtitle(species)# Title for each species
+  
+  
+})
+
+# Combine all species plots into one figure and collect a single legend
+final_plot <- wrap_plots(plot_list) + 
+  plot_layout(ncol = 3, guides = "collect") &  # Collects legends from all subplots into one
+  theme(legend.position = "none")  # Places the legend at the bottom
+
+# Display the final plot
+print(final_plot)
+
+dev.print(pdf,"~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/graffite/MAF.pdf",width=9,height=6)
+
+#DP
+# Generate plots for each species and store them in a list
+plot_list <- lapply(species_list, function(species) {
+  species_data <- gfinal_data_list %>% filter(Species == species)
+  
+  ggplot(species_data) + 
+    geom_histogram(aes(x = as.numeric(as.character(DP/NS)), stat(density)), binwidth = 1, fill = "grey")+ 
+    labs(title = "Mean depth per site")+
+    xlim(c(0,200))+
+    theme_bw() + theme(
+      plot.title = element_text(size=8),
+      legend.title = element_text(size = 8),
+      legend.text = element_text(size = 6),
+      axis.text=element_text(size=8),
+      axis.title=element_text(size=8,face="bold"),
+      panel.border = element_blank(), panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(), axis.line = element_line(colour = "black")
+    ) + ggtitle(paste0(species, ": ", round(quantile(species_data$DP/species_data$NS, 0.05, na.rm = T),digits = 0), " - ", round(quantile(species_data$DP/species_data$NS, 0.95, na.rm = T), 0))) # Title for each species 
+  
+})
+
+
+# Combine all species plots into one figure and collect a single legend
+final_plot <- wrap_plots(plot_list) + 
+  plot_layout(ncol = 3, guides = "collect") &  # Collects legends from all subplots into one
+  theme(legend.position = "none")  # Places the legend at the bottom
+
+# Display the final plot
+print(final_plot)
+
+dev.print(pdf,"~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/graffite/Depth.pdf",width=9,height=6)
+
+dev.print(pdf,"~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/graffite/Depth.ave.pdf",width=9,height=6)
+
+#F_MISSING
+# Generate plots for each species and store them in a list
+plot_list <- lapply(species_list, function(species) {
+  species_data <- gfinal_data_list %>% filter(Species == species)
+  
+  ggplot(species_data) + 
+    geom_histogram(aes(x = as.numeric(as.character(F_MISSING)), stat(density)),  binwidth = 0.1, fill = "grey")+
+    labs(title = "Missingness on a per-site basis", x = "Frequency (binwidth = 0.1)", y = "Density")+
+    theme_bw() + theme(
+      plot.title = element_text(size=8),
+      legend.title = element_text(size = 8),
+      legend.text = element_text(size = 6),
+      axis.text=element_text(size=8),
+      axis.title=element_text(size=8,face="bold"),
+      panel.border = element_blank(), panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(), axis.line = element_line(colour = "black")
+    ) + ggtitle(paste0(species)) # Title for each species 
+  
+})
+
+# Combine all species plots into one figure and collect a single legend
+final_plot <- wrap_plots(plot_list) + 
+  plot_layout(ncol = 3, guides = "collect") &  # Collects legends from all subplots into one
+  theme(legend.position = "none")  # Places the legend at the bottom
+
+# Display the final plot
+print(final_plot)
+
+dev.print(pdf,"~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/graffite/Miss.pdf",width=9,height=6)
+
+
+#QUAL
+# Generate plots for each species and store them in a list
+plot_list <- lapply(species_list, function(species) {
+  species_data <- gfinal_data_list %>% filter(Species == species)
+  
+  ggplot(species_data) + 
+    geom_histogram(aes(x = abs(as.numeric(as.character(QUAL))), stat(density)),  binwidth = 100, fill = "grey")+
+    labs(title = "Missingness on a per-site basis", x = "Frequency (binwidth = 100)", y = "Density")+
+    theme_bw() + 
+    xlim(c(0,10000))+
+    theme(
+      plot.title = element_text(size=8),
+      legend.title = element_text(size = 8),
+      legend.text = element_text(size = 6),
+      axis.text=element_text(size=8),
+      axis.title=element_text(size=8,face="bold"),
+      panel.border = element_blank(), panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(), axis.line = element_line(colour = "black")
+    ) + ggtitle(paste0(species)) # Title for each species 
+  
+})
+
+# Combine all species plots into one figure and collect a single legend
+final_plot <- wrap_plots(plot_list) + 
+  plot_layout(ncol = 3, guides = "collect") &  # Collects legends from all subplots into one
+  theme(legend.position = "none")  # Places the legend at the bottom
+
+# Display the final plot
+print(final_plot)
+
+dev.print(pdf,"~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/graffite/QUAL.pdf",width=9,height=6)
+
+
+# SVLEN
+# Generate plots for each species and store them in a list
+plot_list <- lapply(species_list, function(species) {
+  species_data <- gfinal_data_list %>% filter(Species == species)
+  
+  ggplot(species_data) + 
+    geom_histogram(aes(x = abs(as.numeric(as.character(SVLEN)))/1000, stat(density)),  binwidth = 0.1, fill = "grey")+
+    labs(title = "Missingness on a per-site basis", x = "Frequency (binwidth = 0.1)", y = "Density")+
+    theme_bw() + 
+    xlim(c(0,10))+
+    theme(
+      plot.title = element_text(size=8),
+      legend.title = element_text(size = 8),
+      legend.text = element_text(size = 6),
+      axis.text=element_text(size=8),
+      axis.title=element_text(size=8,face="bold"),
+      panel.border = element_blank(), panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(), axis.line = element_line(colour = "black")
+    ) + ggtitle(paste0(species)) # Title for each species 
+  
+})
+
+# Combine all species plots into one figure and collect a single legend
+final_plot <- wrap_plots(plot_list) + 
+  plot_layout(ncol = 3, guides = "collect") &  # Collects legends from all subplots into one
+  theme(legend.position = "none")  # Places the legend at the bottom
+
+# Display the final plot
+print(final_plot)
+
+dev.print(pdf,"~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/graffite/SVLEN.lim.pdf",width=9,height=6)
+
+# store file:
+write_delim(gfinal_data_list, "~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/gfinal_data_list.txt", delim = "\t")
+
+```
+
+```{r Filter sniffles and GraffiTE calls, echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+
+# data
+
+sfinal_data_list <- read_delim("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/sfinal_data_list.txt", delim = "\t", col_names = T)
+gfinal_data_list <- read_delim("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/gfinal_data_list.txt", delim = "\t", col_names = T)
+
+
+head(sfinal_data_list)
+head(gfinal_data_list)
+
+# sniffles2
+sfinal_data_filtered <- sfinal_data_list %>%
+  mutate(avgDP = DP / NS) %>%
+  filter(
+    F_MISSING <= 0.25,
+    AF > 0.05,
+    QUAL >= 40,
+    case_when(
+      # Species == "Aca" ~ avgDP >= 16 & avgDP <= 89,
+      Species == "Ass" ~ avgDP >= 19 & avgDP <= 94,
+      Species == "Hga" ~ avgDP >= 15 & avgDP <= 82,
+      Species == "Hls" ~ avgDP >= 31 & avgDP <= 136,
+      Species == "Hrs" ~ avgDP >= 29 & avgDP <= 108,
+      Species == "Hti" ~ avgDP >= 10 & avgDP <= 96,
+      # Species == "Nps" ~ avgDP >= 17 & avgDP <= 101,
+      Species == "Ppr" ~ avgDP >= 15 & avgDP <= 77,
+      Species == "Sms" ~ avgDP >= 13 & avgDP <= 85,
+      TRUE ~ FALSE  # Exclude unmatched species
+    )
+  )
+
+
+# GraffiTE
+df_clean <- gfinal_data_list %>%
+  filter(!apply(., 1, function(row) any(grepl(",", row))))
+
+gfinal_data_filtered <- df_clean %>%
+  mutate(avgDP = DP / NS) %>%
+  filter(
+    F_MISSING <= 0.25,
+    AF > 0.05,
+    QUAL >= 178.1014,
+    QUAL <= 5000,
+    case_when(
+      # Species == "Aca" ~ avgDP >= 18 & avgDP <= 198,
+      Species == "Ass" ~ avgDP >= 27 & avgDP <= 217,
+      Species == "Hga" ~ avgDP >= 22 & avgDP <= 193,
+      Species == "Hls" ~ avgDP >= 53 & avgDP <= 277,
+      Species == "Hrs" ~ avgDP >= 39 & avgDP <= 217,
+      Species == "Hti" ~ avgDP >= 15 & avgDP <= 206,
+      # Species == "Nps" ~ avgDP >= 22 & avgDP <= 261,
+      Species == "Ppr" ~ avgDP >= 22 & avgDP <= 176,
+      Species == "Sms" ~ avgDP >= 17 & avgDP <= 200,
+      TRUE ~ FALSE  # Exclude unmatched species
+    )
+  )
+
+```
+
+#### *Make Figure summarizing everything SVs*
+
+```{r Plot SVs related stats, echo=FALSE, message=FALSE, warning=FALSE}
+
+# Add indicator columns before joining
+sfinal_data_filtered <- sfinal_data_filtered %>% mutate(source_sfinal = TRUE)
+gfinal_data_filtered <- gfinal_data_filtered %>% mutate(source_gfinal = TRUE)
+
+# Full join by ID and Species
+combined <- full_join(sfinal_data_filtered, gfinal_data_filtered,
+                      by = c("ID", "Species"), suffix = c(".sfinal", ".gfinal"))
+
+# Annotate based on presence in each dataset
+combined <- combined %>%
+  mutate(TE_status = case_when(
+    !is.na(source_sfinal) & !is.na(source_gfinal) ~ "both",
+    !is.na(source_gfinal) & is.na(source_sfinal)  ~ "TE_only",
+    is.na(source_gfinal) & !is.na(source_sfinal)  ~ "nonTE_only",
+    TRUE                                           ~ NA_character_
+  ))
+
+combined <- combined %>%
+  mutate(SVTYPE = coalesce(SVTYPE.sfinal, SVTYPE.gfinal)) %>%
+  filter(SVTYPE != ".")
+
+
+combined <- combined  %>% filter(Species != "Nps" &
+                                   Species != "Aca")
+
+####################
+# Part b: #
+####################
+# STEP 1: Clean up TE categories and SV types
+combined <- combined %>% filter(combined$TE_status != "TE_only") %>%
+  mutate(TE_group = case_when(
+    TE_status == "nonTE_only" ~ "nonTE",
+    TE_status %in% c("TE_only", "both") ~ "TE",
+    TRUE ~ NA_character_
+  ))
+
+# STEP 2: Count per Species, TE_group, and SVTYPE
+sv_counts <- combined %>%
+  filter(!is.na(SVTYPE.sfinal) | !is.na(SVTYPE.gfinal)) %>%
+  mutate(SVTYPE = coalesce(SVTYPE.sfinal, SVTYPE.gfinal)) %>%
+  filter(SVTYPE != ".") %>%  # remove SVTYPE == "."
+  group_by(Species, SVTYPE.sfinal) %>% # TE_group
+  dplyr::summarise(Count = n(), .groups = "drop")
+
+# STEP 3: Plot with bars per species
+sv_counts$Species <- factor(sv_counts$Species, levels = rev(rev(c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls"))))
+
+sv_counts <- mutate(sv_counts, reproMode = ifelse(sv_counts$Species == "Ppr" |
+                                                # sv_counts$Species == "Nps" |
+                                                # sv_counts$Species == "Ona" |
+                                                sv_counts$Species == "Hrs" |
+                                                sv_counts$Species == "Hls" |
+                                                sv_counts$Species == "Ass", "asexual", "sexual"))
+
+
+a <- ggplot(sv_counts, aes(x = Species, y = Count/1000, fill = SVTYPE.sfinal, colour = NULL)) + # TE_group
+  geom_bar(stat = "identity", position = "stack", size = .4) + theme_bw()+
+  scale_fill_manual(values = rev(c("#BACC81", "#478C5C", "#5CD85A", "#013A20")))+
+  ylab("Number of SVs (x 1K)")+
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  theme_classic2() +
+  theme(# panel.border = element_blank(),
+        # panel.grid.major = element_blank(),
+        # panel.grid.minor = element_blank(),
+        # axis.line = element_line(colour = "black"),
+        # axis.line.x = element_blank(),
+        # axis.text.x = element_text(size = 10), # angle = 45, hjust = 1, 
+        axis.title.x = element_blank(),
+        # axis.ticks.x = element_blank(),
+        # legend.title = element_text(size = 10),
+        # legend.text = element_text(size = 10),
+        # panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+        legend.position = "top")+
+  ggtitle("")
+
+
+a
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/SVcounts_Barplot.pdf", a, width = 3, height = 4)
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/SVcounts_Barplot.pdf", a, width = 3, height = 3.5)
+
+
+# Define species and corresponding genome sizes (in Mb)
+species <- c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls")
+genome_sizes <- c(184.7, 261.0, 138.7, 352.2, 216.0, 272.0, 100.6)
+
+# Create a data frame
+df <- data.frame(Species = factor(species, levels = species), GenomeSize = genome_sizes)
+
+# Merge genome size into your TE dataset
+df_out3 <- merge(sv_counts, df, by = "Species", all.x = TRUE)
+
+# Calculate counts normalized per Mb genome
+df_norm <- df_out3 %>%
+  group_by(Species, SVTYPE.sfinal, reproMode, GenomeSize) %>%
+  # summarise(Count = n(), .groups = "drop") %>%
+  mutate(Count_perMb = Count / GenomeSize)
+
+# Plot normalized counts
+p4 <- ggplot(df_norm, aes(x = Species, y = Count_perMb, fill = SVTYPE.sfinal, color = NULL)) +
+  geom_col(position = "stack") +
+  scale_fill_manual(values = rev(c("#BACC81", "#478C5C", "#5CD85A", "#013A20")))+
+  labs(x = NULL, y = "SV per Mb") +
+  # theme_bw() +
+  scale_color_manual(
+    name = "reproMode",
+    values = c("sexual" = "#F56B39", "asexual" = "#11A7BB")
+  ) +
+  theme_classic2() +
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/countsPerMb.pdf", p4, width = 2.5, height = 1.8)
+
+
+# plot by TE non TE:
+
+# STEP 2: Count per Species, TE_group, and SVTYPE
+sv_counts <- combined %>%
+  filter(!is.na(SVTYPE.sfinal) | !is.na(SVTYPE.gfinal)) %>%
+  mutate(SVTYPE = coalesce(SVTYPE.sfinal, SVTYPE.gfinal)) %>%
+  filter(SVTYPE != ".") %>%  # remove SVTYPE == "."
+  group_by(Species, TE_group, SVTYPE) %>%
+  summarise(Count = n(), .groups = "drop")
+
+# STEP 3: Plot with bars per species
+sv_counts$Species <- factor(sv_counts$Species, levels = rev(rev(c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls"))))
+
+sv_counts <- mutate(sv_counts, reproMode = ifelse(sv_counts$Species == "Ppr" |
+                                                # sv_counts$Species == "Nps" |
+                                                # sv_counts$Species == "Ona" |
+                                                sv_counts$Species == "Hrs" |
+                                                sv_counts$Species == "Hls" |
+                                                sv_counts$Species == "Ass", "asexual", "sexual"))
+
+
+b <- ggplot(sv_counts, aes(x = Species, y = Count/1000, fill = SVTYPE, colour = reproMode)) +
+  geom_bar(stat = "identity", position = "stack") +
+  facet_wrap(~ TE_group, ncol = 1) +
+  labs(
+    x = "Species",
+    y = "Number of SVs (x 1K)"
+  ) +
+  theme_classic() +
+  scale_fill_manual(values = rev(c("#BACC81", "#478C5C", "#5CD85A", "#013A20")))+
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  theme(panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.line = element_line(colour = "black"),
+        axis.line.x = element_blank(),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+        axis.title.x = element_blank(),
+        legend.title = element_text(size = 10),
+        legend.text = element_text(size = 10),
+        legend.position = "top")+
+  ggtitle("")
+
+b
+
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/SVTYPE_Barplot.pdf", b, width = 3, height = 4)
+
+
+
+# plot by TE non TE:
+
+# STEP 2: Count per Species, TE_group, and SVTYPE
+sv_counts <- combined %>%
+  filter(!is.na(SVTYPE.sfinal) | !is.na(SVTYPE.gfinal)) %>%
+  mutate(SVTYPE = coalesce(SVTYPE.sfinal, SVTYPE.gfinal)) %>%
+  filter(SVTYPE != ".") %>%  # remove SVTYPE == "."
+  group_by(Species) %>%
+  summarise(Count = n(), .groups = "drop")
+
+# STEP 3: Plot with bars per species
+sv_counts$Species <- factor(sv_counts$Species, levels = rev(rev(c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls"))))
+
+sv_counts <- mutate(sv_counts, reproMode = ifelse(sv_counts$Species == "Ppr" |
+                                                # sv_counts$Species == "Nps" |
+                                                # sv_counts$Species == "Ona" |
+                                                sv_counts$Species == "Hrs" |
+                                                sv_counts$Species == "Hls" |
+                                                sv_counts$Species == "Ass", "asexual", "sexual"))
+
+
+# Define species and corresponding genome sizes
+species <- c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls")
+genome_sizes <- c(184.7, 261.0, 138.7, 352.2, 216.0, 272.0, 100.6)
+
+# Create a data frame
+df <- data.frame(Species = factor(species, levels = species), GenomeSize = genome_sizes)
+
+sv_counts <- merge(sv_counts, df,
+                  by = c("Species"), all.x = TRUE)
+
+
+c <- sv_counts  %>%
+  ggplot(.,aes(x=Count/1000,y=GenomeSize))+
+  geom_point(alpha=1, size=2, aes(fill = reproMode, colour = reproMode))+
+  stat_cor(method = "s", cor.coef.name = "rho", cex=3, )+
+  geom_smooth(method = "glm", se=T,size=1,col="blue",fill="grey80")+
+  ylab(expression(paste("Genome size (Mb)")))+
+  xlab(expression("Number of SVs (x 1K)"))+
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  scale_fill_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  theme_classic()+
+  theme(# panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+        # axis.text.x = element_text(angle = 0, hjust = 1, size = 12),
+        axis.text.y = element_text(size = 10),
+        legend.position = "none",
+        axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)) #+ ggtitle("A")
+
+
+c
+
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/SVcounts_corr.pdf", c, width = 3, height = 3)
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/SVcounts_corr.pdf", c, width = 2.5, height = 1.8)
+
+
+####################
+# Part c: #
+####################
+
+df <- mutate(combined, reproMode = ifelse(combined$Species == "Ppr" |
+                                                # combined$Species == "Nps" |
+                                                # combined$Species == "Ona" |
+                                                combined$Species == "Hrs" |
+                                                combined$Species == "Hls" |
+                                                combined$Species == "Ass", "asexual", "sexual"))
+
+df$Species <- factor(df$Species, levels = rev(rev(c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls"))))
+
+# make named vector
+p2 <- ggplot(df, aes(x = Species, y = log10(abs(SVLEN.sfinal)), fill = as.factor(reproMode))) +
+  geom_violin(aes(fill = reproMode, color = reproMode), alpha=.5, linewidth=.3,  drop = FALSE, scale = "width") +
+  geom_boxplot(aes(fill = reproMode), color = "black", width=0.1,alpha=.8, linewidth=.3, position = position_dodge(width = 0.9),outlier.shape = NA)+
+  theme_classic2() +
+  labs(title = NULL,
+       x = NULL,
+       y = expression(paste("log"[10], " SV length (kb)"))) +
+  scale_fill_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  theme(#axis.text.x = element_text(angle = 45, hjust = 1),
+    #panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+    axis.text.y = element_text(size = 10),
+    legend.position = "none") #+ coord_flip()
+
+
+p2
+
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/SVlengths.pdf", p2, width = 2.5, height = 1.8)
+
+
+############################
+# plot allele frequencies: #
+############################
+
+# # Derive MAF column and TE_group label
+# combined <- combined %>%
+#   mutate(TE_group = case_when(
+#     TE_status == "nonTE_only" ~ "nonTE",
+#     TE_status %in% c("TE_only", "both") ~ "TE",
+#     TRUE ~ NA_character_
+#   ))
+
+combined$Species <- factor(combined$Species, levels = rev(rev(c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls"))))
+
+combined <- mutate(combined, reproMode = ifelse(combined$Species == "Ppr" |
+                                                # combined$Species == "Nps" |
+                                                # combined$Species == "Ona" |
+                                                combined$Species == "Hrs" |
+                                                combined$Species == "Hls" |
+                                                combined$Species == "Ass", "asexual", "sexual"))
+
+
+maf_box <- combined %>% filter(TE_group == "nonTE") %>%
+  ggplot(., aes(x = Species, y = `MAF.sfinal`, fill = TE_group)) + theme_bw()+
+  # geom_violin(aes(color= reproMode, fill = reproMode), alpha=.4, linewidth=.3, scale = "width") +
+  geom_boxplot(aes(color= reproMode, fill = reproMode), color = "black", alpha=.5, linewidth=.3, position = position_dodge(width = 0.9),outlier.shape = NA) +
+  labs(
+    y = "Minor allele frequency",
+    x = NULL,
+    fill = "TE Category"
+  ) +
+  scale_fill_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  theme_classic() +
+  theme(panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.line = element_line(colour = "black"),
+        axis.line.x = element_blank(),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+        axis.title.x = element_blank(),
+        # axis.ticks.x = element_blank(),
+        legend.title = element_text(size = 10),
+        legend.text = element_text(size = 10),
+        legend.position = "top"
+  )
+
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/nonTE_SV_MAF_Boxplot.pdf", maf_box, width = 3, height = 3)
+
+
+# Perform Kruskal-Wallis test to compare distributions
+sv_data <- combined %>% filter(TE_group == "nonTE") 
+
+kruskal_test <- kruskal.test(`MAF.sfinal` ~ Species, data = sv_data)
+
+# Print test result
+print(kruskal_test)
+
+# Post-hoc pairwise Wilcoxon test
+pwc <- pairwise.wilcox.test(sv_data$`MAF.sfinal`, sv_data$Species, p.adjust.method = "BH")
+
+pwc
+
+# this function should help convert sig into letters:
+tri.to.squ<-function(x)
+{
+  rn<-row.names(x)
+  cn<-colnames(x)
+  an<-unique(c(cn,rn))
+  myval<-x[!is.na(x)]
+  mymat<-matrix(1,nrow=length(an),ncol=length(an),dimnames=list(an,an))
+  for(ext in 1:length(cn))
+  {
+    for(int in 1:length(rn))
+    {
+      if(is.na(x[row.names(x)==rn[int],colnames(x)==cn[ext]])) next
+      mymat[row.names(mymat)==rn[int],colnames(mymat)==cn[ext]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+      mymat[row.names(mymat)==cn[ext],colnames(mymat)==rn[int]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+    }
+    
+  }
+  return(mymat)
+}
+
+mymat<-tri.to.squ(pwc$p.value)
+
+# load this
+library(multcompView)
+
+myletters<-multcompLetters(mymat,compare="<=",threshold=0.05,Letters=letters)
+
+myletters
+
+
+# TEonly
+sv_data <- combined %>% filter(TE_group == "TE") 
+
+sv_data$MAF.gfinal <- as.numeric(sv_data$MAF.gfinal)
+
+tmaf_box <- ggplot(sv_data, aes(x = Species, y = (`MAF.gfinal`))) + theme_bw()+
+  geom_boxplot(aes(color= reproMode, fill = reproMode), color = "black", alpha=.5, linewidth=.3, position = position_dodge(width = 0.9),outlier.shape = NA) +
+  labs(
+    y = "Minor allele frequency",
+    x = NULL,
+    fill = "TE Category"
+  ) +
+  scale_fill_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  theme_classic() +
+  theme(panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.line = element_line(colour = "black"),
+        axis.line.x = element_blank(),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+        axis.title.x = element_blank(),
+        # axis.ticks.x = element_blank(),
+        legend.title = element_text(size = 10),
+        legend.text = element_text(size = 10),
+        legend.position = "top"
+  )
+
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/TE_MAF_Boxplot.pdf", tmaf_box, width = 3, height = 3)
+
+
+# Perform Kruskal-Wallis test to compare distributions
+kruskal_test <- kruskal.test((`MAF.gfinal`) ~ Species, data = sv_data)
+
+# Print test result
+print(kruskal_test)
+
+# Post-hoc pairwise Wilcoxon test
+pwc <- pairwise.wilcox.test((sv_data$`MAF.gfinal`), sv_data$Species, p.adjust.method = "BH")
+
+pwc
+
+# this function should help convert sig into letters:
+tri.to.squ<-function(x)
+{
+  rn<-row.names(x)
+  cn<-colnames(x)
+  an<-unique(c(cn,rn))
+  myval<-x[!is.na(x)]
+  mymat<-matrix(1,nrow=length(an),ncol=length(an),dimnames=list(an,an))
+  for(ext in 1:length(cn))
+  {
+    for(int in 1:length(rn))
+    {
+      if(is.na(x[row.names(x)==rn[int],colnames(x)==cn[ext]])) next
+      mymat[row.names(mymat)==rn[int],colnames(mymat)==cn[ext]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+      mymat[row.names(mymat)==cn[ext],colnames(mymat)==rn[int]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+    }
+    
+  }
+  return(mymat)
+}
+
+mymat<-tri.to.squ(pwc$p.value)
+
+# load this
+library(multcompView)
+
+myletters<-multcompLetters(mymat,compare="<=",threshold=0.05,Letters=letters)
+
+myletters
+
+# Plot heterozygosity:
+# Loop through each species and write unique IDs to separate files
+unique_species <- unique(combined$Species)
+
+for (sp in unique_species) {
+  ids <- unique(combined$ID[combined$Species == sp & combined$TE_group == "TE"])
+  writeLines(ids, paste0("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/graffite/unique_ids_", sp, ".txt"))
+}
+
+
+for (sp in unique_species) {
+  ids <- unique(combined$ID[combined$Species == sp & combined$TE_group == "nonTE"])
+  writeLines(ids, paste0("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/sniffles2/unique_ids_", sp, ".txt"))
+}
+
+# Het is calculated on motoko
+
+# sfs <- ggplot(combined, aes(x = AF.sfinal, fill = TE_group, color = reproMode)) +
+#   geom_histogram(bins = 10, color = "black") +
+#   facet_wrap(~Species, scales = "free_y") +
+#   labs(x = "Allele frequency", y = "Count") +
+#   scale_color_manual(name="reproMode",values = c(
+#     "sexual"="#F56B39",
+#     "asexual"="#11A7BB"))+
+#   theme_bw() +
+#   theme_classic()
+# 
+# sfs
+```
+
+```{r SVs het, echo=FALSE, message=FALSE, warning=FALSE}
+#############################
+# plot SV heterozygosity:
+#############################
+# Set working directory (change this to your folder)
+path = "~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/het/"
+
+# SVs:
+
+# List all .het.txt files in the directory
+files<-dir(path,pattern ="\\.het.txt") #.nonTEs.het.txt
+
+# Initialize an empty dataframe to store results
+heterozygosity_data <- data.frame()
+
+# Loop through each file and read data
+for (file in files) {
+  # Extract species name from the filename (assuming format: Species.het.txt)
+  species_name <- gsub(".het.txt", "", file)
+  
+  # Read data
+  df <- read.table(paste(path, file, sep = ""), header = TRUE, sep = "\t")
+  
+  # Add species column
+  df$Species <- species_name
+  
+  # Combine data
+  heterozygosity_data <- rbind(heterozygosity_data, df)
+}
+
+
+# Simplify Species names (remove .TEs / .nonTEs)
+heterozygosity_data <- heterozygosity_data %>%
+  mutate(Species = str_replace(Species, "\\.nonTEs|\\.TEs", ""))
+
+# Average per sample
+heterozygosity_summary <- heterozygosity_data %>%
+  group_by(Sample, Species) %>%
+  summarise(
+    Heterozygous = sum(Heterozygous, na.rm = TRUE),
+    Homozygous = sum(Homozygous, na.rm = TRUE),
+    Heterozygosity_Rate = Heterozygous/(Heterozygous + Homozygous),
+    .groups = "drop"
+  )
+
+
+# Convert species to a factor
+heterozygosity_summary$Species <- as.factor(heterozygosity_summary$Species)
+
+# add reproductive mode
+heterozygosity_summary <- mutate(heterozygosity_summary, reproMode = ifelse(heterozygosity_summary$Species == "Ppr" |
+                                                                        # heterozygosity_summary$Species == "Nps" |
+                                                                        # heterozygosity_summary$Species == "Ona" |
+                                                                        heterozygosity_summary$Species == "Hrs" |
+                                                                        heterozygosity_summary$Species == "Hls" |
+                                                                        heterozygosity_summary$Species == "Ass", "asexual", "sexual"))
+
+# order species:
+heterozygosity_summary$Species <- factor(heterozygosity_summary$Species, levels = rev(rev(c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls"))))  
+
+# Plot boxplot of heterozygosity rate
+p <- ggplot(heterozygosity_summary, aes(x = Species, y = Heterozygosity_Rate, fill = Species)) +
+  # geom_boxplot(aes(fill = reproMode), color = "black", alpha=.5, linewidth=.3, position = position_dodge(width = 0.9),outlier.shape = NA)+
+  geom_violin(aes(fill = reproMode, color = reproMode), alpha=.5, linewidth=.3,  drop = FALSE, scale = "width") +
+  geom_boxplot(aes(fill = reproMode), color = "black", width=0.1, alpha=.8, linewidth=.3, position = position_dodge(width = 0.9),outlier.shape = NA)+
+  theme_bw() +
+  scale_fill_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  labs(title = NULL,
+       x = NULL,
+       y = "SV heterozygosity") +
+  theme_classic2() +
+  theme(#axis.text.x = element_text(angle = 45, hjust = 1),
+    #panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+    legend.position = "top")
+  # theme(panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+  #       panel.grid.major = element_blank(),
+  #       panel.grid.minor = element_blank(),
+  #       axis.line = element_line(colour = "black"),
+  #       axis.line.x = element_blank(),
+  #       axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+  #       axis.title.x = element_blank(),
+  #       axis.ticks.x = element_blank(),
+  #       legend.title = element_text(size = 10),
+  #       legend.text = element_text(size = 10),
+  #       legend.position = "top"
+  # )
+
+p
+
+# Save plot
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/het/SVs_Heterozygosity_Boxplot.pdf", p, width = 3, height = 3)
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/SVs_Heterozygosity_Boxplot.pdf", p, width = 3, height = 3.5)
+
+# Perform Kruskal-Wallis test to compare distributions
+kruskal_test <- kruskal.test(Heterozygosity_Rate ~ Species, data = heterozygosity_summary)
+
+# Print test result
+print(kruskal_test)
+
+# Post-hoc pairwise Wilcoxon test
+pwc <- pairwise.wilcox.test(heterozygosity_summary$Heterozygosity_Rate, heterozygosity_summary$Species, p.adjust.method = "BH")
+
+pwc
+
+# this function should help convert sig into letters:
+tri.to.squ<-function(x)
+{
+  rn<-row.names(x)
+  cn<-colnames(x)
+  an<-unique(c(cn,rn))
+  myval<-x[!is.na(x)]
+  mymat<-matrix(1,nrow=length(an),ncol=length(an),dimnames=list(an,an))
+  for(ext in 1:length(cn))
+  {
+    for(int in 1:length(rn))
+    {
+      if(is.na(x[row.names(x)==rn[int],colnames(x)==cn[ext]])) next
+      mymat[row.names(mymat)==rn[int],colnames(mymat)==cn[ext]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+      mymat[row.names(mymat)==cn[ext],colnames(mymat)==rn[int]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+    }
+    
+  }
+  return(mymat)
+}
+
+mymat<-tri.to.squ(pwc$p.value)
+
+# load thsi
+library(multcompView)
+
+myletters<-multcompLetters(mymat,compare="<=",threshold=0.05,Letters=letters)
+
+myletters
+
+
+# TEs:
+
+# List all .het.txt files in the directory
+files<-dir(path,pattern ="\\.TEs.het.txt")
+
+# Initialize an empty dataframe to store results
+heterozygosity_data <- data.frame()
+
+# Loop through each file and read data
+for (file in files) {
+  # Extract species name from the filename (assuming format: Species.het.txt)
+  species_name <- gsub(".TEs.het.txt", "", file)
+  
+  # Read data
+  df <- read.table(paste(path, file, sep = ""), header = TRUE, sep = "\t")
+  
+  # Add species column
+  df$Species <- species_name
+  
+  # Combine data
+  heterozygosity_data <- rbind(heterozygosity_data, df)
+}
+
+# Convert species to a factor
+heterozygosity_data$Species <- as.factor(heterozygosity_data$Species)
+
+# add reproductive mode
+heterozygosity_data <- mutate(heterozygosity_data, reproMode = ifelse(heterozygosity_data$Species == "Ppr" |
+                                                                        # heterozygosity_data$Species == "Nps" |
+                                                                        # heterozygosity_data$Species == "Ona" |
+                                                                        heterozygosity_data$Species == "Hrs" |
+                                                                        heterozygosity_data$Species == "Hls" |
+                                                                        heterozygosity_data$Species == "Ass", "asexual", "sexual"))
+
+# order species:
+heterozygosity_data$Species <- factor(heterozygosity_data$Species, levels = rev(rev(c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls"))))  
+
+# Plot boxplot of heterozygosity rate
+p <- ggplot(heterozygosity_data, aes(x = Species, y = Heterozygosity_Rate, fill = Species)) +
+  geom_boxplot(aes(fill = reproMode), color = "black", alpha=.5, linewidth=.3, position = position_dodge(width = 0.9),outlier.shape = NA)+
+  theme_bw() +
+  scale_fill_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  labs(title = NULL,
+       x = NULL,
+       y = "TE heterozygosity") +
+  theme_minimal() +
+  theme(panel.border = element_rect(colour = "black", fill = NA, linewidth = 1),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.line = element_line(colour = "black"),
+        axis.line.x = element_blank(),
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 12),
+        axis.title.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        legend.title = element_text(size = 10),
+        legend.text = element_text(size = 10),
+        legend.position = "top"
+  )
+
+p
+
+# Save plot
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/het/TEs_Heterozygosity_Boxplot.pdf", p, width = 3, height = 3)
+
+# Perform Kruskal-Wallis test to compare distributions
+kruskal_test <- kruskal.test(Heterozygosity_Rate ~ Species, data = heterozygosity_data)
+
+# Print test result
+print(kruskal_test)
+
+# Post-hoc pairwise Wilcoxon test
+pwc <- pairwise.wilcox.test(heterozygosity_data$Heterozygosity_Rate, heterozygosity_data$Species, p.adjust.method = "BH")
+
+pwc
+
+# this function should help convert sig into letters:
+tri.to.squ<-function(x)
+{
+  rn<-row.names(x)
+  cn<-colnames(x)
+  an<-unique(c(cn,rn))
+  myval<-x[!is.na(x)]
+  mymat<-matrix(1,nrow=length(an),ncol=length(an),dimnames=list(an,an))
+  for(ext in 1:length(cn))
+  {
+    for(int in 1:length(rn))
+    {
+      if(is.na(x[row.names(x)==rn[int],colnames(x)==cn[ext]])) next
+      mymat[row.names(mymat)==rn[int],colnames(mymat)==cn[ext]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+      mymat[row.names(mymat)==cn[ext],colnames(mymat)==rn[int]]<-x[row.names(x)==rn[int],colnames(x)==cn[ext]]
+    }
+    
+  }
+  return(mymat)
+}
+
+mymat<-tri.to.squ(pwc$p.value)
+
+# load thsi
+library(multcompView)
+
+myletters<-multcompLetters(mymat,compare="<=",threshold=0.05,Letters=letters)
+
+myletters
+```
+
+```{r Heterozygosity, echo=FALSE, message=FALSE, warning=FALSE}
+
+library(dplyr)
+library(ggplot2)
+library(ggpubr)
+
+# Set working directory (change this to your folder)
+path = "~/sciebo/Postdoc/sexAsex/popGen/diversity/het/"
+
+# List all .het.txt files in the directory
+files<-dir(path,pattern =".txt")
+
+# Initialize an empty dataframe to store results
+heterozygosity_data <- data.frame()
+
+# Loop through each file and read data
+for (file in files) {
+  # Extract species name from the filename (assuming format: Species.het.txt)
+  species_name <- gsub(".het.txt", "", file)
+  
+  # Read data
+  df <- read.table(paste(path, file, sep = ""), header = TRUE, sep = "\t")
+  
+  # Add species column
+  df$Species <- species_name
+  
+  # Combine data
+  heterozygosity_data <- rbind(heterozygosity_data, df)
+}
+
+# Convert species to a factor
+heterozygosity_data$Species <- as.factor(heterozygosity_data$Species)
+
+heterozygosity_data <- heterozygosity_data %>% filter(Species != "Ona"|
+                                                        Species != "Osa"|
+                                                        Species != "Nps"|
+                                                        Species != "Aca")
+
+
+# add reproductive mode
+heterozygosity_data <- mutate(heterozygosity_data, reproMode = ifelse(heterozygosity_data$Species == "Ppr" |
+                                                                        heterozygosity_data$Species == "Hrs" |
+                                                                        heterozygosity_data$Species == "Hls" |
+                                                                        heterozygosity_data$Species == "Ass", "asexual", "sexual"))
+
+# order species:
+heterozygosity_data$Species <- factor(heterozygosity_data$Species, levels = rev(rev(c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls"))))  
+
+
+# Define folder with .bed files
+bed_folder <- "/Users/mohammederrbii/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/haploblocks"
+
+# List .bed files
+bed_files <- list.files(path = bed_folder, pattern = "atleast100kb.bed$", full.names = TRUE)
+
+# Read and combine all BED files
+haplotype_data <- do.call(rbind, lapply(bed_files, function(file) {
+  df <- fread(file, header = FALSE)
+  species <- sub("\\..*$", "", basename(file))  # Extract species from filename
+  df <- df[, .(Species = species, length = V4)]
+  return(df)
+}))
+
+# Add reproductive mode using your logic
+haplotype_data <- haplotype_data %>%
+  mutate(reproMode = ifelse(Species %in% c("Ppr", "Hrs", "Hls", "Ass"), 
+                            "asexual", "sexual"))
+
+# Set factor levels for species (for plot order)
+haplotype_data$Species <- factor(haplotype_data$Species, levels = c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls"))
+
+
+# Step 1: Mean heterozygosity per species
+het_means <- heterozygosity_data %>%
+  group_by(Species, reproMode) %>%
+  summarise(mean_het = mean(Heterozygosity_Rate), .groups = "drop")
+
+# Step 2: Mean haplotype length per species
+haplo_means <- haplotype_data %>%
+  group_by(Species, reproMode) %>%
+  summarise(mean_haplo = mean(length), .groups = "drop")
+
+# Step 3: Merge both summaries
+combined_means <- inner_join(het_means, haplo_means, by = c("Species", "reproMode"))
+
+# Step 4: Correlation plot
+c <- combined_means %>%
+  ggplot(aes(x = mean_het, y = mean_haplo / 1e6)) +
+  geom_point(alpha = 1, size = 3, aes(color = reproMode, fill = reproMode), shape = 21) +
+  stat_cor(method = "spearman", cor.coef.name = "rho", size = 3) +
+  geom_smooth(method = "glm", se = TRUE, color = "blue", fill = "grey80", size = 1) +
+  labs(
+    x = "Mean heterozygosity",
+    y = "Mean haplotype length (Mb)"
+  ) +
+  scale_color_manual(values = c("sexual" = "#F56B39", "asexual" = "#11A7BB")) +
+  scale_fill_manual(values = c("sexual" = "#F56B39", "asexual" = "#11A7BB")) +
+  theme_minimal() +
+  theme(
+    panel.border = element_rect(color = "black", fill = NA, linewidth = 1),
+    axis.text = element_text(size = 10),
+    axis.title = element_text(size = 12),
+    legend.position = "none"
+  )
+
+# Show plot
+print(c)
+
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/phasedVCFs/haploblocks/Haploblocks_Heterozygosity_corr.pdf", c, width = 3, height = 3)
+
+
+```
+
+#### *LD decay analysis*
+
+```{r LD decay analyses, echo=FALSE, message=FALSE, warning=FALSE}
+# Load libraries
+library(ggplot2)
+library(dplyr)
+library(stringr)
+library(readr)
+
+# Directory containing LD decay files
+indir <- "/Users/mohammederrbii/sciebo/Postdoc/sexAsex/popGen/LDdecay/unphased/PopLDdecay/forR"
+pattern <- "Multi.LDdecay.unphased.maf0.2."
+
+# List species files (exclude non-species files like .bin, .pdf, .png)
+files <- list.files(indir, pattern = paste0(pattern, "[A-Za-z]+$"), full.names = TRUE)
+
+# Extract species names from filenames
+species_names <- str_replace(basename(files), pattern, "")
+
+# Read and combine all species data into one dataframe
+ld_data <- bind_rows(lapply(seq_along(files), function(i) {
+  df <- read_table(files[i], col_names = T, show_col_types = FALSE)
+  df <- df %>% transmute(
+    DistanceKb = `#Dist` / 1000,
+    R2 = `Mean_r^2`,
+    Species = species_names[i]
+  )
+  return(df)
+}))
+
+# Custom colors (adjust to your liking)
+species_colors <- c(
+  # "Aca" = "red",
+  "Ass" = "black",
+  "Hga" = "blue",
+  "Hls" = "purple",
+  "Hrs" = "green",
+  "Hti" = "orange",
+  # "Nps" = "yellow",
+  "Ppr" = "brown",
+  "Sms" = "cyan"   # optional if you want Ona
+)
+
+# Define asexual species
+asexuals <- c("Ppr", "Hrs", "Hls", "Ass")
+
+# Add reproductive mode column
+ld_data <- ld_data %>%
+  mutate(reproMode = ifelse(Species %in% asexuals, "Asexual", "Sexual"))
+
+
+# Plot with ggplot + loess
+p <- ggplot(ld_data, aes(x = DistanceKb, y = R2, color = Species)) +
+  geom_point(alpha = 0.01) +  # raw points
+  geom_smooth(method = "loess", span = 0.05, se = T, linewidth = 0.5, alpha = 0.2) + # smoothed curves
+  scale_color_manual(values = species_colors) +
+  scale_color_manual(values = c("Sexual" = "#F56B39", "Asexual" = "#11A7BB")) +
+  labs(
+    x = "Distance (Kb)",
+    y = expression(r^2),
+    color = "Species"
+  ) +
+  coord_cartesian(xlim = c(0, 300), ylim = c(0, 1)) +
+  theme_classic2() +
+  theme(legend.position = "right")
+
+
+# Save plot
+# ggsave("~/sciebo/Postdoc/sexAsex/popGen/LDdecay/unphased/PopLDdecay/Multi.LDdecay.maf0.2.ggplot.pdf", p, width = 8, height = 6)
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/tmp/Multi.LDdecay.maf0.2.ggplot.pdf", p, width = 5, height = 2.5)
+
+# Also preview in RStudio
+print(p)
+
+ 
+# Define asexual species
+asexuals <- c("Ppr", "Hrs", "Hls", "Ass")
+
+# Add reproductive mode column
+ld_data <- ld_data %>%
+  mutate(reproMode = ifelse(Species %in% asexuals, "Asexual", "Sexual"))
+
+
+ggplot(ld_data, aes(x = DistanceKb, y = R2, color = reproMode)) +
+  geom_point(alpha = 0.2, size = .5) +  # raw points
+  geom_smooth(method = "loess", span = 0.05, se = FALSE, linewidth = 0.5) +
+  scale_color_manual(values = c("Sexual" = "#F56B39", "Asexual" = "#11A7BB")) +
+  facet_wrap(~Species) +
+  labs(x="Distance (Kb)", y=expression(r^2), color="Repro. mode") +
+  theme_classic()
+
+
+# Estimate half-decay distance
+
+half_decay <- ld_data %>%
+  group_by(Species) %>%
+  arrange(DistanceKb) %>%
+  mutate(baseline   = mean(R2[DistanceKb < 1], na.rm = TRUE),
+         half_value = baseline * (2/4)) %>%
+  summarise(baseR2 = unique(baseline),
+            halfR2 = unique(half_value), 
+            {
+              idx <- which(R2 <= first(half_value))[1]
+              
+              if (is.na(idx)) {
+                # never reached: assign max distance
+                hd <- max(DistanceKb, na.rm = TRUE)
+              } else if (idx == 1) {
+                # already below half at start
+                hd <- min(DistanceKb, na.rm = TRUE)
+              } else {
+                # linear interpolation
+                x1 <- DistanceKb[idx-1]; x2 <- DistanceKb[idx]
+                y1 <- R2[idx-1]; y2 <- R2[idx]
+                hv <- first(half_value)
+                hd <- x1 + (hv - y1) * (x2 - x1) / (y2 - y1)
+              }
+              
+              tibble(half_decay_dist = hd)
+            })
+
+
+
+# Compare statistically (sexual vs asexual)
+half_decay <- half_decay %>%
+  mutate(reproMode = ifelse(Species %in% asexuals, "Asexual", "Sexual"))
+
+
+half_decay
+# write_delim(half_decay, "~/sciebo/Postdoc/sexAsex/popGen/LDdecay/unphased/PopLDdecay/half_decay.maf0.2.txt", delim = "\t")
+write_delim(half_decay, "~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/tmp/half_decay.maf0.2.txt", delim = "\t")
+
+
+# Boxplot + stats
+ggplot(half_decay, aes(x = reproMode, y = (half_decay_dist), fill = reproMode)) +
+  geom_violin(alpha=0.6) +
+  geom_jitter(width=0.1, size=2) +
+  labs(y="Half-decay distance (Kb)", x="Reproductive mode") +
+  scale_fill_manual(values = c("Sexual" = "#F56B39", "Asexual" = "#11A7BB")) +
+  theme_classic()
+
+# Wilcoxon test
+wilcox.test(half_decay_dist ~ reproMode, data=half_decay, p.adjust.method = "bonferoni")
+
+# PGLS analysis:
+
+# Read phylogeny
+tree <- read.tree(text="(Hrs:0.25251170135,((Ass:0.0370616018,Sms:0.0279731614):0.2859294992[100],((Hga:0.2068827003,(Nps:0.1293561260,Ppr:0.0921946231):0.0269159387[100]):0.0287608487[100],((Ona:0.0997975298,Osa:0.1187814774):0.1204310951[100],(Aca:0.0851089497,(Hls:0.0308508642,Hti:0.0332963161):0.0797602904[100]):0.1021325842[100]):0.1385490472[100]):0.0932480595[100]):0.25251170135);")
+
+# Ensure names match (drop missing)
+tree <- drop.tip(tree, setdiff(tree$tip.label, half_decay$Species))
+
+# p <- ggtree(tree,ladderize=T,right=T,size=1.5,lineend='square') + geom_tiplab(size=3,color=1,offset=.02,fontface = "bold")
+
+half_decay <- half_decay %>% filter(Species %in% tree$tip.label)
+
+# Build comparative data object
+half_decay <- as.data.frame(half_decay)
+rownames(half_decay) <- half_decay$Species
+
+comp <- comparative.data(
+  phy = tree,
+  data = half_decay,
+  names.col = Species,
+  vcv = TRUE,
+  na.omit = TRUE,
+  warn.dropped = TRUE
+)
+
+# Check comp
+# summary(comp)
+
+
+# Run PGLS models
+pgls_ld <- pgls(half_decay_dist ~ reproMode, data = comp, lambda = "ML")
+summary(pgls_ld)
+
+```
+
+#### *SV analysis: functional annotation*
+
+```{r TE polymorphism, echo=FALSE, message=FALSE, warning=FALSE}
+# prepare the data:
+gfinal_data_list <- read_delim("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/gfinal_data_list.txt", delim = "\t", col_names = T)
+
+gfinal_data_list <- gfinal_data_list %>% filter(Species != "Aca" &
+                                                  Species != "Nps")
+# load new freq 
+table_files <- list.files(path = "~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/TE/", pattern = "\\.freq\\.frq$", full.names = TRUE)
+species_list <- sub("\\.freq\\.frq$", "", basename(table_files))
+
+# Initialize list to store data
+data_list <- list()
+
+# Loop over species
+for (species in species_list) {
+  cat("Processing:", species, "\n")
+  
+  table_file <- file.path("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/TE/", paste0(species, ".freq.frq"))
+  
+  if (!file.exists(table_file)) {
+    warning("Missing table file: ", table_file)
+    next
+  }
+  
+  # Read the data and assign to list using species name as key
+  data_list[[species]] <- read.table(table_file, header = F, sep = "\t", stringsAsFactors = FALSE, skip = 1)
+  
+  data_list[[species]]$Species <- species
+
+}
+
+# Combine all tables into a single data frame by row binding
+freq_data_list <- bind_rows(data_list)
+colnames(freq_data_list) <- c("CHROM", "POS", "N_ALLELES", "N_CHR", "Ref_Allele", "Alt_Allele", "Species")
+
+
+# load annotations 
+table_files <- list.files(path = "~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/TE", pattern = "\\.Classes.table$", full.names = TRUE)
+species_list <- sub("\\.Classes.table$", "", basename(table_files))
+
+# Initialize list to store data
+data_list <- list()
+
+# Loop over species
+for (species in species_list) {
+  cat("Processing:", species, "\n")
+  
+  table_file <- file.path("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/TE/", paste0(species, ".Classes.table"))
+  
+  if (!file.exists(table_file)) {
+    warning("Missing table file: ", table_file)
+    next
+  }
+  
+  # Read the data and assign to list using species name as key
+  data_list[[species]] <- read.table(table_file, header = F, sep = "\t", stringsAsFactors = FALSE)
+  
+  data_list[[species]]$Species <- species
+
+}
+
+# Combine all tables into a single data frame by row binding
+class_data_list <- bind_rows(data_list)
+colnames(class_data_list) <- c("CHROM", "POS", "Class", "Species")
+
+# merge all three:
+head(gfinal_data_list)
+
+head(freq_data_list)
+
+head(class_data_list)
+
+combined <- merge(freq_data_list, class_data_list, by = c("CHROM", "POS", "Species")) %>%
+  merge(., gfinal_data_list[gfinal_data_list$SVTYPE != ".",], by = c("CHROM", "POS", "Species"))
+
+
+final_combined <- combined[,c(1,2,6,7,9,11,12,18,3,8)]
+
+final_combined$Species <- factor(final_combined$Species, levels = rev(rev(c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls"))))  
+
+final_combined <- mutate(final_combined, reproMode = ifelse(final_combined$Species == "Ppr" |
+                                                # final_combined$Species == "Nps" |
+                                                # final_combined$Species == "Ona" |
+                                                final_combined$Species == "Hrs" |
+                                                final_combined$Species == "Hls" |
+                                                final_combined$Species == "Ass", "asexual", "sexual"))
+
+
+
+# fix umbigious annotations:
+df_out <- final_combined %>%
+  rowwise() %>%
+  mutate(
+    # split the Class column by commas, trim whitespace
+    Class_list = list(str_split(Class, ",")[[1]] %>% str_trim()),
+    
+    # count how many classes are matched
+    n_classes = length(Class_list),
+    
+    # tabulate classes, pick the most frequent one
+    top_class = {
+      tab <- sort(table(Class_list), decreasing = TRUE)
+      names(tab)[1]
+    }
+  ) %>%
+  ungroup()
+
+
+df_out1 <- df_out %>% filter(df_out$n_classes == 1) #& df_out$Class != "Unknown"
+
+
+### 1. Pie charts of top_class composition per species ----------------
+
+cols<-read.table("/Users/mohammederrbii/sciebo/Postdoc/sexAsex/popGen/src/TEcolors.land", sep = "\t")
+# Turn your color table into a named vector
+col_vector <- setNames(cols$V2, cols$V1)
+
+df_pie <- df_out1 %>%
+  group_by(Species, top_class) %>%
+  summarise(n = n(), .groups="drop") %>%
+  group_by(Species) %>%
+  mutate(frac = n / sum(n))
+
+
+df_new <- df_pie %>%
+  mutate(
+    # Extract the TE superfamily (everything before the first "/")
+    class = str_extract(top_class, "^[^/]+"),
+    
+    # Keep detailed top_class if it's ≥ 1%, otherwise collapse under _other
+    # but keep "Unknown" as-is
+    class2 = case_when(
+      class == "Unknown" ~ "Unknown",  # leave Unknown unchanged
+      frac >= 0.01 & top_class != class ~ top_class,  # keep detailed names
+      TRUE ~ paste0(class, "_other")  # group the rest
+    )
+  )
+
+df_new
+
+
+
+df_collapsed <- df_new %>%
+  group_by(Species, class2) %>%
+  summarise(frac = sum(frac), .groups = "drop")
+
+
+# Make sure your fill variable matches the names in col_vector (e.g., class2)
+p1 <- ggplot(df_collapsed, aes(x = "", y = frac, fill = class2)) +
+  geom_col(width = 1, color = "white", size = .2) +
+  coord_polar(theta = "y") +
+  facet_wrap(~Species, nrow = 7) +
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  theme_void() +
+  theme(legend.position = "right",
+        legend.key.size = unit(0.5, 'cm')) +
+  scale_fill_manual(values = col_vector) +
+  guides(fill=guide_legend(ncol=1))
+
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/TE/pieChart_collapsed_fractions.pdf", p1, width = 4, height = 6)
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/pieChart_collapsed_fractions.pdf", p1, width = 6, height = 10)
+
+
+### 2. Alt_allele distributions for each species ----------------------
+df_out2 <- df_out1 #%>% filter(df_out$Class == "LTR/Gypsy")
+
+
+df_out2 <- df_out2 %>%
+  mutate(
+    # Extract the TE superfamily (before first "/")
+    Class = str_extract(top_class, "^[^/]+")
+  )
+
+# make named vector
+col_vector <- setNames(cols$V2, cols$V1)
+
+p2 <- ggplot(df_out2, aes(x = Alt_Allele, fill = Class, color = reproMode)) +
+  geom_histogram(bins = 10, color = "black") +
+  facet_wrap(~Species, scales = "free_y", nrow=7) +
+  labs(x = "Allele frequency", y = "Count") +
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  theme_bw() +
+  scale_fill_manual(values = col_vector) +
+  theme_classic()
+
+
+
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/TE/SFS.pdf", p2, width = 8, height = 6)
+
+
+# p2 <- ggplot(df_out2, aes(x = Alt_Allele, fill = Class, color = reproMode)) +
+#   geom_density(bins = 20, alpha = 0.3, position = "stack") +
+#   facet_wrap(~Species, scales = "free_y", nrow=7) +
+#   # labs(x = "Allele frequency", y = "Count") +
+#   scale_color_manual(name="reproMode",values = c(
+#     "sexual"="#F56B39",
+#     "asexual"="#11A7BB"))+
+#   theme_bw() +
+#   scale_fill_manual(values = col_vector) +
+#   theme_classic()
+
+p2 <- ggplot(df_out2, aes(x = Alt_Allele, fill = Class, color = reproMode)) +
+  geom_histogram(aes(y = ..count.. / 1000), bins = 10, color = NA) +  # divide count by 1000
+  facet_wrap(~Species, scales = "free_y", nrow = 7) +
+  labs(x = "Allele frequency", y = "Count (x1000)") +  # update label
+  scale_color_manual(name = "reproMode", values = c(
+    "sexual" = "#F56B39",
+    "asexual" = "#11A7BB"
+  )) +
+  theme_bw() +
+  theme(legend.key.size = unit(0.5, 'cm'))+
+  scale_fill_manual(values = col_vector) +
+  theme_classic()
+
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/TE.SFS.pdf", p2, width = 3, height = 7)
+
+
+p3 <- ggplot(df_out2, aes(x = Species, fill = Class, color = reproMode)) +
+  geom_bar() +
+  labs(x = "Species", y = "Count") +
+  theme_bw() +
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  scale_fill_manual(values = col_vector) +
+  theme_classic()
+
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/TE/counts.pdf", p3, width = 4, height = 4)
+
+
+# Define species and corresponding genome sizes (in Mb)
+species <- c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls")
+genome_sizes <- c(184.7, 261.0, 138.7, 352.2, 216.0, 272.0, 100.6)
+
+# Create a data frame
+df <- data.frame(Species = factor(species, levels = species), GenomeSize = genome_sizes)
+
+# Merge genome size into your TE dataset
+df_out3 <- merge(df_out2, df, by = "Species", all.x = TRUE)
+
+# Calculate counts normalized per Mb genome
+df_norm <- df_out3 %>%
+  group_by(Species, Class, reproMode, GenomeSize) %>%
+  summarise(Count = n(), .groups = "drop") %>%
+  mutate(Count_perMb = Count / GenomeSize)
+
+# Plot normalized counts
+p4 <- ggplot(df_norm, aes(x = Species, y = Count_perMb, fill = Class, color = reproMode)) +
+  geom_col(position = "stack") +
+  labs(x = "Species", y = "TE counts per Mb genome") +
+  theme_bw() +
+  scale_color_manual(
+    name = "reproMode",
+    values = c("sexual" = "#F56B39", "asexual" = "#11A7BB")
+  ) +
+  scale_fill_manual(values = col_vector) +
+  theme_classic()
+
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/TE/countsPerMb.pdf", p4, width = 6, height = 4)
+
+### 3. Bin allele frequencies into one figure -------------------------
+# Bin allele frequencies
+df_binned <- df_out %>%
+  mutate(freq_bin = case_when(
+    Alt_Allele < 0.1 ~ "Low-frequency (<0.1)",
+    Alt_Allele >= 0.1 & Alt_Allele <= 0.9 ~ "Common (0.1–0.9)",
+    Alt_Allele > 0.9 ~ "Fixed (>0.9)"
+  ))
+
+# Count per species and frequency bin
+df_summary <- df_binned %>%
+  group_by(Species, freq_bin) %>%
+  summarise(n = n(), .groups="drop")
+
+# Plot stacked bar chart
+p5 <- ggplot(df_summary, aes(x = Species, y = n, fill = freq_bin)) +
+  geom_bar(stat="identity", position="fill") +   # use 'fill' for proportions
+  labs(title = "TE frequency categories by species",
+       y = "Proportion of TEs", x = "Species", fill = "Frequency bin") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+p5
+
+```
+
+```{r non TE structural variants, echo=FALSE, message=FALSE, warning=FALSE}
+# Required libraries
+library(dplyr)
+library(stringr)
+library(ggvenn)   # nice venn plots
+library(purrr)
+
+# List of species
+species <- c("Ass","Hga","Hls","Hrs","Hti","Ppr","Sms")
+
+# Directory containing your files
+sv_dir <- "~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/nonTE/SVannotation/"
+
+# Function to read a given species' SV annotation files
+read_sv_annotations <- function(sp) {
+  
+  # file paths
+  files <- list(
+    exonic = file.path(sv_dir, paste0(sp, ".sniffles2.CHR_POS_END_ID.table.sorted.exons")),
+    genic  = file.path(sv_dir, paste0(sp, ".sniffles2.CHR_POS_END_ID.table.sorted.genes")),
+    intron = file.path(sv_dir, paste0(sp, ".sniffles2.CHR_POS_END_ID.table.sorted.introns")),
+    inter  = file.path(sv_dir, paste0(sp, ".sniffles2.CHR_POS_END_ID.table.sorted.intergenic"))
+  )
+  
+  # read safely (handle intergenic with only 1 column)
+  read_file <- function(path, category) {
+    if (file.exists(path)) {
+      df <- read.table(path, sep="\t", fill=TRUE, stringsAsFactors=FALSE)
+      df$category <- category
+      colnames(df)[1:2] <- c("SVid","Gene")
+      return(df)
+    } else {
+      return(data.frame(SVid=character(), Gene=character(), category=character()))
+    }
+  }
+  
+  # bind everything
+  dat <- bind_rows(
+    read_file(files$exonic, "exonic"),
+    read_file(files$genic,  "genic"),
+    read_file(files$intron, "intronic"),
+    read_file(files$inter,  "intergenic")
+  )
+  
+  dat$species <- sp
+  return(dat)
+}
+
+# ---- Load all species data
+sv_all <- map_df(species, read_sv_annotations)
+
+sv_all <- sv_all[,-3]
+
+
+# ---- 1. Get counts of unique SVs per category per species
+summary_counts <- sv_all %>%
+  group_by(species, category) %>%
+  summarise(n_unique = n_distinct(SVid), .groups="drop")
+
+# ---- 2. Count intron-only SVs (present in intronic but not exonic for each species)
+introns_only <- sv_all %>%
+  group_by(species) %>%
+  summarise(
+    n_unique = n_distinct(SVid[category == "intronic" & !(SVid %in% SVid[category == "exonic"])]),
+    .groups = "drop"
+  ) %>%
+  mutate(category = "intronic")
+
+# ---- 3. Count exon-only SVs (present in exonic but not intronic for each species)
+exons_only <- sv_all %>%
+  group_by(species) %>%
+  summarise(
+    n_unique = n_distinct(SVid[category == "exonic" & !(SVid %in% SVid[category == "intronic"])]),
+    .groups = "drop"
+  ) %>%
+  mutate(category = "exonic")
+
+
+# ---- 4. Replace intronic counts in summary_counts
+summary_counts_replaced <- summary_counts %>%
+  filter(category != "intronic") %>%     # keep everything except intronic
+  bind_rows(introns_only)                # add the corrected intronic counts
+
+# ---- 5. Replace exonic counts in summary_counts
+summary_counts_replaced <- summary_counts_replaced %>%
+  filter(category != "exonic") %>%     # keep everything except exonic
+  bind_rows(exons_only)                # add the corrected exonic counts
+
+# (optional) arrange for nice output
+summary_counts_replaced <- summary_counts_replaced %>%
+  arrange(species, category)
+
+print(summary_counts_replaced)
+
+# ---- 2. Make Venn diagrams for each species
+# Example: plot for Ppr
+make_venn <- function(sp) {
+  subset <- sv_all %>% filter(species == sp)
+  
+  venn_list <- list(
+    # intergenic= unique(subset$SVid[subset$category=="intergenic"]),
+    # genic     = unique(subset$SVid[subset$category=="genic"]),
+    exonic    = unique(subset$SVid[subset$category=="exonic"]),
+    intronic  = unique(subset$SVid[subset$category=="intronic"])
+  )
+  
+  # plot venn
+  p <- ggvenn(venn_list, fill_color = c("#3399ff","#66cc99","#ff6666","#999999"),
+              stroke_size = 0.5, set_name_size = 4) + ggtitle(sp)
+  
+  # ggsave(paste0("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/nonTE/SVannotation/", sp, "_SV_categories.venn.pdf"), plot=p, width=3, height=2)
+  ggsave(paste0("~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/", sp, "_SV_categories.venn2.pdf"), plot=p, width=3, height=2)
+  return(p)
+}
+
+# run venns for all species
+venn_plots <- map(species, make_venn)
+
+# 
+```
+
+```{r no TE SVs, echo=FALSE, message=FALSE, warning=FALSE}
+# prepare the data:
+sfinal_data_list <- read_delim("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/outputs/sfinal_data_list.txt", delim = "\t", col_names = T)
+
+sfinal_data_list <- sfinal_data_list %>% filter(Species != "Aca" &
+                                                  Species != "Nps")
+# load new freq 
+table_files <- list.files(path = "~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/nonTE/", pattern = "\\.freq\\.frq$", full.names = TRUE)
+species_list <- sub("\\.freq\\.frq$", "", basename(table_files))
+
+# Initialize list to store data
+data_list <- list()
+
+# Loop over species
+for (species in species_list) {
+  cat("Processing:", species, "\n")
+  
+  table_file <- file.path("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/nonTE/", paste0(species, ".freq.frq"))
+  
+  if (!file.exists(table_file)) {
+    warning("Missing table file: ", table_file)
+    next
+  }
+  
+  # Read the data and assign to list using species name as key
+  data_list[[species]] <- read.table(table_file, header = F, sep = "\t", stringsAsFactors = FALSE, skip = 1)
+  
+  data_list[[species]]$Species <- species
+
+}
+
+# Combine all tables into a single data frame by row binding
+freq_data_list <- bind_rows(data_list)
+colnames(freq_data_list) <- c("CHROM", "POS", "N_ALLELES", "N_CHR", "Ref_Allele", "Alt_Allele", "Species")
+
+freq_data_list <- unique(freq_data_list)
+
+# combined <- merge(freq_data_list, sfinal_data_list[sfinal_data_list$SVTYPE != ".",], by = c("CHROM", "POS", "Species"))
+
+
+# load annotations 
+# List of species
+species <- c("Ass","Hga","Hls","Hrs","Hti","Ppr","Sms")
+
+# Directory containing your files
+sv_dir <- "~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/nonTE/SVannotation/"
+
+# Function to read a given species' SV annotation files
+read_sv_annotations <- function(sp) {
+  
+  # file paths
+  files <- list(
+    exonic = file.path(sv_dir, paste0(sp, ".sniffles2.CHR_POS_END_ID.table.sorted.exons")),
+    genic  = file.path(sv_dir, paste0(sp, ".sniffles2.CHR_POS_END_ID.table.sorted.genes")),
+    intron = file.path(sv_dir, paste0(sp, ".sniffles2.CHR_POS_END_ID.table.sorted.introns")),
+    inter  = file.path(sv_dir, paste0(sp, ".sniffles2.CHR_POS_END_ID.table.sorted.intergenic"))
+  )
+  
+  # read safely (handle intergenic with only 1 column)
+  read_file <- function(path, category) {
+    if (file.exists(path)) {
+      df <- read.table(path, sep="\t", fill=TRUE, stringsAsFactors=FALSE)
+      df$category <- category
+      colnames(df)[1:2] <- c("ID","Gene")
+      return(df)
+    } else {
+      return(data.frame(SVid=character(), Gene=character(), category=character()))
+    }
+  }
+  
+  # bind everything
+  dat <- bind_rows(
+    read_file(files$exonic, "exonic"),
+    read_file(files$genic,  "genic"),
+    read_file(files$intron, "intronic"),
+    read_file(files$inter,  "intergenic")
+  )
+  
+  dat$Species <- sp
+  return(dat)
+}
+
+# ---- Load all species data
+sv_all <- map_df(species, read_sv_annotations)
+
+sv_all <- sv_all[,-3]
+
+# merge all three:
+head(sfinal_data_list)
+
+head(freq_data_list)
+
+head(sv_all)
+
+
+combined <- merge(sfinal_data_list[sfinal_data_list$SVTYPE != ".",], sv_all, by = c("ID", "Species")) %>%
+  merge(., freq_data_list, by = c("CHROM", "POS", "Species"))
+
+
+
+# set levels and reproductive mode:
+combined$Species <- factor(combined$Species, levels = rev(rev(c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls"))))  
+
+final_combined <- mutate(combined, reproMode = ifelse(combined$Species == "Ppr" |
+                                                # combined$Species == "Nps" |
+                                                # combined$Species == "Ona" |
+                                                combined$Species == "Hrs" |
+                                                combined$Species == "Hls" |
+                                                combined$Species == "Ass", "asexual", "sexual"))
+
+
+
+### Pie charts of top_class composition per species ----------------
+
+# ---- 1. Get counts of unique SVs per category per species
+summary_counts <- final_combined %>%
+  group_by(Species, category) %>%
+  summarise(n_unique = n_distinct(ID), .groups="drop")
+
+# ---- 2. Count intron-only SVs (present in intronic but not exonic for each species)
+introns_only <- final_combined %>%
+  group_by(Species) %>%
+  summarise(
+    n_unique = n_distinct(ID[category == "intronic" & !(ID %in% ID[category == "exonic"])]),
+    .groups = "drop"
+  ) %>%
+  mutate(category = "intronic")
+
+# ---- 3. Count exon-only SVs (present in exonic but not intronic for each species)
+exons_only <- final_combined %>%
+  group_by(Species) %>%
+  summarise(
+    n_unique = n_distinct(ID[category == "exonic" & !(ID %in% ID[category == "intronic"])]),
+    .groups = "drop"
+  ) %>%
+  mutate(category = "exonic")
+
+# ---- 4. Count exon-only SVs (present in exonic but not intronic for each species)
+both <- final_combined %>%
+  group_by(Species) %>%
+  summarise(
+    n_unique = n_distinct(ID[category == "exonic" & (ID %in% ID[category == "intronic"])]),
+    .groups = "drop"
+  ) %>%
+  mutate(category = "exointro")
+
+
+# ---- 5. Replace intronic counts in summary_counts
+summary_counts_replaced <- summary_counts %>%
+  filter(category != "intronic") %>%     # keep everything except intronic
+  bind_rows(introns_only)                # add the corrected intronic counts
+
+# ---- 6. Replace exonic counts in summary_counts
+summary_counts_replaced <- summary_counts_replaced %>%
+  filter(category != "exonic") %>%     # keep everything except exonic
+  bind_rows(exons_only)                # add the corrected exonic counts
+
+# ---- 7. Replace exonic counts in summary_counts
+summary_counts_replaced <- summary_counts_replaced %>%
+  bind_rows(both)                # add the  intronic/exonic counts
+
+
+# arrange for nice output
+summary_counts_replaced <- summary_counts_replaced %>%
+  arrange(Species, category)
+
+
+df_pie <- summary_counts_replaced %>% filter(category != "genic") %>%
+  group_by(Species, category) %>%
+  group_by(Species) %>%
+  mutate(frac = n_unique / sum(n_unique))
+
+
+
+# Make sure your fill variable matches the names in col_vector (e.g., class2)
+p1 <- ggplot(df_pie, aes(x = "", y = frac, fill = category)) +
+  geom_col(width = 1, color = "white", size = .2) +
+  coord_polar(theta = "y") +
+  facet_wrap(~Species) +
+  # add text labels outside
+  geom_text(
+    aes(label = round(frac*100,2), color = category),
+    color = "white", size = 3, fontface = "bold"
+  ) +
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  theme_void() +
+  theme(legend.position = "right") +
+  scale_fill_manual(values = c("#3399ff", "#ff6666", "#999999", "#66cc99", "orange"))
+
+
+
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/nonTE/pieChart_fractions.pdf", p1, width = 10, height = 6)
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/tmp/pieChart_fractions.pdf", p1, width = 10, height = 6)
+
+
+
+### Alt_allele distributions for each species ----------------------
+
+# make named vector
+p2 <- ggplot(final_combined %>% filter(category == "intergenic" |
+                                         category == "genic"), aes(x = Alt_Allele, fill = category, color = reproMode)) +
+  geom_histogram(aes(y = ..count.. / 1000), bins = 10, color = NA) +  # divide count by 1000
+  facet_wrap(~Species, nrow = 7, scales = "free_y") +
+  labs(x = "Allele frequency", y = "Count (x1000)") +  # update label
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  theme_bw() +
+  scale_fill_manual(values = c("orange", "darkblue", "#3399ff", "#ff6666", "#999999", "#66cc99")) +
+  scale_y_continuous(
+    labels = function(x) sprintf("%.0f", x)  # ❗ removes decimals
+  ) +
+  theme_classic()
+
+# ggsave("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/nonTE/SFS.pdf", p2, width = 4, height = 14)
+
+# p2 <- ggplot(final_combined %>% 
+#                filter(category %in% c("intergenic", "genic")), 
+#              aes(x = Alt_Allele)) +
+#   geom_histogram(aes(y = ..count../1000, fill = category, color = NA), bins = 10, color = NA, alpha = 0.6) +  # histogram
+#   geom_density(aes(weight = ..count../1000, color = reproMode), size = 1, alpha = 0.8) +    # trend line
+#   facet_wrap(~Species, nrow = 7, scales = "free_y") +
+#   labs(x = "Allele frequency", y = "Count (x1000)") +
+#   scale_color_manual(name="reproMode", values = c(
+#     "sexual"="#F56B39",
+#     "asexual"="#11A7BB")) +
+#   scale_fill_manual(values = c("orange", "#999999")) +
+#   theme_classic()
+
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/manuscript/figures/nonTE.SFS.pdf", p2, width = 3.05, height = 7)
+
+
+
+df_out2 <- merge(final_combined %>% filter(category == "intergenic" |
+                                         category == "genic"), df, by = "Species", all.x = TRUE)
+
+
+p3 <- ggplot(df_out2, aes(x = Species, fill = category, color = reproMode)) +
+  geom_bar() +
+  labs(x = "Species", y = "Count") +
+  theme_bw() +
+  scale_color_manual(name="reproMode",values = c(
+    "sexual"="#F56B39",
+    "asexual"="#11A7BB"))+
+  scale_fill_manual(values = c("orange", "#999999", "#3399ff", "#ff6666", "#999999", "#66cc99"))+
+  theme_classic()
+
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/nonTE/counts.pdf", p3, width = 4, height = 4)
+
+
+# Define species and corresponding genome sizes (in Mb)
+species <- c("Hrs", "Sms", "Ass", "Hga", "Ppr", "Hti", "Hls")
+genome_sizes <- c(184.7, 261.0, 138.7, 352.2, 216.0, 272.0, 100.6)
+
+# Create a data frame
+df <- data.frame(Species = factor(species, levels = species), GenomeSize = genome_sizes)
+
+# Merge genome size into your TE dataset
+df_out3 <- merge(final_combined %>% filter(category == "intergenic" |
+                                         category == "genic"), df, by = "Species", all.x = TRUE)
+
+# Calculate counts normalized per Mb genome
+df_norm <- df_out3 %>%
+  group_by(Species, category, reproMode, GenomeSize) %>%
+  summarise(Count = n(), .groups = "drop") %>%
+  mutate(Count_perMb = Count / GenomeSize)
+
+# Plot normalized counts
+p4 <- ggplot(df_norm, aes(x = Species, y = Count_perMb, fill = category, color = reproMode)) +
+  geom_col(position = "stack") +
+  labs(x = "Species", y = "TE counts per Mb genome") +
+  theme_bw() +
+  scale_color_manual(
+    name = "reproMode",
+    values = c("sexual" = "#F56B39", "asexual" = "#11A7BB")
+  ) +
+  scale_fill_manual(values = c("orange", "#999999", "#3399ff", "#ff6666", "#999999", "#66cc99"))+
+  theme_classic()
+
+ggsave("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/nonTE/countsPerMb.pdf", p4, width = 6, height = 4)
+
+```
+
+```{r non TE SVs: topGO, echo=FALSE, message=FALSE, warning=FALSE}
+# Required libraries
+
+# if (!require("BiocManager", quietly = TRUE))
+#   install.packages("BiocManager")
+# 
+# BiocManager::install("topGO")
+
+# Load libraries
+library(topGO)
+library(plyr)
+library(tidyverse)
+library(dplyr)
+library(stringr)
+library(purrr)
+
+# List of species
+species <- c("Ass","Hga","Hls","Hrs","Hti","Ppr","Sms")
+
+# Directory containing your files
+sv_dir <- "~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/nonTE/SVannotation/"
+
+# Function to read a given species' SV annotation files
+read_sv_annotations <- function(sp) {
+  
+  # file paths
+  files <- list(
+    exonic = file.path(sv_dir, paste0(sp, ".sniffles2.CHR_POS_END_ID.table.sorted.exons")),
+    genic  = file.path(sv_dir, paste0(sp, ".sniffles2.CHR_POS_END_ID.table.sorted.genes")),
+    intron = file.path(sv_dir, paste0(sp, ".sniffles2.CHR_POS_END_ID.table.sorted.introns")),
+    inter  = file.path(sv_dir, paste0(sp, ".sniffles2.CHR_POS_END_ID.table.sorted.intergenic"))
+  )
+  
+  # read safely (handle intergenic with only 1 column)
+  read_file <- function(path, category) {
+    if (file.exists(path)) {
+      df <- read.table(path, sep="\t", fill=TRUE, stringsAsFactors=FALSE)
+      df$category <- category
+      colnames(df)[1:2] <- c("SVid","Gene")
+      return(df)
+    } else {
+      return(data.frame(SVid=character(), Gene=character(), category=character()))
+    }
+  }
+  
+  # bind everything
+  dat <- bind_rows(
+    read_file(files$exonic, "exonic"),
+    read_file(files$genic,  "genic"),
+    read_file(files$intron, "intronic"),
+    read_file(files$inter,  "intergenic")
+  )
+  
+  dat$species <- sp
+  return(dat)
+}
+
+# ---- Load all species data
+sv_all <- map_df(species, read_sv_annotations)
+
+sv_all <- sv_all[,-3]
+
+# extract genes affected only by exonic SVs
+genes_exonic_list <- lapply(species, function(sp) {
+  unique(sv_all$Gene[sv_all$category == "exonic" & sv_all$species == sp])
+})
+
+# Name the list elements by species for clarity
+names(genes_exonic_list) <- species
+
+# length(genes_exonic_list$Sms)
+
+
+##########################################################################
+# GO enrichment analysis of genes under intense/relaxed selection in Hrs #
+##########################################################################
+
+
+# Path setup
+go_dir <- "~/sciebo/Postdoc/sexAsex/genomes/geneAnno/GOterms"
+out_dir <- "~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/nonTE/SVannotation/topGO"
+
+# Loop over all species
+for (sp in species) {
+  message("=== Processing species: ", sp, " ===")
+  
+  # Step 1: Read and reformat GO universe ---------------------
+  # infile <- file.path(go_dir, paste0(sp, ".universe.GO.forR.txt"))
+  outfile <- file.path(go_dir, paste0(sp, ".universe.GO.forR.final.txt"))
+  
+  # if (!file.exists(infile)) {
+  #   warning("GO file not found for ", sp, ", skipping...")
+  #   next
+  # }
+  # 
+  # a <- read.csv(infile, sep = "\t", header = FALSE)
+  # colnames(a) <- c("V1", "V2")
+  # 
+  # all <- ddply(a, .(V1), summarize,
+  #              V2 = paste(unique(V2), collapse = ","))
+  # 
+  # write_delim(all, outfile, col_names = FALSE, delim = "\t")
+  
+  # Step 2: Load GO mappings -----------------------------------
+  geneID2GO <- readMappings(file = outfile)
+  geneUniverse <- names(geneID2GO)
+  
+  # Step 3: Define genes of interest ----------------------------
+  if (!sp %in% names(genes_exonic_list)) {
+    warning("No gene list for ", sp, ", skipping...")
+    next
+  }
+  
+  genesOfInterest <- genes_exonic_list[[sp]]
+  
+  geneList <- factor(as.integer(geneUniverse %in% genesOfInterest))
+  names(geneList) <- geneUniverse
+  
+  # Step 4: Create topGOdata objects ----------------------------
+  GOdata_MF <- new("topGOdata", ontology = "MF", allGenes = geneList,
+                   annot = annFUN.gene2GO, gene2GO = geneID2GO)
+  GOdata_BP <- new("topGOdata", ontology = "BP", allGenes = geneList,
+                   annot = annFUN.gene2GO, gene2GO = geneID2GO)
+  GOdata_CC <- new("topGOdata", ontology = "CC", allGenes = geneList,
+                   annot = annFUN.gene2GO, gene2GO = geneID2GO)
+  
+  # Step 5: Run tests -------------------------------------------
+  resultFis_MF <- runTest(GOdata_MF, algorithm = "weight01", statistic = "fisher")
+  resultFis_BP <- runTest(GOdata_BP, algorithm = "weight01", statistic = "fisher")
+  resultFis_CC <- runTest(GOdata_CC, algorithm = "weight01", statistic = "fisher")
+  
+  # Step 6: Extract tables --------------------------------------
+  table_MF <- GenTable(GOdata_MF, classicFisher = resultFis_MF,
+                       orderBy = "resultFisher", ranksOf = "resultFisher", topNodes = 200)
+  table_BP <- GenTable(GOdata_BP, classicFisher = resultFis_BP,
+                       orderBy = "resultFisher", ranksOf = "resultFisher", topNodes = 200)
+  table_CC <- GenTable(GOdata_CC, classicFisher = resultFis_CC,
+                       orderBy = "resultFisher", ranksOf = "resultFisher", topNodes = 200)
+  
+# Step 7: Adjust p-values and filter --------------------------
+  table_MF$FDR <- p.adjust(as.numeric(table_MF$classicFisher), method = "fdr")
+  table_BP$FDR <- p.adjust(as.numeric(table_BP$classicFisher), method = "fdr")
+  table_CC$FDR <- p.adjust(as.numeric(table_CC$classicFisher), method = "fdr")
+  
+  MF <- subset(table_MF, as.numeric(classicFisher) < 0.05)
+  BP <- subset(table_BP, as.numeric(classicFisher) < 0.05)
+  CC <- subset(table_CC, as.numeric(classicFisher) < 0.05)
+  
+  MF$ontology <- "MF"
+  BP$ontology <- "BP"
+  CC$ontology <- "CC"
+  
+  # Step 8: Combine and write results ---------------------------
+  res <- rbind(MF, BP, CC)
+  res$Species <- sp
+  res$classicFisher <- as.numeric(res$classicFisher)
+  
+  outfile_res <- file.path(out_dir, paste0(sp, ".GO.enrichment.exonicSVs.txt"))
+  write.table(res, outfile_res, quote = FALSE, sep = "\t", row.names = FALSE, dec = ".")
+}
+
+
+```
+
+```{r non TE SVs topGO summary, echo=FALSE, message=FALSE, warning=FALSE}
+
+# Define your output directory
+out_dir <- "~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/nonTE/SVannotation/topGO"
+
+# List all the output files (e.g., enrichment result tables)
+# You can filter for only .txt files, if that’s what you have
+files <- list.files(path = out_dir, pattern = "\\.txt$", full.names = TRUE)
+
+# Read all files into a list of data frames
+all_go_results <- lapply(files, function(f) {
+  df <- read.delim(f, header = TRUE, sep = "\t", stringsAsFactors = FALSE)
+  # df$Species <- sub("\\.GO.enrichment.exonicSVs.txt$", "", basename(f))  # Add species name based on filename
+  df
+})
+
+# Combine them all into one large data frame
+combined_go <- do.call(rbind, all_go_results)
+
+# Check the structure
+str(combined_go)
+
+# Preview
+head(combined_go)
+
+
+
+# Label species by reproductive mode
+combined_go$ReproMode <- ifelse(combined_go$Species %in% 
+                                  c("Ppr", "Nps", "Ona", "Hrs", "Hls", "Ass"), 
+                                "Asexual", "Sexual")
+# get sig GO terms
+sig_go <- combined_go %>%
+  filter(classicFisher < 0.01) %>%
+  distinct(GO.ID, Term, ontology, classicFisher, Species, ReproMode)
+
+
+# Visualize GOs:
+
+# if (!requireNamespace("BiocManager", quietly=TRUE))
+#   install.packages("BiocManager")
+# BiocManager::install("simplifyEnrichment", force = TRUE)
+# library(simplifyEnrichment)
+
+
+# simplifyGO(unique(go_id), ont="MF")
+
+
+
+# if (!requireNamespace("BiocManager", quietly = TRUE))
+#     install.packages("BiocManager")
+# BiocManager::install(c("rrvgo", "GOSemSim", "org.Dm.eg.db"))  # use org.Dm.eg.db or your organism
+
+
+library(rrvgo)
+library(GOSemSim)
+library(org.Dm.eg.db) # or org.Dm.eg.db
+library(dplyr)
+
+
+species_list <- unique(combined_go$Species)
+
+# species_list <- c("Ppr", "Hga")
+
+for (sp in species_list) {
+  cat("Processing:", sp, "\n")
+  
+  # Filter to significant GO terms (e.g., FDR < 0.05)
+  df <- combined_go %>% 
+    filter(Species == sp & ontology == "BP", classicFisher < 0.01)
+  
+  if (nrow(df) == 0) next
+  
+  # Compute semantic similarity matrix
+  simMatrix <- calculateSimMatrix(df$GO.ID,
+                                  orgdb = "org.Dm.eg.db",
+                                  ont = "BP",  # Change to BP, MF or CC as needed
+                                  method = "Rel")
+  
+  # Reduce redundancy (keep representative terms)
+  # Create a named score vector
+  scores <- setNames(-log10(df$classicFisher), df$GO.ID)
+  
+  # Now reduce redundancy
+  reducedTerms <- reduceSimMatrix(simMatrix,
+                                  scores = scores,
+                                  threshold = 0.7,
+                                  orgdb = "org.Dm.eg.db")
+  
+  # Save reduced list
+  write.csv(reducedTerms, 
+            paste0("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/nonTE/SVannotation/topGO/BP_GO_reduced_classicFisher_", sp, ".csv"), 
+            row.names = FALSE)
+  
+  # Plot treemap
+  pdf(paste0("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/nonTE/SVannotation/topGO/BP_GO_treemap_classicFisher_", sp, ".pdf"))
+  treemapPlot(reducedTerms)
+  dev.off()
+  
+  # Plot scatter
+  p <- scatterPlot(simMatrix, reducedTerms,addLabel=T,onlyParents=F,size="size")
+  ggsave(filename = paste0("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/nonTE/SVannotation/topGO/BP_GO_scatter_classicFisher_", sp, ".pdf"),
+         plot = p,
+         width = 5, height = 5)
+}
+
+
+# compare the two confirmed asex to the sexual ones:
+# get GO id:
+go_id = sig_go[sig_go$Species == "Ppr" & sig_go$ontology == "MF"|
+                       sig_go$Species == "Hls" & sig_go$ontology == "MF",]
+
+
+# deduplicate GO terms (GO.ID) 
+go_id_filtered <- go_id %>%
+  group_by(GO.ID) %>%                           # group by GO term
+  dplyr::arrange(classicFisher, .by_group = TRUE) %>%  # sort each group by FDR ascending
+  dplyr::slice(1) %>%                                  # keep only the lowest-FDR entry per GO.ID
+  ungroup()                                     # remove grouping
+
+
+
+# Compute semantic similarity matrix
+simMatrix <- calculateSimMatrix(go_id_filtered$GO.ID,
+                                orgdb = "org.Dm.eg.db",
+                                ont = "MF",  # Change to BP, MF or CC as needed
+                                method = "Rel")
+
+
+# Create a named score vector
+scores <- setNames(-log10(go_id_filtered$classicFisher), go_id_filtered$GO.ID)
+
+# Now reduce redundancy
+reducedTerms <- reduceSimMatrix(simMatrix,
+                                scores = scores,
+                                threshold = 0.7,
+                                orgdb = "org.Dm.eg.db")
+
+# # Save reduced list
+# write.csv(reducedTerms, 
+#           paste0("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/nonTE/SVannotation/topGO/MF_GO_reduced_", sp, ".csv"), 
+#           row.names = FALSE)
+
+# Plot treemap
+pdf(paste0("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/nonTE/SVannotation/topGO/MF_GO_treemap_classicFisher_Ppr_Hls.pdf"))
+treemapPlot(reducedTerms)
+dev.off()
+
+# Plot scatter
+p <- scatterPlot(simMatrix, reducedTerms,addLabel=T,onlyParents=F,size="size")
+ggsave(filename = paste0("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/nonTE/SVannotation/topGO/MF_GO_scatter_classicFisher_Ppr_Hls_v1.pdf"),
+       plot = p,
+       width = 5, height = 5)
+
+df.n10<-scatterPlot(simMatrix,reducedTerms,addLabel=T,onlyParents=F,size="size")$data
+
+# labelSize <- 1.5
+# p.n10<-ggplot2::ggplot(df.n10, ggplot2::aes(x = V1, y = V2, color = parentTerm)) +
+#   ggplot2::geom_point(ggplot2::aes(size = size), alpha = 0.5) +
+#   ggplot2::scale_color_discrete(guide = "none") + ggplot2::scale_size_continuous(range = c(0, 20)) + ggplot2::scale_x_continuous(name = "") +
+#   ggplot2::scale_y_continuous(name = "") + ggplot2::theme_minimal() +
+#   ggplot2::theme(
+#     axis.text.x = ggplot2::element_blank(),
+#     axis.text.y = ggplot2::element_blank()
+#   ) + geom_text_repel(
+#   data          = subset(df.n10, V1 > 0 & parent == rownames(df.n10)),
+#   aes(label         = parentTerm),
+#   nudge_x       = 1.4 - subset(df.n10, V1 > 0 & parent == rownames(df.n10))$V1,
+#   segment.size  = 0.2,
+#   segment.color = "grey50",
+#   direction     = "y",
+#   hjust         = 0
+# ) +
+#   geom_text_repel(
+#     data          = subset(df.n10, V1 <= 0 & parent == rownames(df.n10)),
+#     aes(label         = parentTerm),
+#     nudge_x       = -1.2 - subset(df.n10, V1 <= 0 & parent == rownames(df.n10))$V1,
+#     segment.size  = 0.2,
+#     segment.color = "grey50",
+#     direction     = "y",
+#     hjust         = 1
+#   )+coord_cartesian(xlim=c(-10,10))
+
+# p.n11 <- ggplot(df.n10, aes(x = V1, y = V2, color = parentTerm)) +
+#   geom_point(aes(size = size), alpha = 0.5) +
+#   scale_color_discrete(guide = "none") +
+#   scale_size_continuous(range = c(1, 10)) +
+#   theme_minimal() +
+#   theme(
+#     axis.text.x = element_blank(),
+#     axis.text.y = element_blank(),
+#     panel.grid = element_blank()
+#   ) +
+#   geom_text_repel(
+#     data = df.n10 %>% dplyr::distinct(parentTerm, .keep_all = TRUE),
+#     # data = df.n10 %>% dplyr::filter(size > quantile(size, 0.9)),
+#     aes(label = parentTerm),
+#     size = 3,
+#     segment.size = 0.2,
+#     segment.color = "grey50",
+#     direction = "both",
+#     max.overlaps = 1000
+#   ) +
+#   coord_cartesian(xlim = c(-10, 10)) +
+#   labs(x = NULL, y = NULL)
+
+
+p.n12 <- ggplot(df.n10, aes(x = V1, y = V2, color = parentTerm)) +
+  geom_point(aes(size = size), alpha = 0.5) +
+  scale_color_discrete(guide = "none") +
+  scale_size_continuous(range = c(1, 10)) +
+  theme_minimal(base_size = 12) +
+  theme(
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    panel.grid = element_blank(),
+    plot.margin = margin(10, 10, 10, 10)
+  ) +
+  geom_text_repel(
+    data = df.n10 %>% dplyr::distinct(parentTerm, .keep_all = TRUE),
+    aes(label = str_wrap(parentTerm, width = 25)),  # ✅ Wrap text after 25 chars
+    size = 3,
+    segment.size = 0.2,
+    segment.color = "grey50",
+    direction = "both",
+    max.overlaps = 1000,
+    box.padding = 0.5,
+    force = 3
+  ) +
+  coord_cartesian(xlim = c(-10, 10)) +
+  labs(x = NULL, y = NULL)
+
+
+ggsave(filename = paste0("~/sciebo/Postdoc/sexAsex/popGen/graffiTE/filteredVCFs/nonTE/SVannotation/topGO/MF_GO_scatter_classicFisher_Ppr_Hls_v2.pdf"),
+       plot = p.n12,
+       width = 5, height = 5)
+
+```

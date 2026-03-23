@@ -1,0 +1,6 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0016020",1,"GO:0016020",4.03621217265444,2903,"membrane","membrane",0.9372,0.8475,0
+"GO:0098839",1,"GO:0016020",3.92081875395238,22,"postsynaptic density membrane","membrane",0.9258,0.8475,0.305
+"GO:0030286",2,"GO:0030286",3.10790539730952,57,"dynein complex","dynein complex",0.957,1,0
+"GO:1902711",3,"GO:1902711",2.98296666070122,1,"GABA-A receptor complex","GABA-A receptor complex",0.971,1,0
+"GO:0030424",4,"GO:0030424",2.00700490156866,252,"axon","axon",0.9978,1,0

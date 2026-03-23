@@ -1,0 +1,14 @@
+Ass.479-208_hap1.sa	Ass1
+Ass.479-208_hap2.sa	Ass2
+Ass.479-210_sa_hap1	Ass1
+Ass.479-210_sa_hap2	Ass2
+Ass.479-211_hap1.sa	Ass1
+Ass.479-211_hap2.sa	Ass2
+Ass.479-212_sa_hap1	Ass1
+Ass.479-212_sa_hap2	Ass2
+Ass.479-213_hap1	Ass1
+Ass.479-213_hap2	Ass2
+Ass.479-214_sa_hap1	Ass1
+Ass.479-214_sa_hap2	Ass2
+Ass.479-215_hap1.sa	Ass1
+Ass.479-215_hap2.sa	Ass2

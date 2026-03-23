@@ -1,0 +1,19 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0006508",1,"GO:0006508",5.79588001734407,956,"proteolysis","proteolysis",0.876222222222222,0.7045,0
+"GO:0006468",1,"GO:0006508",5.74472749489669,323,"protein phosphorylation","proteolysis",0.852777777777778,0.63025,0.498
+"GO:0051231",2,"GO:0051231",4.82390874094432,16,"spindle elongation","spindle elongation",0.8645,0.5025,0
+"GO:0019695",4,"GO:0019695",4.36653154442041,1,"choline metabolic process","choline metabolic process",0.924611111111111,1,0
+"GO:0006581",3,"GO:0006581",4.36653154442041,1,"acetylcholine catabolic process","acetylcholine catabolic process",0.899666666666667,0.825,0
+"GO:0000723",5,"GO:0000723",3.82390874094432,33,"telomere maintenance","telomere maintenance",0.869111111111111,0.7585,0
+"GO:0007018",2,"GO:0051231",3.02227639471115,211,"microtubule-based movement","spindle elongation",0.873666666666667,0.476,0.58
+"GO:0016925",1,"GO:0006508",2.65364702554936,17,"protein sumoylation","proteolysis",0.876222222222222,0.63825,0.353
+"GO:0042276",5,"GO:0000723",2.49485002168009,3,"error-prone translesion synthesis","telomere maintenance",0.906277777777778,0.7585,0.483
+"GO:0098609",6,"GO:0098609",2.27818938478745,148,"cell-cell adhesion","cell-cell adhesion",0.986055555555556,1,0
+"GO:0050982",7,"GO:0050982",2.27002571430044,18,"detection of mechanical stimulus","detection of mechanical stimulus",0.989722222222222,1,0
+"GO:0006062",3,"GO:0006581",2.24108810760203,3,"sorbitol catabolic process","acetylcholine catabolic process",0.935,0.825,0.35
+"GO:0007052",2,"GO:0051231",2.23957751657679,78,"mitotic spindle organization","spindle elongation",0.851,0.45525,0.774
+"GO:0007017",2,"GO:0051231",2.2335871528876,512,"microtubule-based process","spindle elongation",0.865222222222222,0.44325,0.636
+"GO:0007268",8,"GO:0007268",2.12378215940836,325,"chemical synaptic transmission","chemical synaptic transmission",0.944333333333333,0.6215,0
+"GO:0006811",9,"GO:0006811",2.05749589383192,427,"monoatomic ion transport","monoatomic ion transport",1,1,0
+"GO:0035249",8,"GO:0007268",2.01592296609717,29,"synaptic transmission, glutamatergic","chemical synaptic transmission",0.947222222222222,0.6215,0.757
+"GO:0006513",1,"GO:0006508",2.00348832784582,11,"protein monoubiquitination","proteolysis",0.880833333333333,0.651,0.331

@@ -1,0 +1,14 @@
+Hga.479-173_hap1	Hga1
+Hga.479-173_hap2	Hga2
+Hga.479-174_hap1	Hga1
+Hga.479-174_hap2	Hga2
+Hga.479-176_hap1	Hga1
+Hga.479-176_hap2	Hga2
+Hga.479-65_hap1	Hga1
+Hga.479-65_hap2	Hga2
+Hga.479-69_sa_hap1	Hga1
+Hga.479-69_sa_hap2	Hga2
+Hga.479-70_sa_hap1	Hga1
+Hga.479-70_sa_hap2	Hga2
+Hga.479-73_sa_hap1	Hga1
+Hga.479-73_sa_hap2	Hga2

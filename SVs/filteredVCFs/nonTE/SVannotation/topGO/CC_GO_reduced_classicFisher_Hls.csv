@@ -1,0 +1,8 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0035861",1,"GO:0035861",8.07572071393812,10,"site of double-strand break","site of double-strand break",0.881142857142857,0.760333333333333,0
+"GO:0000793",1,"GO:0035861",7.2518119729938,96,"condensed chromosome","site of double-strand break",0.868857142857143,0.740666666666667,0.411
+"GO:0016020",2,"GO:0016020",4.45593195564972,2903,"membrane","membrane",0.906714285714286,0.826,0
+"GO:0000815",3,"GO:0000815",3.88605664769316,8,"ESCRT III complex","ESCRT III complex",0.816285714285714,0.7265,0
+"GO:0005771",3,"GO:0000815",3.30102999566398,14,"multivesicular body","ESCRT III complex",0.896857142857143,0.7265,0.547
+"GO:0033503",1,"GO:0035861",2.51427857351842,2,"HULC complex","site of double-strand break",0.876857142857143,0.775,0.308
+"GO:0009898",2,"GO:0016020",2.39577394691553,55,"cytoplasmic side of plasma membrane","membrane",0.921,0.826,0.348

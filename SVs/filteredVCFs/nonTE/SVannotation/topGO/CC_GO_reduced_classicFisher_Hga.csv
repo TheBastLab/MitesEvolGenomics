@@ -1,0 +1,5 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0005925",1,"GO:0005925",3.08618614761628,26,"focal adhesion","focal adhesion",0.99775,1,0
+"GO:0016020",2,"GO:0016020",2.73048705578208,2903,"membrane","membrane",0.99725,1,0
+"GO:0031380",3,"GO:0031380",2.14935376481693,1,"nuclear RNA-directed RNA polymerase complex","nuclear RNA-directed RNA polymerase complex",0.99825,1,0
+"GO:0009986",4,"GO:0009986",2.04624030826677,97,"cell surface","cell surface",0.99775,1,0

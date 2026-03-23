@@ -1,0 +1,7 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0006508",1,"GO:0006508",3.15490195998574,956,"proteolysis","proteolysis",0.803666666666667,0.6575,0
+"GO:0000724",2,"GO:0000724",3.08618614761628,69,"double-strand break repair via homologous recombination","double-strand break repair via homologous recombination",0.8955,1,0
+"GO:0007033",3,"GO:0007033",2.46344155742847,57,"vacuole organization","vacuole organization",0.989333333333333,1,0
+"GO:0006629",4,"GO:0006629",2.24949160514865,564,"lipid metabolic process","lipid metabolic process",0.889833333333333,1,0
+"GO:0016485",1,"GO:0006508",2.13135556160517,70,"protein processing","proteolysis",0.817,0.6575,0.685
+"GO:1901642",5,"GO:1901642",2.07314329105031,5,"nucleoside transmembrane transport","nucleoside transmembrane transport",0.990333333333333,1,0

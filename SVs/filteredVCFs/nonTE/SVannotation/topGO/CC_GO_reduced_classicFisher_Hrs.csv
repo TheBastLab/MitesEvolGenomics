@@ -1,0 +1,13 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0016020",1,"GO:0016020",4.56863623584101,2903,"membrane","membrane",0.995916666666667,1,0
+"GO:0005615",2,"GO:0005615",3.85387196432176,702,"extracellular space","extracellular space",0.924166666666667,0.5625,0
+"GO:0030870",3,"GO:0030870",3.74472749489669,3,"Mre11 complex","Mre11 complex",0.94375,1,0
+"GO:0005576",2,"GO:0005615",3.26760624017703,1041,"extracellular region","extracellular space",0.924,0.5625,0.875
+"GO:0008541",4,"GO:0008541",3.08092190762393,12,"proteasome regulatory particle, lid subcomplex","proteasome regulatory particle, lid subcomplex",0.97375,1,0
+"GO:0035861",5,"GO:0035861",2.79860287567955,10,"site of double-strand break","site of double-strand break",0.916833333333333,0.741,0
+"GO:0000793",5,"GO:0035861",2.6458915608526,96,"condensed chromosome","site of double-strand break",0.870916666666667,0.576666666666667,0.411
+"GO:0005773",6,"GO:0005773",2.61261017366127,186,"vacuole","vacuole",0.885833333333333,0.534,0
+"GO:0000794",5,"GO:0035861",2.44369749923271,22,"condensed nuclear chromosome","site of double-strand break",0.859666666666667,0.591666666666667,0.366
+"GO:0005764",6,"GO:0005773",2.11125903931711,117,"lysosome","vacuole",0.887583333333333,0.534,0.932
+"GO:0030428",8,"GO:0030428",2.08092190762393,2,"cell septum","cell septum",0.998,1,0
+"GO:0005902",7,"GO:0005902",2.08092190762393,19,"microvillus","microvillus",0.997583333333333,1,0

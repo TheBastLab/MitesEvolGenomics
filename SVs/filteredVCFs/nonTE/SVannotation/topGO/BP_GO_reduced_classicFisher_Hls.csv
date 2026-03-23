@@ -1,0 +1,19 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0044774",1,"GO:0044774",7.67778070526608,29,"mitotic DNA integrity checkpoint signaling","mitotic DNA integrity checkpoint signaling",0.892166666666667,0.512,0
+"GO:0000729",2,"GO:0000729",7.4089353929735,6,"DNA double-strand break processing","DNA double-strand break processing",0.816777777777778,0.622666666666667,0
+"GO:0031297",2,"GO:0000729",7.19382002601611,10,"replication fork processing","DNA double-strand break processing",0.867388888888889,0.687,0.459
+"GO:0006303",2,"GO:0000729",6.67778070526608,9,"double-strand break repair via nonhomologous end joining","DNA double-strand break processing",0.809666666666667,0.615666666666667,0.673
+"GO:0044773",1,"GO:0044774",5.92081875395237,23,"mitotic DNA damage checkpoint signaling","mitotic DNA integrity checkpoint signaling",0.860166666666667,0.512,0.976
+"GO:0006508",3,"GO:0006508",5.33724216831843,956,"proteolysis","proteolysis",0.858666666666667,0.751,0
+"GO:0006468",3,"GO:0006508",5.15490195998574,323,"protein phosphorylation","proteolysis",0.818055555555556,0.751,0.498
+"GO:0006814",4,"GO:0006814",4.55284196865778,104,"sodium ion transport","sodium ion transport",0.932444444444444,0.715,0
+"GO:0032237",4,"GO:0006814",3.34678748622466,1,"activation of store-operated calcium channel activity","sodium ion transport",0.9045,0.715,0.57
+"GO:2000304",5,"GO:2000304",3.34678748622466,2,"positive regulation of ceramide biosynthetic process","positive regulation of ceramide biosynthetic process",0.819888888888889,0.685,0
+"GO:0006656",5,"GO:2000304",3.27572413039921,4,"phosphatidylcholine biosynthetic process","positive regulation of ceramide biosynthetic process",0.837555555555556,0.624333333333333,0.466
+"GO:0032511",6,"GO:0032511",2.90657831483776,13,"late endosome to vacuole transport via multivesicular body sorting pathway","late endosome to vacuole transport via multivesicular body sorting pathway",0.933611111111111,0.777,0
+"GO:0006646",5,"GO:2000304",2.86327943284359,7,"phosphatidylethanolamine biosynthetic process","positive regulation of ceramide biosynthetic process",0.845111111111111,0.62,0.479
+"GO:0071894",7,"GO:0071894",2.77211329538633,1,"histone H2B conserved C-terminal lysine ubiquitination","histone H2B conserved C-terminal lysine ubiquitination",0.903777777777778,1,0
+"GO:0019853",8,"GO:0019853",2.73048705578208,1,"L-ascorbic acid biosynthetic process","L-ascorbic acid biosynthetic process",0.879777777777778,0.6955,0
+"GO:0042773",9,"GO:0042773",2.39794000867204,102,"ATP synthesis coupled electron transport","ATP synthesis coupled electron transport",0.906166666666667,1,0
+"GO:0005975",8,"GO:0019853",2.36051351073141,253,"carbohydrate metabolic process","L-ascorbic acid biosynthetic process",0.879166666666667,0.6955,0.609
+"GO:0006900",6,"GO:0032511",2.09528445472132,21,"vesicle budding from membrane","late endosome to vacuole transport via multivesicular body sorting pathway",0.922333333333333,0.777,0.446

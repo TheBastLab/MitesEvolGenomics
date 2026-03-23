@@ -1,0 +1,748 @@
+#sample	chromosome	phase_set	from	to	variants
+Hls.90_ref_sa	scaffold_1	5640	5640	657944	9323
+Hls.90_ref_sa	scaffold_1	677050	677050	684942	186
+Hls.90_ref_sa	scaffold_1	711429	711429	730816	132
+Hls.90_ref_sa	scaffold_1	753694	753694	893570	2072
+Hls.90_ref_sa	scaffold_1	909899	909899	934469	278
+Hls.90_ref_sa	scaffold_1	945425	945425	1182405	3095
+Hls.90_ref_sa	scaffold_1	1192005	1192005	1203853	80
+Hls.90_ref_sa	scaffold_1	1245959	1245959	1300491	715
+Hls.90_ref_sa	scaffold_1	1316225	1316225	1322294	42
+Hls.90_ref_sa	scaffold_1	1335587	1335587	1493687	2803
+Hls.90_ref_sa	scaffold_1	1529793	1529793	2688521	16847
+Hls.90_ref_sa	scaffold_1	2727850	2727850	3690576	12634
+Hls.90_ref_sa	scaffold_1	3931865	3931865	3933079	3
+Hls.90_ref_sa	scaffold_1	3951629	3951629	4023715	643
+Hls.90_ref_sa	scaffold_1	4036001	4036001	4193047	1605
+Hls.90_ref_sa	scaffold_1	4199597	4199597	4325538	1304
+Hls.90_ref_sa	scaffold_1	4329832	4329832	4490967	1551
+Hls.90_ref_sa	scaffold_1	4503302	4503302	4507486	34
+Hls.90_ref_sa	scaffold_1	4530457	4530457	4898633	3988
+Hls.90_ref_sa	scaffold_1	4908459	4908459	5094574	2061
+Hls.90_ref_sa	scaffold_1	5111766	5111766	5451066	3960
+Hls.90_ref_sa	scaffold_1	5468222	5468222	5529523	664
+Hls.90_ref_sa	scaffold_1	5531859	5531859	6156923	7179
+Hls.90_ref_sa	scaffold_1	6170233	6170233	6205518	416
+Hls.90_ref_sa	scaffold_1	6213564	6213564	6272534	610
+Hls.90_ref_sa	scaffold_1	6293162	6293162	6447648	1319
+Hls.90_ref_sa	scaffold_1	6455480	6455480	6524120	643
+Hls.90_ref_sa	scaffold_1	6545232	6545232	6724572	2180
+Hls.90_ref_sa	scaffold_1	6728571	6728571	6954069	2352
+Hls.90_ref_sa	scaffold_1	6966960	6966960	7607137	5972
+Hls.90_ref_sa	scaffold_1	7620554	7620554	7806224	1788
+Hls.90_ref_sa	scaffold_1	7819692	7819692	7829303	100
+Hls.90_ref_sa	scaffold_1	7847733	7847733	7996462	1845
+Hls.90_ref_sa	scaffold_1	8015796	8015796	8116036	938
+Hls.90_ref_sa	scaffold_1	8185458	8185458	8341196	1911
+Hls.90_ref_sa	scaffold_1	8342780	8342780	8687686	3498
+Hls.90_ref_sa	scaffold_1	8717498	8717498	8916149	1721
+Hls.90_ref_sa	scaffold_1	8931141	8931141	9252765	3256
+Hls.90_ref_sa	scaffold_1	9263414	9263414	9297956	324
+Hls.90_ref_sa	scaffold_1	9307973	9307973	9497072	1857
+Hls.90_ref_sa	scaffold_1	9507336	9507336	9682142	1787
+Hls.90_ref_sa	scaffold_1	9697891	9697891	9788740	882
+Hls.90_ref_sa	scaffold_1	9806660	9806660	10288092	5106
+Hls.90_ref_sa	scaffold_1	10311685	10311685	10507052	1751
+Hls.90_ref_sa	scaffold_1	10544598	10544598	10569013	17
+Hls.90_ref_sa	scaffold_1	10577975	10577975	10690458	1538
+Hls.90_ref_sa	scaffold_2	4872	4872	681832	8304
+Hls.90_ref_sa	scaffold_2	690413	690413	705430	208
+Hls.90_ref_sa	scaffold_2	713493	713493	889025	1460
+Hls.90_ref_sa	scaffold_2	1001952	1001952	1801011	8529
+Hls.90_ref_sa	scaffold_2	1812249	1812249	1852224	314
+Hls.90_ref_sa	scaffold_2	1865670	1865670	1948575	950
+Hls.90_ref_sa	scaffold_2	1967617	1967617	2273753	3488
+Hls.90_ref_sa	scaffold_2	2293478	2293478	2294079	2
+Hls.90_ref_sa	scaffold_2	2299470	2299470	2302599	24
+Hls.90_ref_sa	scaffold_2	2308732	2308732	3002667	9349
+Hls.90_ref_sa	scaffold_2	3016549	3016549	3110426	1395
+Hls.90_ref_sa	scaffold_2	3127970	3127970	3554064	6072
+Hls.90_ref_sa	scaffold_2	3576288	3576288	3899934	5242
+Hls.90_ref_sa	scaffold_2	3917264	3917264	4888619	13631
+Hls.90_ref_sa	scaffold_2	4902154	4902154	5066548	2523
+Hls.90_ref_sa	scaffold_2	5079329	5079329	5091263	166
+Hls.90_ref_sa	scaffold_2	5107763	5107763	5196386	1251
+Hls.90_ref_sa	scaffold_2	5250815	5250815	5367886	1297
+Hls.90_ref_sa	scaffold_2	5380030	5380030	5454181	1020
+Hls.90_ref_sa	scaffold_2	5509509	5509509	6112700	8506
+Hls.90_ref_sa	scaffold_2	6126223	6126223	6150772	231
+Hls.90_ref_sa	scaffold_2	6150999	6150999	6221630	659
+Hls.90_ref_sa	scaffold_2	6272097	6272097	6339662	754
+Hls.90_ref_sa	scaffold_2	6352651	6352651	7040856	8720
+Hls.90_ref_sa	scaffold_2	7057301	7057301	7478120	4295
+Hls.90_ref_sa	scaffold_2	7481459	7481459	7565877	1160
+Hls.90_ref_sa	scaffold_2	7570503	7570503	7634670	757
+Hls.90_ref_sa	scaffold_2	7654994	7654994	7672148	234
+Hls.90_ref_sa	scaffold_2	7695711	7695711	8248710	5518
+Hls.90_ref_sa	scaffold_2	8266694	8266694	8305851	418
+Hls.90_ref_sa	scaffold_2	8327960	8327960	8508962	1812
+Hls.90_ref_sa	scaffold_2	8515459	8515459	8792519	3135
+Hls.90_ref_sa	scaffold_2	8805209	8805209	8819261	131
+Hls.90_ref_sa	scaffold_2	8831396	8831396	9057855	2533
+Hls.90_ref_sa	scaffold_2	9076034	9076034	9347170	2933
+Hls.90_ref_sa	scaffold_2	9374833	9374833	10111980	8702
+Hls.90_ref_sa	scaffold_2	10137465	10137465	10138055	9
+Hls.90_ref_sa	scaffold_3	4102	4102	56408	662
+Hls.90_ref_sa	scaffold_3	66476	66476	194240	1946
+Hls.90_ref_sa	scaffold_3	208619	208619	239057	421
+Hls.90_ref_sa	scaffold_3	247997	247997	262059	94
+Hls.90_ref_sa	scaffold_3	273065	273065	495787	3525
+Hls.90_ref_sa	scaffold_3	507293	507293	581252	1233
+Hls.90_ref_sa	scaffold_3	593016	593016	623784	482
+Hls.90_ref_sa	scaffold_3	644375	644375	665454	179
+Hls.90_ref_sa	scaffold_3	701344	701344	707279	132
+Hls.90_ref_sa	scaffold_3	833784	833784	841664	125
+Hls.90_ref_sa	scaffold_3	1068934	1068934	1083817	48
+Hls.90_ref_sa	scaffold_3	1123026	1123026	1126092	114
+Hls.90_ref_sa	scaffold_3	1205396	1205396	1213795	153
+Hls.90_ref_sa	scaffold_3	1470021	1470021	1473815	60
+Hls.90_ref_sa	scaffold_3	1491963	1491963	1585955	1390
+Hls.90_ref_sa	scaffold_3	1594850	1594850	1913858	4745
+Hls.90_ref_sa	scaffold_3	1930773	1930773	2002812	1141
+Hls.90_ref_sa	scaffold_3	2021417	2021417	2306168	4961
+Hls.90_ref_sa	scaffold_3	2320166	2320166	2354568	438
+Hls.90_ref_sa	scaffold_3	2389216	2389216	2539619	2014
+Hls.90_ref_sa	scaffold_3	2573838	2573838	2605364	339
+Hls.90_ref_sa	scaffold_3	2617538	2617538	2688670	1012
+Hls.90_ref_sa	scaffold_3	2702160	2702160	2912722	2915
+Hls.90_ref_sa	scaffold_3	2930855	2930855	3887034	15690
+Hls.90_ref_sa	scaffold_3	3896309	3896309	3942632	712
+Hls.90_ref_sa	scaffold_3	3982569	3982569	4468515	8322
+Hls.90_ref_sa	scaffold_3	4519375	4519375	4541719	554
+Hls.90_ref_sa	scaffold_3	4581526	4581526	4602490	294
+Hls.90_ref_sa	scaffold_3	4611534	4611534	4741110	2086
+Hls.90_ref_sa	scaffold_3	4768384	4768384	5470656	10843
+Hls.90_ref_sa	scaffold_3	5482063	5482063	5545088	926
+Hls.90_ref_sa	scaffold_3	5570761	5570761	5608332	430
+Hls.90_ref_sa	scaffold_3	5624997	5624997	5628325	16
+Hls.90_ref_sa	scaffold_3	5647850	5647850	5704030	726
+Hls.90_ref_sa	scaffold_3	5718111	5718111	5770355	858
+Hls.90_ref_sa	scaffold_3	5781789	5781789	5846558	755
+Hls.90_ref_sa	scaffold_3	5869864	5869864	5902347	583
+Hls.90_ref_sa	scaffold_3	5979308	5979308	6069648	1541
+Hls.90_ref_sa	scaffold_3	6088259	6088259	6106098	113
+Hls.90_ref_sa	scaffold_3	6115351	6115351	6162648	869
+Hls.90_ref_sa	scaffold_3	6208018	6208018	6330444	1849
+Hls.90_ref_sa	scaffold_3	6340668	6340668	6687809	5935
+Hls.90_ref_sa	scaffold_3	6700166	6700166	6724505	523
+Hls.90_ref_sa	scaffold_3	6744108	6744108	7689616	13239
+Hls.90_ref_sa	scaffold_3	7702133	7702133	7842441	1887
+Hls.90_ref_sa	scaffold_3	7856615	7856615	7864374	120
+Hls.90_ref_sa	scaffold_3	7885704	7885704	7995083	1643
+Hls.90_ref_sa	scaffold_3	8012279	8012279	8087184	1180
+Hls.90_ref_sa	scaffold_3	8109366	8109366	8267226	3039
+Hls.90_ref_sa	scaffold_3	8289877	8289877	8392684	1897
+Hls.90_ref_sa	scaffold_3	8409341	8409341	8451345	641
+Hls.90_ref_sa	scaffold_3	8496379	8496379	8518109	278
+Hls.90_ref_sa	scaffold_3	8608230	8608230	8617468	243
+Hls.90_ref_sa	scaffold_3	8629949	8629949	9040603	5394
+Hls.90_ref_sa	scaffold_4	5645	5645	224383	2169
+Hls.90_ref_sa	scaffold_4	231028	231028	317758	1082
+Hls.90_ref_sa	scaffold_4	320903	320903	582354	2398
+Hls.90_ref_sa	scaffold_4	592038	592038	1040050	4927
+Hls.90_ref_sa	scaffold_4	1049864	1049864	1700578	6916
+Hls.90_ref_sa	scaffold_4	1711157	1711157	1836408	1493
+Hls.90_ref_sa	scaffold_4	1845037	1845037	2074200	2104
+Hls.90_ref_sa	scaffold_4	2106806	2106806	2133144	161
+Hls.90_ref_sa	scaffold_4	2171203	2171203	2178890	136
+Hls.90_ref_sa	scaffold_4	2214594	2214594	2290772	621
+Hls.90_ref_sa	scaffold_4	2310663	2310663	2496018	1579
+Hls.90_ref_sa	scaffold_4	2505687	2505687	2706741	2262
+Hls.90_ref_sa	scaffold_4	2767925	2767925	3185934	4812
+Hls.90_ref_sa	scaffold_4	3198076	3198076	4171663	11258
+Hls.90_ref_sa	scaffold_4	4177950	4177950	4355694	2045
+Hls.90_ref_sa	scaffold_4	4399950	4399950	4598736	2195
+Hls.90gene_id "593016"; t4608615	4608615	4729700	1405
+Hls.90_ref_sa	scaffold_4	4739391	4739391	4834663	1077
+Hls.90_ref_sa	scaffold_4	4843243	4843243	5072920	2464
+Hls.90_ref_sa	scaffold_4	5077825	5077825	5200002	1073
+Hls.90_ref_sa	scaffold_4	5207127	5207127	5803653	7792
+Hls.90_ref_sa	scaffold_4	5819050	5819050	5851496	445
+Hls.90_ref_sa	scaffold_4	5867446	5867446	6258310	6400
+Hls.90_ref_sa	scaffold_4	6278489	6278489	6300039	66
+Hls.90_ref_sa	scaffold_4	6324658	6324658	6350711	352
+Hls.90_ref_sa	scaffold_4	6381294	6381294	6488132	1751
+Hls.90_ref_sa	scaffold_4	6502672	6502672	6511550	186
+Hls.90_ref_sa	scaffold_4	6530311	6530311	6557559	518
+Hls.90_ref_sa	scaffold_4	6589247	6589247	6781910	3025
+Hls.90_ref_sa	scaffold_4	6800920	6800920	7314528	6276
+Hls.90_ref_sa	scaffold_4	7325405	7325405	7455111	1124
+Hls.90_ref_sa	scaffold_4	7471384	7471384	7555583	993
+Hls.90_ref_sa	scaffold_4	7568823	7568823	8066425	6815
+Hls.90_ref_sa	scaffold_4	8074899	8074899	8330582	3642
+Hls.90_ref_sa	scaffold_5	1672	1672	215025	3085
+Hls.90_ref_sa	scaffold_5	238298	238298	265944	275
+Hls.90_ref_sa	scaffold_5	304842	304842	476982	2866
+Hls.90_ref_sa	scaffold_5	492178	492178	826607	5824
+Hls.90_ref_sa	scaffold_5	856928	856928	1644939	11593
+Hls.90_ref_sa	scaffold_5	1659360	1659360	1928695	3344
+Hls.90_ref_sa	scaffold_5	1956410	1956410	2076794	1348
+Hls.90_ref_sa	scaffold_5	2090265	2090265	2743125	7522
+Hls.90_ref_sa	scaffold_5	2830837	2830837	2854203	301
+Hls.90_ref_sa	scaffold_5	2870250	2870250	3158109	3084
+Hls.90_ref_sa	scaffold_5	3300913	3300913	3593577	3259
+Hls.90_ref_sa	scaffold_5	3605789	3605789	3669155	695
+Hls.90_ref_sa	scaffold_5	3686388	3686388	3702959	270
+Hls.90_ref_sa	scaffold_5	3712777	3712777	3756405	713
+Hls.90_ref_sa	scaffold_5	3773317	3773317	4273449	5614
+Hls.90_ref_sa	scaffold_5	4292608	4292608	4371272	804
+Hls.90_ref_sa	scaffold_5	4380257	4380257	4473864	1033
+Hls.90_ref_sa	scaffold_5	4504961	4504961	4592237	670
+Hls.90_ref_sa	scaffold_5	4601850	4601850	4632299	173
+Hls.90_ref_sa	scaffold_5	4645585	4645585	4654717	60
+Hls.90_ref_sa	scaffold_5	4670919	4670919	4740899	782
+Hls.90_ref_sa	scaffold_5	4757245	4757245	4853628	1273
+Hls.90_ref_sa	scaffold_5	4886617	4886617	4987908	1574
+Hls.90_ref_sa	scaffold_5	5005044	5005044	5049912	785
+Hls.90_ref_sa	scaffold_5	5074460	5074460	5075572	20
+Hls.90_ref_sa	scaffold_5	5076174	5076174	5113397	654
+Hls.90_ref_sa	scaffold_5	5129893	5129893	5664490	6153
+Hls.90_ref_sa	scaffold_5	5674429	5674429	5847512	1749
+Hls.90_ref_sa	scaffold_5	5854217	5854217	5990918	1303
+Hls.90_ref_sa	scaffold_5	6001273	6001273	6010723	65
+Hls.90_ref_sa	scaffold_6	1468	1468	115376	1460
+Hls.90_ref_sa	scaffold_6	126916	126916	193043	673
+Hls.90_ref_sa	scaffold_6	219394	219394	369088	1605
+Hls.90_ref_sa	scaffold_6	390961	390961	508519	1414
+Hls.90_ref_sa	scaffold_6	595775	595775	863917	3168
+Hls.90_ref_sa	scaffold_6	881443	881443	1444104	6794
+Hls.90_ref_sa	scaffold_6	1476878	1476878	1550832	1005
+Hls.90_ref_sa	scaffold_6	1578006	1578006	1581189	48
+Hls.90_ref_sa	scaffold_6	1606383	1606383	1739986	2001
+Hls.90_ref_sa	scaffold_6	1756671	1756671	1854923	1130
+Hls.90_ref_sa	scaffold_6	1885616	1885616	2135602	3517
+Hls.90_ref_sa	scaffold_6	2160710	2160710	3108209	10998
+Hls.90_ref_sa	scaffold_6	3119821	3119821	3281430	1676
+Hls.90_ref_sa	scaffold_6	3322804	3322804	4290303	12162
+Hls.90_ref_sa	scaffold_6	4306471	4306471	4388248	723
+Hls.90_ref_sa	scaffold_6	4400637	4400637	5296921	10923
+Hls.90_ref_sa	scaffold_6	5314991	5314991	5383856	787
+Hls.90_ref_sa	scaffold_6	5385972	5385972	5647949	3554
+Hls.90_ref_sa	scaffold_7	13987	13987	224174	2840
+Hls.90_ref_sa	scaffold_7	316209	316209	533238	3581
+Hls.90_ref_sa	scaffold_7	550651	550651	709373	2712
+Hls.90_ref_sa	scaffold_7	717108	717108	785205	768
+Hls.90_ref_sa	scaffold_7	801616	801616	900713	1560
+Hls.90_ref_sa	scaffold_7	924911	924911	1242326	5574
+Hls.90_ref_sa	scaffold_7	1275726	1275726	1306015	543
+Hls.90_ref_sa	scaffold_7	1327484	1327484	1402665	1476
+Hls.90_ref_sa	scaffold_7	1427655	1427655	1488155	523
+Hls.90_ref_sa	scaffold_7	1501321	1501321	1531897	205
+Hls.90_ref_sa	scaffold_7	1565963	1565963	1599619	475
+Hls.90_ref_sa	scaffold_7	1619946	1619946	1812550	2936
+Hls.90_ref_sa	scaffold_7	1828629	1828629	2122122	5219
+Hls.90_ref_sa	scaffold_7	2138565	2138565	2144301	117
+Hls.90_ref_sa	scaffold_7	2165254	2165254	2244292	1673
+Hls.90_ref_sa	scaffold_7	2259158	2259158	2547548	3835
+Hls.90_ref_sa	scaffold_7	2579842	2579842	2764115	2958
+Hls.90_ref_sa	scaffold_7	2794929	2794929	2805866	61
+Hls.90_ref_sa	scaffold_7	2825256	2825256	2939342	1065
+Hls.90_ref_sa	scaffold_7	2960994	2960994	3009778	634
+Hls.90_ref_sa	scaffold_7	3022654	3022654	3101424	670
+Hls.90_ref_sa	scaffold_7	3132435	3132435	3142629	11
+Hls.90_ref_sa	scaffold_7	3170170	3170170	3284899	1569
+Hls.90_ref_sa	scaffold_7	3305983	3305983	3620553	4171
+Hls.90_ref_sa	scaffold_7	3642326	3642326	3677497	339
+Hls.90_ref_sa	scaffold_7	3691125	3691125	3703096	49
+Hls.90_ref_sa	scaffold_7	3730125	3730125	4108959	5421
+Hls.90_ref_sa	scaffold_7	4133299	4133299	4174953	552
+Hls.90_ref_sa	scaffold_7	4212310	4212310	4309606	1240
+Hls.90_ref_sa	scaffold_7	4323226	4323226	4938326	7668
+Hls.90_ref_sa	scaffold_7	4958286	4958286	4978146	96
+Hls.90_ref_sa	scaffold_7	4992028	4992028	5001276	76
+Hls.90_ref_sa	scaffold_8	46907	46907	53900	62
+Hls.90_ref_sa	scaffold_8	73389	73389	115866	513
+Hls.90_ref_sa	scaffold_8	122629	122629	258607	1861
+Hls.90_ref_sa	scaffold_8	265115	265115	459311	2671
+Hls.90_ref_sa	scaffold_8	565206	565206	856372	4185
+Hls.90_ref_sa	scaffold_8	869294	869294	1398424	5411
+Hls.90_ref_sa	scaffold_8	1428542	1428542	1441503	152
+Hls.90_ref_sa	scaffold_8	1444328	1444328	1535967	507
+Hls.90_ref_sa	scaffold_8	1564795	1564795	1673928	926
+Hls.90_ref_sa	scaffold_8	1693165	1693165	2030904	4394
+Hls.90_ref_sa	scaffold_8	2042596	2042596	2070200	255
+Hls.90_ref_sa	scaffold_8	2079160	2079160	2136345	658
+Hls.90_ref_sa	scaffold_8	2143174	2143174	2353960	2170
+Hls.90_ref_sa	scaffold_8	2372498	2372498	2576438	2507
+Hls.90_ref_sa	scaffold_8	2594880	2594880	2611188	169
+Hls.90_ref_sa	scaffold_8	2707088	2707088	2713890	10
+Hls.90_ref_sa	scaffold_8	2755441	2755441	2840307	803
+Hls.90_ref_sa	scaffold_8	2860352	2860352	3078435	2858
+Hls.90_ref_sa	scaffold_8	3088335	3088335	3304383	2448
+Hls.90_ref_sa	scaffold_8	3309872	3309872	3338590	272
+Hls.90_ref_sa	scaffold_8	3340161	3340161	4086319	8408
+Hls.90_ref_sa	scaffold_8	4103671	4103671	4125271	373
+Hls.90_ref_sa	scaffold_8	4153491	4153491	4483026	4821
+Hls.90_ref_sa	scaffold_8	4500548	4500548	4541221	629
+Hls.90_ref_sa	scaffold_9	2436	2436	210843	2193
+Hls.90_ref_sa	scaffold_9	224867	224867	327636	1034
+Hls.90_ref_sa	scaffold_9	334489	334489	363922	320
+Hls.90_ref_sa	scaffold_9	372535	372535	467155	988
+Hls.90_ref_sa	scaffold_9	471398	471398	627583	1820
+Hls.90_ref_sa	scaffold_9	639698	639698	671472	241
+Hls.90_ref_sa	scaffold_9	733507	733507	736306	88
+Hls.90_ref_sa	scaffold_9	755925	755925	767286	159
+Hls.90_ref_sa	scaffold_9	808200	808200	821627	239
+Hls.90_ref_sa	scaffold_9	840391	840391	1088652	2736
+Hls.90_ref_sa	scaffold_9	1105209	1105209	1590624	5665
+Hls.90_ref_sa	scaffold_9	1604724	1604724	2316099	9429
+Hls.90_ref_sa	scaffold_9	2319476	2319476	2477438	1757
+Hls.90_ref_sa	scaffold_9	2484057	2484057	2885053	4433
+Hls.90_ref_sa	scaffold_9	2934225	2934225	3182162	2928
+Hls.90_ref_sa	scaffold_9	3193854	3193854	3296917	1253
+Hls.90_ref_sa	scaffold_9	3316737	3316737	3405683	1279
+Hls.90_ref_sa	scaffold_9	3426668	3426668	3463794	378
+Hls.90_ref_sa	scaffold_9	3492289	3492289	3509075	91
+Hls.90_ref_sa	scaffold_9	3531105	3531105	4090114	6684
+Hls.90_ref_sa	scaffold_9	4129002	4129002	4200762	1015
+Hls.90_ref_sa	scaffold_9	4240379	4240379	4390944	2129
+Hls.90_ref_sa	scaffold_9	4413981	4413981	4511804	1239
+Hls.90_ref_sa	scaffold_10	15698	15698	18760	71
+Hls.90_ref_sa	scaffold_10	63201	63201	170157	1163
+Hls.90_ref_sa	scaffold_10	186104	186104	386378	2554
+Hls.90_ref_sa	scaffold_10	428055	428055	666059	2703
+Hls.90_ref_sa	scaffold_10	680212	680212	680973	3
+Hls.90_ref_sa	scaffold_10	684638	684638	707787	245
+Hls.90_ref_sa	scaffold_10	719375	719375	734320	163
+Hls.90_ref_sa	scaffold_10	758526	758526	835245	1217
+Hls.90_ref_sa	scaffold_10	850413	850413	872393	395
+Hls.90_ref_sa	scaffold_10	878467	878467	1160809	2892
+Hls.90_ref_sa	scaffold_10	1197287	1197287	1202348	58
+Hls.90_ref_sa	scaffold_10	1217174	1217174	1848042	8129
+Hls.90_ref_sa	scaffold_10	1870604	1870604	1903214	326
+Hls.90_ref_sa	scaffold_10	1910776	1910776	2301739	4969
+Hls.90_ref_sa	scaffold_10	2348730	2348730	2600778	2748
+Hls.90_ref_sa	scaffold_10	2615267	2615267	2778861	1913
+Hls.90_ref_sa	scaffold_10	2786359	2786359	2812747	284
+Hls.90_ref_sa	scaffold_10	2873238	2873238	3393530	6737
+Hls.90_ref_sa	scaffold_10	3405865	3405865	3460363	506
+Hls.90_ref_sa	scaffold_10	3476750	3476750	3902772	5360
+Hls.90_ref_sa	scaffold_10	3920918	3920918	3959745	115
+Hls.90_ref_sa	scaffold_10	3979830	3979830	3982222	14
+Hls.90_ref_sa	scaffold_10	4014930	4014930	4033752	133
+Hls.90_ref_sa	scaffold_10	4080176	4080176	4083136	66
+Hls.90_ref_sa	scaffold_11	8751	8751	253731	3256
+Hls.90_ref_sa	scaffold_11	281880	281880	284935	24
+Hls.90_ref_sa	scaffold_11	312558	312558	338985	183
+Hls.90_ref_sa	scaffold_11	346347	346347	982450	7129
+Hls.90_ref_sa	scaffold_11	991562	991562	1025793	157
+Hls.90_ref_sa	scaffold_11	1044923	1044923	1271163	3032
+Hls.90_ref_sa	scaffold_11	1277431	1277431	1630867	4120
+Hls.90_ref_sa	scaffold_11	1651039	1651039	1685632	309
+Hls.90_ref_sa	scaffold_11	1696572	1696572	1754071	386
+Hls.90_ref_sa	scaffold_11	1766836	1766836	2030287	2655
+Hls.90_ref_sa	scaffold_11	2050160	2050160	2477517	4778
+Hls.90_ref_sa	scaffold_11	2495771	2495771	2508096	116
+Hls.90_ref_sa	scaffold_11	2517358	2517358	2976651	5469
+Hls.90_ref_sa	scaffold_11	2988650	2988650	3089672	1297
+Hls.90_ref_sa	scaffold_11	3100371	3100371	3177709	829
+Hls.90_ref_sa	scaffold_11	3198665	3198665	3252546	858
+Hls.90_ref_sa	scaffold_11	3388703	3388703	3399720	165
+Hls.90_ref_sa	scaffold_11	3405895	3405895	3465130	669
+Hls.90_ref_sa	scaffold_11	3478548	3478548	3633738	1680
+Hls.90_ref_sa	scaffold_11	3735498	3735498	3739902	110
+Hls.90_ref_sa	scaffold_12	40	40	288118	3385
+Hls.90_ref_sa	scaffold_12	303170	303170	603750	4796
+Hls.90_ref_sa	scaffold_12	634314	634314	1011097	5499
+Hls.90_ref_sa	scaffold_12	1031896	1031896	1243700	2938
+Hls.90_ref_sa	scaffold_12	1258899	1258899	1504563	3237
+Hls.90_ref_sa	scaffold_12	1512688	1512688	1546622	472
+Hls.90_ref_sa	scaffold_12	1565084	1565084	1571573	110
+Hls.90_ref_sa	scaffold_12	1586890	1586890	1603532	231
+Hls.90_ref_sa	scaffold_12	1628785	1628785	1640733	345
+Hls.90_ref_sa	scaffold_12	1651237	1651237	1662693	293
+Hls.90_ref_sa	scaffold_12	1715716	1715716	1727530	341
+Hls.90_ref_sa	scaffold_12	1766913	1766913	1797704	265
+Hls.90_ref_sa	scaffold_12	1837332	1837332	2207644	6188
+Hls.90_ref_sa	scaffold_12	2220918	2220918	2317643	1041
+Hls.90_ref_sa	scaffold_12	2348066	2348066	2540057	2697
+Hls.90_ref_sa	scaffold_12	2562374	2562374	2592128	340
+Hls.90_ref_sa	scaffold_12	2592428	2592428	2638824	641
+Hls.90_ref_sa	scaffold_12	2661278	2661278	2673924	198
+Hls.90_ref_sa	scaffold_12	2690299	2690299	2982068	3037
+Hls.90_ref_sa	scaffold_12	2984725	2984725	3019951	305
+Hls.90_ref_sa	scaffold_12	3034340	3034340	3504493	5103
+Hls.90_ref_sa	scaffold_12	3547578	3547578	3646104	989
+Hls.90_ref_sa	scaffold_12	3650318	3650318	3692745	498
+Hls.90_ref_sa	scaffold_13	242	242	12667	25
+Hls.90_ref_sa	scaffold_13	32303	32303	45137	244
+Hls.90_ref_sa	scaffold_13	62478	62478	85286	176
+Hls.90_ref_sa	scaffold_13	106186	106186	123307	279
+Hls.90_ref_sa	scaffold_13	163114	163114	1019051	11271
+Hls.90_ref_sa	scaffold_13	1030773	1030773	1374507	4470
+Hls.90_ref_sa	scaffold_13	1378557	1378557	1435943	755
+Hls.90_ref_sa	scaffold_13	1441197	1441197	1806170	3616
+Hls.90_ref_sa	scaffold_13	1824788	1824788	1838707	97
+Hls.90_ref_sa	scaffold_13	1847878	1847878	1856460	75
+Hls.90_ref_sa	scaffold_13	1877098	1877098	2014418	1332
+Hls.90_ref_sa	scaffold_13	2049828	2049828	2212554	2011
+Hls.90_ref_sa	scaffold_13	2219403	2219403	2362898	2036
+Hls.90_ref_sa	scaffold_13	2396466	2396466	2587140	2337
+Hls.90_ref_sa	scaffold_13	2606541	2606541	2662659	804
+Hls.90_ref_sa	scaffold_13	2687202	2687202	2824844	2110
+Hls.90_ref_sa	scaffold_13	2851171	2851171	3200509	3974
+Hls.90_ref_sa	scaffold_13	3211195	3211195	3406613	2148
+Hls.90_ref_sa	scaffold_14	32	32	26850	261
+Hls.90_ref_sa	scaffold_14	48708	48708	186846	1838
+Hls.90_ref_sa	scaffold_14	201766	201766	547213	4283
+Hls.90_ref_sa	scaffold_14	549678	549678	701799	2372
+Hls.90_ref_sa	scaffold_14	721232	721232	758265	849
+Hls.90_ref_sa	scaffold_14	774029	774029	778199	87
+Hls.90_ref_sa	scaffold_14	786496	786496	846008	796
+Hls.90_ref_sa	scaffold_14	859869	859869	896857	546
+Hls.90_ref_sa	scaffold_14	915513	915513	918914	74
+Hls.90_ref_sa	scaffold_14	942812	942812	1038165	1791
+Hls.90_ref_sa	scaffold_14	1071471	1071471	1237105	2830
+Hls.90_ref_sa	scaffold_14	1249352	1249352	1254208	110
+Hls.90_ref_sa	scaffold_14	1263615	1263615	1505420	3440
+Hls.90_ref_sa	scaffold_14	1516508	1516508	1594836	951
+Hls.90_ref_sa	scaffold_14	1610178	1610178	1735245	2052
+Hls.90_ref_sa	scaffold_14	1769427	1769427	1988264	2840
+Hls.90_ref_sa	scaffold_14	2016109	2016109	2127405	1200
+Hls.90_ref_sa	scaffold_14	2136117	2136117	2221570	1113
+Hls.90_ref_sa	scaffold_14	2239986	2239986	2423969	2495
+Hls.90_ref_sa	scaffold_14	2437457	2437457	2447997	286
+Hls.90_ref_sa	scaffold_14	2459603	2459603	2481246	281
+Hls.90_ref_sa	scaffold_14	2487308	2487308	2607432	1561
+Hls.90_ref_sa	scaffold_14	2616107	2616107	2617052	5
+Hls.90_ref_sa	scaffold_14	2628015	2628015	2665645	555
+Hls.90_ref_sa	scaffold_14	2678656	2678656	2790702	958
+Hls.90_ref_sa	scaffold_14	2802071	2802071	2895728	1186
+Hls.90_ref_sa	scaffold_14	2896687	2896687	3038407	1978
+Hls.90_ref_sa	scaffold_15	101	101	367701	4922
+Hls.90_ref_sa	scaffold_15	394727	394727	789363	5751
+Hls.90_ref_sa	scaffold_15	804169	804169	811242	137
+Hls.90_ref_sa	scaffold_15	824122	824122	914438	1433
+Hls.90_ref_sa	scaffold_15	920229	920229	991655	1144
+Hls.90_ref_sa	scaffold_15	1007652	1007652	1026741	285
+Hls.90_ref_sa	scaffold_15	1064240	1064240	1092159	447
+Hls.90_ref_sa	scaffold_15	1095566	1095566	1346773	3472
+Hls.90_ref_sa	scaffold_15	1378286	1378286	1407683	622
+Hls.90_ref_sa	scaffold_15	1424237	1424237	1431501	134
+Hls.90_ref_sa	scaffold_15	1471647	1471647	1490346	266
+Hls.90_ref_sa	scaffold_15	1506568	1506568	1743959	2449
+Hls.90_ref_sa	scaffold_15	1762125	1762125	2072063	4003
+Hls.90_ref_sa	scaffold_15	2088733	2088733	2321113	3577
+Hls.90_ref_sa	scaffold_15	2381115	2381115	2576262	2910
+Hls.90_ref_sa	scaffold_15	2583060	2583060	2629215	467
+Hls.90_ref_sa	scaffold_16	5757	5757	253344	3174
+Hls.90_ref_sa	scaffold_16	275559	275559	287519	253
+Hls.90_ref_sa	scaffold_16	304624	304624	425590	1771
+Hls.90_ref_sa	scaffold_16	439860	439860	603747	2523
+Hls.90_ref_sa	scaffold_16	625622	625622	635140	195
+Hls.90_ref_sa	scaffold_16	659970	659970	1140026	6457
+Hls.90_ref_sa	scaffold_16	1154812	1154812	1201245	681
+Hls.90_ref_sa	scaffold_16	1223375	1223375	1362715	2849
+Hls.90_ref_sa	scaffold_16	1379267	1379267	1379351	4
+Hls.90_ref_sa	scaffold_16	1407233	1407233	1413872	145
+Hls.90_ref_sa	scaffold_16	1436419	1436419	1440754	152
+Hls.90_ref_sa	scaffold_16	1480601	1480601	1510264	676
+Hls.90_ref_sa	scaffold_16	1553389	1553389	1575750	284
+Hls.90_ref_sa	scaffold_16	1596553	1596553	2287547	8536
+Hls.90_ref_sa	scaffold_16	2296509	2296509	2390159	810
+Hls.90_ref_sa	scaffold_17	47	47	148341	1797
+Hls.90_ref_sa	scaffold_17	167070	167070	196069	683
+Hls.90_ref_sa	scaffold_17	213934	213934	534733	4289
+Hls.90_ref_sa	scaffold_17	553158	553158	678885	1522
+Hls.90_ref_sa	scaffold_17	691548	691548	715154	445
+Hls.90_ref_sa	scaffold_17	725474	725474	742160	428
+Hls.90_ref_sa	scaffold_17	757433	757433	785154	263
+Hls.90_ref_sa	scaffold_17	812707	812707	1065847	4440
+Hls.90_ref_sa	scaffold_17	1086623	1086623	1149902	705
+Hls.90_ref_sa	scaffold_17	1160815	1160815	1208645	832
+Hls.90_ref_sa	scaffold_17	1216934	1216934	1256863	546
+Hls.90_ref_sa	scaffold_17	1283507	1283507	1745967	6963
+Hls.90_ref_sa	scaffold_17	1764635	1764635	1788446	579
+Hls.90_ref_sa	scaffold_17	1808817	1808817	1847568	617
+Hls.90_ref_sa	scaffold_18	11991	11991	143660	1606
+Hls.90_ref_sa	scaffold_18	148133	148133	449253	3717
+Hls.90_ref_sa	scaffold_18	488634	488634	547451	576
+Hls.90_ref_sa	scaffold_18	575353	575353	704708	2209
+Hls.90_ref_sa	scaffold_18	736541	736541	1521246	10847
+Hls.90_ref_sa	scaffold_18	1527235	1527235	1650001	1597
+Hls.90_ref_sa	scaffold_18	1684547	1684547	1735004	389
+Hls.90_ref_sa	scaffold_19	22432	22432	30841	34
+Hls.90_ref_sa	scaffold_19	45444	45444	139730	2186
+Hls.90_ref_sa	scaffold_19	152436	152436	251019	1526
+Hls.90_ref_sa	scaffold_19	275447	275447	378794	2695
+Hls.90_ref_sa	scaffold_19	395742	395742	406428	617
+Hls.90_ref_sa	scaffold_19	417437	417437	458776	653
+Hls.90_ref_sa	scaffold_19	474293	474293	524395	1000
+Hls.90_ref_sa	scaffold_19	535235	535235	808523	7941
+Hls.90_ref_sa	scaffold_19	827896	827896	998414	3275
+Hls.90_ref_sa	scaffold_19	1009520	1009520	1027836	483
+Hls.90_ref_sa	scaffold_19	1043135	1043135	1048620	148
+Hls.90_ref_sa	scaffold_19	1062116	1062116	1069307	328
+Hls.90_ref_sa	scaffold_19	1101948	1101948	1116144	343
+Hls.90_ref_sa	scaffold_19	1131378	1131378	1137305	213
+Hls.90_ref_sa	scaffold_19	1164179	1164179	1204599	1159
+Hls.90_ref_sa	scaffold_19	1234771	1234771	1271556	1055
+Hls.90_ref_sa	scaffold_19	1287280	1287280	1301386	250
+Hls.90_ref_sa	scaffold_19	1312947	1312947	1315509	111
+Hls.90_ref_sa	scaffold_19	1332363	1332363	1360522	525
+Hls.90_ref_sa	scaffold_19	1375831	1375831	1462713	1258
+Hls.90_ref_sa	scaffold_19	1495511	1495511	1496409	12
+Hls.90_ref_sa	scaffold_19	1545156	1545156	1547664	150
+Hls.90_ref_sa	scaffold_19	1602514	1602514	1624886	146
+Hls.90_ref_sa	scaffold_20	129306	129306	327345	3335
+Hls.90_ref_sa	scaffold_20	336034	336034	489491	2113
+Hls.90_ref_sa	scaffold_20	510030	510030	648342	2221
+Hls.90_ref_sa	scaffold_20	665431	665431	929631	3178
+Hls.90_ref_sa	scaffold_20	946913	946913	1004247	434
+Hls.90_ref_sa	scaffold_20	1009947	1009947	1027261	131
+Hls.90_ref_sa	scaffold_20	1040695	1040695	1262462	2537
+Hls.90_ref_sa	scaffold_20	1275466	1275466	1464864	1827
+Hls.90_ref_sa	scaffold_20	1473828	1473828	1582013	1656
+Hls.90_ref_sa	scaffold_21	4111	4111	417730	5416
+Hls.90_ref_sa	scaffold_21	430090	430090	449823	250
+Hls.90_ref_sa	scaffold_21	465217	465217	477951	131
+Hls.90_ref_sa	scaffold_21	487259	487259	621527	1940
+Hls.90_ref_sa	scaffold_21	628964	628964	630069	40
+Hls.90_ref_sa	scaffold_21	654608	654608	655622	42
+Hls.90_ref_sa	scaffold_21	665883	665883	792703	2096
+Hls.90_ref_sa	scaffold_21	807674	807674	1246581	6176
+Hls.90_ref_sa	scaffold_21	1267069	1267069	1413662	2091
+Hls.90_ref_sa	scaffold_21	1432332	1432332	1446853	204
+Hls.90_ref_sa	scaffold_22	2702	2702	7128	88
+Hls.90_ref_sa	scaffold_22	589292	589292	600426	185
+Hls.90_ref_sa	scaffold_22	1041808	1041808	1045978	224
+Hls.90_ref_sa	scaffold_23	20966	20966	674684	8500
+Hls.90_ref_sa	scaffold_23	693815	693815	728270	257
+Hls.90_ref_sa	scaffold_23	742376	742376	1261907	7843
+Hls.90_ref_sa	scaffold_23	1278475	1278475	1337455	921
+Hls.90_ref_sa	scaffold_24	4011	4011	11296	58
+Hls.90_ref_sa	scaffold_24	42159	42159	301519	3000
+Hls.90_ref_sa	scaffold_24	314363	314363	585022	3261
+Hls.90_ref_sa	scaffold_25	3365	3365	14449	108
+Hls.90_ref_sa	scaffold_25	32920	32920	228183	2489
+Hls.90_ref_sa	scaffold_25	235206	235206	451852	2585
+Hls.90_ref_sa	scaffold_27	45	45	55295	829
+Hls.90_ref_sa	scaffold_27	99390	99390	104470	114
+Hls.90_ref_sa	scaffold_28	11050	11050	55371	439
+Hls.90_ref_sa	scaffold_29	2176	2176	2230	4
+Hls.90_ref_sa	scaffold_31	5143	5143	15187	116
+Hls.90_ref_sa	scaffold_32	6846	6846	35240	132
+Hls.90_ref_sa	scaffold_36	18983	18983	37439	306
+Hls.90_ref_sa	scaffold_39	888	888	10154	186
+Hls.90_ref_sa	scaffold_39	26536	26536	27759	24
+d_10	Phasing	exon	758526	835245	.	+	.	gene_id "758526"; transcript_id "758526.1";
+scaffold_10	Phasing	exon	850413	872393	.	+	.	gene_id "850413"; transcript_id "850413.1";
+scaffold_10	Phasing	exon	878467	1160809	.	+	.	gene_id "878467"; transcript_id "878467.1";
+scaffold_10	Phasing	exon	1197287	1202348	.	+	.	gene_id "1197287"; transcript_id "1197287.1";
+scaffold_10	Phasing	exon	1217174	1848042	.	+	.	gene_id "1217174"; transcript_id "1217174.1";
+scaffold_10	Phasing	exon	1870604	1903214	.	+	.	gene_id "1870604"; transcript_id "1870604.1";
+scaffold_10	Phasing	exon	1910776	2301739	.	+	.	gene_id "1910776"; transcript_id "1910776.1";
+scaffold_10	Phasing	exon	2348730	2600778	.	+	.	gene_id "2348730"; transcript_id "2348730.1";
+scaffold_10	Phasing	exon	2615267	2778861	.	+	.	gene_id "2615267"; transcript_id "2615267.1";
+scaffold_10	Phasing	exon	2786359	2812747	.	+	.	gene_id "2786359"; transcript_id "2786359.1";
+scaffold_10	Phasing	exon	2873238	3393530	.	+	.	gene_id "2873238"; transcript_id "2873238.1";
+scaffold_10	Phasing	exon	3405865	3460363	.	+	.	gene_id "3405865"; transcript_id "3405865.1";
+scaffold_10	Phasing	exon	3476750	3902772	.	+	.	gene_id "3476750"; transcript_id "3476750.1";
+scaffold_10	Phasing	exon	3920918	3959745	.	+	.	gene_id "3920918"; transcript_id "3920918.1";
+scaffold_10	Phasing	exon	3979830	3982222	.	+	.	gene_id "3979830"; transcript_id "3979830.1";
+scaffold_10	Phasing	exon	4014930	4033752	.	+	.	gene_id "4014930"; transcript_id "4014930.1";
+scaffold_10	Phasing	exon	4080176	4083136	.	+	.	gene_id "4080176"; transcript_id "4080176.1";
+scaffold_11	Phasing	exon	8751	253731	.	+	.	gene_id "8751"; transcript_id "8751.1";
+scaffold_11	Phasing	exon	281880	284935	.	+	.	gene_id "281880"; transcript_id "281880.1";
+scaffold_11	Phasing	exon	312558	338985	.	+	.	gene_id "312558"; transcript_id "312558.1";
+scaffold_11	Phasing	exon	346347	982450	.	+	.	gene_id "346347"; transcript_id "346347.1";
+scaffold_11	Phasing	exon	991562	1025793	.	+	.	gene_id "991562"; transcript_id "991562.1";
+scaffold_11	Phasing	exon	1044923	1271163	.	+	.	gene_id "1044923"; transcript_id "1044923.1";
+scaffold_11	Phasing	exon	1277431	1630867	.	+	.	gene_id "1277431"; transcript_id "1277431.1";
+scaffold_11	Phasing	exon	1651039	1685632	.	+	.	gene_id "1651039"; transcript_id "1651039.1";
+scaffold_11	Phasing	exon	1696572	1754071	.	+	.	gene_id "1696572"; transcript_id "1696572.1";
+scaffold_11	Phasing	exon	1766836	2030287	.	+	.	gene_id "1766836"; transcript_id "1766836.1";
+scaffold_11	Phasing	exon	2050160	2477517	.	+	.	gene_id "2050160"; transcript_id "2050160.1";
+scaffold_11	Phasing	exon	2495771	2508096	.	+	.	gene_id "2495771"; transcript_id "2495771.1";
+scaffold_11	Phasing	exon	2517358	2976651	.	+	.	gene_id "2517358"; transcript_id "2517358.1";
+scaffold_11	Phasing	exon	2988650	3089672	.	+	.	gene_id "2988650"; transcript_id "2988650.1";
+scaffold_11	Phasing	exon	3100371	3177709	.	+	.	gene_id "3100371"; transcript_id "3100371.1";
+scaffold_11	Phasing	exon	3198665	3252546	.	+	.	gene_id "3198665"; transcript_id "3198665.1";
+scaffold_11	Phasing	exon	3388703	3399720	.	+	.	gene_id "3388703"; transcript_id "3388703.1";
+scaffold_11	Phasing	exon	3405895	3465130	.	+	.	gene_id "3405895"; transcript_id "3405895.1";
+scaffold_11	Phasing	exon	3478548	3633738	.	+	.	gene_id "3478548"; transcript_id "3478548.1";
+scaffold_11	Phasing	exon	3735498	3739902	.	+	.	gene_id "3735498"; transcript_id "3735498.1";
+scaffold_12	Phasing	exon	40	288118	.	+	.	gene_id "40"; transcript_id "40.1";
+scaffold_12	Phasing	exon	303170	603750	.	+	.	gene_id "303170"; transcript_id "303170.1";
+scaffold_12	Phasing	exon	634314	1011097	.	+	.	gene_id "634314"; transcript_id "634314.1";
+scaffold_12	Phasing	exon	1031896	1243700	.	+	.	gene_id "1031896"; transcript_id "1031896.1";
+scaffold_12	Phasing	exon	1258899	1504563	.	+	.	gene_id "1258899"; transcript_id "1258899.1";
+scaffold_12	Phasing	exon	1512688	1546622	.	+	.	gene_id "1512688"; transcript_id "1512688.1";
+scaffold_12	Phasing	exon	1565084	1571573	.	+	.	gene_id "1565084"; transcript_id "1565084.1";
+scaffold_12	Phasing	exon	1586890	1603532	.	+	.	gene_id "1586890"; transcript_id "1586890.1";
+scaffold_12	Phasing	exon	1628785	1640733	.	+	.	gene_id "1628785"; transcript_id "1628785.1";
+scaffold_12	Phasing	exon	1651237	1662693	.	+	.	gene_id "1651237"; transcript_id "1651237.1";
+scaffold_12	Phasing	exon	1715716	1727530	.	+	.	gene_id "1715716"; transcript_id "1715716.1";
+scaffold_12	Phasing	exon	1766913	1797704	.	+	.	gene_id "1766913"; transcript_id "1766913.1";
+scaffold_12	Phasing	exon	1837332	2207644	.	+	.	gene_id "1837332"; transcript_id "1837332.1";
+scaffold_12	Phasing	exon	2220918	2317643	.	+	.	gene_id "2220918"; transcript_id "2220918.1";
+scaffold_12	Phasing	exon	2348066	2540057	.	+	.	gene_id "2348066"; transcript_id "2348066.1";
+scaffold_12	Phasing	exon	2562374	2592128	.	+	.	gene_id "2562374"; transcript_id "2562374.1";
+scaffold_12	Phasing	exon	2592428	2638824	.	+	.	gene_id "2592428"; transcript_id "2592428.1";
+scaffold_12	Phasing	exon	2661278	2673924	.	+	.	gene_id "2661278"; transcript_id "2661278.1";
+scaffold_12	Phasing	exon	2690299	2982068	.	+	.	gene_id "2690299"; transcript_id "2690299.1";
+scaffold_12	Phasing	exon	2984725	3019951	.	+	.	gene_id "2984725"; transcript_id "2984725.1";
+scaffold_12	Phasing	exon	3034340	3504493	.	+	.	gene_id "3034340"; transcript_id "3034340.1";
+scaffold_12	Phasing	exon	3547578	3646104	.	+	.	gene_id "3547578"; transcript_id "3547578.1";
+scaffold_12	Phasing	exon	3650318	3692745	.	+	.	gene_id "3650318"; transcript_id "3650318.1";
+scaffold_13	Phasing	exon	242	12667	.	+	.	gene_id "242"; transcript_id "242.1";
+scaffold_13	Phasing	exon	32303	45137	.	+	.	gene_id "32303"; transcript_id "32303.1";
+scaffold_13	Phasing	exon	62478	85286	.	+	.	gene_id "62478"; transcript_id "62478.1";
+scaffold_13	Phasing	exon	106186	123307	.	+	.	gene_id "106186"; transcript_id "106186.1";
+scaffold_13	Phasing	exon	163114	1019051	.	+	.	gene_id "163114"; transcript_id "163114.1";
+scaffold_13	Phasing	exon	1030773	1374507	.	+	.	gene_id "1030773"; transcript_id "1030773.1";
+scaffold_13	Phasing	exon	1378557	1435943	.	+	.	gene_id "1378557"; transcript_id "1378557.1";
+scaffold_13	Phasing	exon	1441197	1806170	.	+	.	gene_id "1441197"; transcript_id "1441197.1";
+scaffold_13	Phasing	exon	1824788	1838707	.	+	.	gene_id "1824788"; transcript_id "1824788.1";
+scaffold_13	Phasing	exon	1847878	1856460	.	+	.	gene_id "1847878"; transcript_id "1847878.1";
+scaffold_13	Phasing	exon	1877098	2014418	.	+	.	gene_id "1877098"; transcript_id "1877098.1";
+scaffold_13	Phasing	exon	2049828	2212554	.	+	.	gene_id "2049828"; transcript_id "2049828.1";
+scaffold_13	Phasing	exon	2219403	2362898	.	+	.	gene_id "2219403"; transcript_id "2219403.1";
+scaffold_13	Phasing	exon	2396466	2587140	.	+	.	gene_id "2396466"; transcript_id "2396466.1";
+scaffold_13	Phasing	exon	2606541	2662659	.	+	.	gene_id "2606541"; transcript_id "2606541.1";
+scaffold_13	Phasing	exon	2687202	2824844	.	+	.	gene_id "2687202"; transcript_id "2687202.1";
+scaffold_13	Phasing	exon	2851171	3200509	.	+	.	gene_id "2851171"; transcript_id "2851171.1";
+scaffold_13	Phasing	exon	3211195	3406613	.	+	.	gene_id "3211195"; transcript_id "3211195.1";
+scaffold_14	Phasing	exon	32	26850	.	+	.	gene_id "32"; transcript_id "32.1";
+scaffold_14	Phasing	exon	48708	186846	.	+	.	gene_id "48708"; transcript_id "48708.1";
+scaffold_14	Phasing	exon	201766	547213	.	+	.	gene_id "201766"; transcript_id "201766.1";
+scaffold_14	Phasing	exon	549678	701799	.	+	.	gene_id "549678"; transcript_id "549678.1";
+scaffold_14	Phasing	exon	721232	758265	.	+	.	gene_id "721232"; transcript_id "721232.1";
+scaffold_14	Phasing	exon	774029	778199	.	+	.	gene_id "774029"; transcript_id "774029.1";
+scaffold_14	Phasing	exon	786496	846008	.	+	.	gene_id "786496"; transcript_id "786496.1";
+scaffold_14	Phasing	exon	859869	896857	.	+	.	gene_id "859869"; transcript_id "859869.1";
+scaffold_14	Phasing	exon	915513	918914	.	+	.	gene_id "915513"; transcript_id "915513.1";
+scaffold_14	Phasing	exon	942812	1038165	.	+	.	gene_id "942812"; transcript_id "942812.1";
+scaffold_14	Phasing	exon	1071471	1237105	.	+	.	gene_id "1071471"; transcript_id "1071471.1";
+scaffold_14	Phasing	exon	1249352	1254208	.	+	.	gene_id "1249352"; transcript_id "1249352.1";
+scaffold_14	Phasing	exon	1263615	1505420	.	+	.	gene_id "1263615"; transcript_id "1263615.1";
+scaffold_14	Phasing	exon	1516508	1594836	.	+	.	gene_id "1516508"; transcript_id "1516508.1";
+scaffold_14	Phasing	exon	1610178	1735245	.	+	.	gene_id "1610178"; transcript_id "1610178.1";
+scaffold_14	Phasing	exon	1769427	1988264	.	+	.	gene_id "1769427"; transcript_id "1769427.1";
+scaffold_14	Phasing	exon	2016109	2127405	.	+	.	gene_id "2016109"; transcript_id "2016109.1";
+scaffold_14	Phasing	exon	2136117	2221570	.	+	.	gene_id "2136117"; transcript_id "2136117.1";
+scaffold_14	Phasing	exon	2239986	2423969	.	+	.	gene_id "2239986"; transcript_id "2239986.1";
+scaffold_14	Phasing	exon	2437457	2447997	.	+	.	gene_id "2437457"; transcript_id "2437457.1";
+scaffold_14	Phasing	exon	2459603	2481246	.	+	.	gene_id "2459603"; transcript_id "2459603.1";
+scaffold_14	Phasing	exon	2487308	2607432	.	+	.	gene_id "2487308"; transcript_id "2487308.1";
+scaffold_14	Phasing	exon	2616107	2617052	.	+	.	gene_id "2616107"; transcript_id "2616107.1";
+scaffold_14	Phasing	exon	2628015	2665645	.	+	.	gene_id "2628015"; transcript_id "2628015.1";
+scaffold_14	Phasing	exon	2678656	2790702	.	+	.	gene_id "2678656"; transcript_id "2678656.1";
+scaffold_14	Phasing	exon	2802071	2895728	.	+	.	gene_id "2802071"; transcript_id "2802071.1";
+scaffold_14	Phasing	exon	2896687	3038407	.	+	.	gene_id "2896687"; transcript_id "2896687.1";
+scaffold_15	Phasing	exon	101	367701	.	+	.	gene_id "101"; transcript_id "101.1";
+scaffold_15	Phasing	exon	394727	789363	.	+	.	gene_id "394727"; transcript_id "394727.1";
+scaffold_15	Phasing	exon	804169	811242	.	+	.	gene_id "804169"; transcript_id "804169.1";
+scaffold_15	Phasing	exon	824122	914438	.	+	.	gene_id "824122"; transcript_id "824122.1";
+scaffold_15	Phasing	exon	920229	991655	.	+	.	gene_id "920229"; transcript_id "920229.1";
+scaffold_15	Phasing	exon	1007652	1026741	.	+	.	gene_id "1007652"; transcript_id "1007652.1";
+scaffold_15	Phasing	exon	1064240	1092159	.	+	.	gene_id "1064240"; transcript_id "1064240.1";
+scaffold_15	Phasing	exon	1095566	1346773	.	+	.	gene_id "1095566"; transcript_id "1095566.1";
+scaffold_15	Phasing	exon	1378286	1407683	.	+	.	gene_id "1378286"; transcript_id "1378286.1";
+scaffold_15	Phasing	exon	1424237	1431501	.	+	.	gene_id "1424237"; transcript_id "1424237.1";
+scaffold_15	Phasing	exon	1471647	1490346	.	+	.	gene_id "1471647"; transcript_id "1471647.1";
+scaffold_15	Phasing	exon	1506568	1743959	.	+	.	gene_id "1506568"; transcript_id "1506568.1";
+scaffold_15	Phasing	exon	1762125	2072063	.	+	.	gene_id "1762125"; transcript_id "1762125.1";
+scaffold_15	Phasing	exon	2088733	2321113	.	+	.	gene_id "2088733"; transcript_id "2088733.1";
+scaffold_15	Phasing	exon	2381115	2576262	.	+	.	gene_id "2381115"; transcript_id "2381115.1";
+scaffold_15	Phasing	exon	2583060	2629215	.	+	.	gene_id "2583060"; transcript_id "2583060.1";
+scaffold_16	Phasing	exon	5757	253344	.	+	.	gene_id "5757"; transcript_id "5757.1";
+scaffold_16	Phasing	exon	275559	287519	.	+	.	gene_id "275559"; transcript_id "275559.1";
+scaffold_16	Phasing	exon	304624	425590	.	+	.	gene_id "304624"; transcript_id "304624.1";
+scaffold_16	Phasing	exon	439860	603747	.	+	.	gene_id "439860"; transcript_id "439860.1";
+scaffold_16	Phasing	exon	625622	635140	.	+	.	gene_id "625622"; transcript_id "625622.1";
+scaffold_16	Phasing	exon	659970	1140026	.	+	.	gene_id "659970"; transcript_id "659970.1";
+scaffold_16	Phasing	exon	1154812	1201245	.	+	.	gene_id "1154812"; transcript_id "1154812.1";
+scaffold_16	Phasing	exon	1223375	1362715	.	+	.	gene_id "1223375"; transcript_id "1223375.1";
+scaffold_16	Phasing	exon	1379267	1379351	.	+	.	gene_id "1379267"; transcript_id "1379267.1";
+scaffold_16	Phasing	exon	1407233	1413872	.	+	.	gene_id "1407233"; transcript_id "1407233.1";
+scaffold_16	Phasing	exon	1436419	1440754	.	+	.	gene_id "1436419"; transcript_id "1436419.1";
+scaffold_16	Phasing	exon	1480601	1510264	.	+	.	gene_id "1480601"; transcript_id "1480601.1";
+scaffold_16	Phasing	exon	1553389	1575750	.	+	.	gene_id "1553389"; transcript_id "1553389.1";
+scaffold_16	Phasing	exon	1596553	2287547	.	+	.	gene_id "1596553"; transcript_id "1596553.1";
+scaffold_16	Phasing	exon	2296509	2390159	.	+	.	gene_id "2296509"; transcript_id "2296509.1";
+scaffold_17	Phasing	exon	47	148341	.	+	.	gene_id "47"; transcript_id "47.1";
+scaffold_17	Phasing	exon	167070	196069	.	+	.	gene_id "167070"; transcript_id "167070.1";
+scaffold_17	Phasing	exon	213934	534733	.	+	.	gene_id "213934"; transcript_id "213934.1";
+scaffold_17	Phasing	exon	553158	678885	.	+	.	gene_id "553158"; transcript_id "553158.1";
+scaffold_17	Phasing	exon	691548	715154	.	+	.	gene_id "691548"; transcript_id "691548.1";
+scaffold_17	Phasing	exon	725474	742160	.	+	.	gene_id "725474"; transcript_id "725474.1";
+scaffold_17	Phasing	exon	757433	785154	.	+	.	gene_id "757433"; transcript_id "757433.1";
+scaffold_17	Phasing	exon	812707	1065847	.	+	.	gene_id "812707"; transcript_id "812707.1";
+scaffold_17	Phasing	exon	1086623	1149902	.	+	.	gene_id "1086623"; transcript_id "1086623.1";
+scaffold_17	Phasing	exon	1160815	1208645	.	+	.	gene_id "1160815"; transcript_id "1160815.1";
+scaffold_17	Phasing	exon	1216934	1256863	.	+	.	gene_id "1216934"; transcript_id "1216934.1";
+scaffold_17	Phasing	exon	1283507	1745967	.	+	.	gene_id "1283507"; transcript_id "1283507.1";
+scaffold_17	Phasing	exon	1764635	1788446	.	+	.	gene_id "1764635"; transcript_id "1764635.1";
+scaffold_17	Phasing	exon	1808817	1847568	.	+	.	gene_id "1808817"; transcript_id "1808817.1";
+scaffold_18	Phasing	exon	11991	143660	.	+	.	gene_id "11991"; transcript_id "11991.1";
+scaffold_18	Phasing	exon	148133	449253	.	+	.	gene_id "148133"; transcript_id "148133.1";
+scaffold_18	Phasing	exon	488634	547451	.	+	.	gene_id "488634"; transcript_id "488634.1";
+scaffold_18	Phasing	exon	575353	704708	.	+	.	gene_id "575353"; transcript_id "575353.1";
+scaffold_18	Phasing	exon	736541	1521246	.	+	.	gene_id "736541"; transcript_id "736541.1";
+scaffold_18	Phasing	exon	1527235	1650001	.	+	.	gene_id "1527235"; transcript_id "1527235.1";
+scaffold_18	Phasing	exon	1684547	1735004	.	+	.	gene_id "1684547"; transcript_id "1684547.1";
+scaffold_19	Phasing	exon	22432	30841	.	+	.	gene_id "22432"; transcript_id "22432.1";
+scaffold_19	Phasing	exon	45444	139730	.	+	.	gene_id "45444"; transcript_id "45444.1";
+scaffold_19	Phasing	exon	152436	251019	.	+	.	gene_id "152436"; transcript_id "152436.1";
+scaffold_19	Phasing	exon	275447	378794	.	+	.	gene_id "275447"; transcript_id "275447.1";
+scaffold_19	Phasing	exon	395742	406428	.	+	.	gene_id "395742"; transcript_id "395742.1";
+scaffold_19	Phasing	exon	417437	458776	.	+	.	gene_id "417437"; transcript_id "417437.1";
+scaffold_19	Phasing	exon	474293	524395	.	+	.	gene_id "474293"; transcript_id "474293.1";
+scaffold_19	Phasing	exon	535235	808523	.	+	.	gene_id "535235"; transcript_id "535235.1";
+scaffold_19	Phasing	exon	827896	998414	.	+	.	gene_id "827896"; transcript_id "827896.1";
+scaffold_19	Phasing	exon	1009520	1027836	.	+	.	gene_id "1009520"; transcript_id "1009520.1";
+scaffold_19	Phasing	exon	1043135	1048620	.	+	.	gene_id "1043135"; transcript_id "1043135.1";
+scaffold_19	Phasing	exon	1062116	1069307	.	+	.	gene_id "1062116"; transcript_id "1062116.1";
+scaffold_19	Phasing	exon	1101948	1116144	.	+	.	gene_id "1101948"; transcript_id "1101948.1";
+scaffold_19	Phasing	exon	1131378	1137305	.	+	.	gene_id "1131378"; transcript_id "1131378.1";
+scaffold_19	Phasing	exon	1164179	1204599	.	+	.	gene_id "1164179"; transcript_id "1164179.1";
+scaffold_19	Phasing	exon	1234771	1271556	.	+	.	gene_id "1234771"; transcript_id "1234771.1";
+scaffold_19	Phasing	exon	1287280	1301386	.	+	.	gene_id "1287280"; transcript_id "1287280.1";
+scaffold_19	Phasing	exon	1312947	1315509	.	+	.	gene_id "1312947"; transcript_id "1312947.1";
+scaffold_19	Phasing	exon	1332363	1360522	.	+	.	gene_id "1332363"; transcript_id "1332363.1";
+scaffold_19	Phasing	exon	1375831	1462713	.	+	.	gene_id "1375831"; transcript_id "1375831.1";
+scaffold_19	Phasing	exon	1495511	1496409	.	+	.	gene_id "1495511"; transcript_id "1495511.1";
+scaffold_19	Phasing	exon	1545156	1547664	.	+	.	gene_id "1545156"; transcript_id "1545156.1";
+scaffold_19	Phasing	exon	1602514	1624886	.	+	.	gene_id "1602514"; transcript_id "1602514.1";
+scaffold_20	Phasing	exon	129306	327345	.	+	.	gene_id "129306"; transcript_id "129306.1";
+scaffold_20	Phasing	exon	336034	489491	.	+	.	gene_id "336034"; transcript_id "336034.1";
+scaffold_20	Phasing	exon	510030	648342	.	+	.	gene_id "510030"; transcript_id "510030.1";
+scaffold_20	Phasing	exon	665431	929631	.	+	.	gene_id "665431"; transcript_id "665431.1";
+scaffold_20	Phasing	exon	946913	1004247	.	+	.	gene_id "946913"; transcript_id "946913.1";
+scaffold_20	Phasing	exon	1009947	1027261	.	+	.	gene_id "1009947"; transcript_id "1009947.1";
+scaffold_20	Phasing	exon	1040695	1262462	.	+	.	gene_id "1040695"; transcript_id "1040695.1";
+scaffold_20	Phasing	exon	1275466	1464864	.	+	.	gene_id "1275466"; transcript_id "1275466.1";
+scaffold_20	Phasing	exon	1473828	1582013	.	+	.	gene_id "1473828"; transcript_id "1473828.1";
+scaffold_21	Phasing	exon	4111	417730	.	+	.	gene_id "4111"; transcript_id "4111.1";
+scaffold_21	Phasing	exon	430090	449823	.	+	.	gene_id "430090"; transcript_id "430090.1";
+scaffold_21	Phasing	exon	465217	477951	.	+	.	gene_id "465217"; transcript_id "465217.1";
+scaffold_21	Phasing	exon	487259	621527	.	+	.	gene_id "487259"; transcript_id "487259.1";
+scaffold_21	Phasing	exon	628964	630069	.	+	.	gene_id "628964"; transcript_id "628964.1";
+scaffold_21	Phasing	exon	654608	655622	.	+	.	gene_id "654608"; transcript_id "654608.1";
+scaffold_21	Phasing	exon	665883	792703	.	+	.	gene_id "665883"; transcript_id "665883.1";
+scaffold_21	Phasing	exon	807674	1246581	.	+	.	gene_id "807674"; transcript_id "807674.1";
+scaffold_21	Phasing	exon	1267069	1413662	.	+	.	gene_id "1267069"; transcript_id "1267069.1";
+scaffold_21	Phasing	exon	1432332	1446853	.	+	.	gene_id "1432332"; transcript_id "1432332.1";
+scaffold_22	Phasing	exon	2702	7128	.	+	.	gene_id "2702"; transcript_id "2702.1";
+scaffold_22	Phasing	exon	589292	600426	.	+	.	gene_id "589292"; transcript_id "589292.1";
+scaffold_22	Phasing	exon	1041808	1045978	.	+	.	gene_id "1041808"; transcript_id "1041808.1";
+scaffold_23	Phasing	exon	20966	674684	.	+	.	gene_id "20966"; transcript_id "20966.1";
+scaffold_23	Phasing	exon	693815	728270	.	+	.	gene_id "693815"; transcript_id "693815.1";
+scaffold_23	Phasing	exon	742376	1261907	.	+	.	gene_id "742376"; transcript_id "742376.1";
+scaffold_23	Phasing	exon	1278475	1337455	.	+	.	gene_id "1278475"; transcript_id "1278475.1";
+scaffold_24	Phasing	exon	4011	11296	.	+	.	gene_id "4011"; transcript_id "4011.1";
+scaffold_24	Phasing	exon	42159	301519	.	+	.	gene_id "42159"; transcript_id "42159.1";
+scaffold_24	Phasing	exon	314363	585022	.	+	.	gene_id "314363"; transcript_id "314363.1";
+scaffold_25	Phasing	exon	3365	14449	.	+	.	gene_id "3365"; transcript_id "3365.1";
+scaffold_25	Phasing	exon	32920	228183	.	+	.	gene_id "32920"; transcript_id "32920.1";
+scaffold_25	Phasing	exon	235206	451852	.	+	.	gene_id "235206"; transcript_id "235206.1";
+scaffold_27	Phasing	exon	45	55295	.	+	.	gene_id "45"; transcript_id "45.1";
+scaffold_27	Phasing	exon	99390	104470	.	+	.	gene_id "99390"; transcript_id "99390.1";
+scaffold_28	Phasing	exon	11050	55371	.	+	.	gene_id "11050"; transcript_id "11050.1";
+scaffold_29	Phasing	exon	2176	2230	.	+	.	gene_id "2176"; transcript_id "2176.1";
+scaffold_31	Phasing	exon	5143	15187	.	+	.	gene_id "5143"; transcript_id "5143.1";
+scaffold_32	Phasing	exon	6846	35240	.	+	.	gene_id "6846"; transcript_id "6846.1";
+scaffold_36	Phasing	exon	18983	37439	.	+	.	gene_id "18983"; transcript_id "18983.1";
+scaffold_39	Phasing	exon	888	10154	.	+	.	gene_id "888"; transcript_id "888.1";
+scaffold_39	Phasing	exon	26536	27759	.	+	.	gene_id "26536"; transcript_id "26536.1";

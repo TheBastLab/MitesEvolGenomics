@@ -1,0 +1,86 @@
+GO.ID	Term	Annotated	Significant	Expected	classicFisher	FDR	ontology	Species
+GO:0004252	serine-type endopeptidase activity	481	141	91.82	2.5e-08	3.9e-06	MF	Hti
+GO:0140359	ABC-type transporter activity	228	78	43.52	3.9e-08	3.9e-06	MF	Hti
+GO:0004497	monooxygenase activity	304	83	58.03	3.2e-06	0.000213333333333333	MF	Hti
+GO:0020037	heme binding	328	96	62.61	4.5e-06	0.000225	MF	Hti
+GO:0016887	ATP hydrolysis activity	449	123	85.71	8.5e-06	0.00034	MF	Hti
+GO:0016705	oxidoreductase activity, acting on paire...	362	89	69.1	2.2e-05	0.000733333333333333	MF	Hti
+GO:0016491	oxidoreductase activity	1269	294	242.24	0.00015	0.004	MF	Hti
+GO:0005524	ATP binding	1619	364	309.05	0.00016	0.004	MF	Hti
+GO:0003676	nucleic acid binding	2446	433	466.92	0.00027	0.006	MF	Hti
+GO:0015276	ligand-gated monoatomic ion channel acti...	279	68	53.26	0.00125	0.0213333333333333	MF	Hti
+GO:0000166	nucleotide binding	2133	464	407.17	0.00125	0.0213333333333333	MF	Hti
+GO:0004807	triose-phosphate isomerase activity	6	5	1.15	0.00128	0.0213333333333333	MF	Hti
+GO:0004540	RNA nuclease activity	111	20	21.19	0.00157	0.0241538461538462	MF	Hti
+GO:0000287	magnesium ion binding	121	36	23.1	0.00302	0.0414666666666667	MF	Hti
+GO:0032574	5'-3' RNA helicase activity	15	8	2.86	0.00311	0.0414666666666667	MF	Hti
+GO:0003887	DNA-directed DNA polymerase activity	50	18	9.54	0.0037	0.0445882352941177	MF	Hti
+GO:0003747	translation release factor activity	25	11	4.77	0.00379	0.0445882352941177	MF	Hti
+GO:0042626	ATPase-coupled transmembrane transporter...	339	107	64.71	0.00445	0.0470526315789474	MF	Hti
+GO:0005506	iron ion binding	337	84	64.33	0.00447	0.0470526315789474	MF	Hti
+GO:0005462	UDP-N-acetylglucosamine transmembrane tr...	3	3	0.57	0.00695	0.0695	MF	Hti
+GO:0016829	lyase activity	185	35	35.32	0.00826	0.0786666666666667	MF	Hti
+GO:0004312	fatty acid synthase activity	95	28	18.13	0.00946	0.0829565217391304	MF	Hti
+GO:0004553	hydrolase activity, hydrolyzing O-glycos...	486	106	92.77	0.00954	0.0829565217391304	MF	Hti
+GO:0047223	beta-1,3-galactosyl-O-glycosyl-glycoprot...	9	5	1.72	0.01604	0.12832	MF	Hti
+GO:0004749	ribose phosphate diphosphokinase activit...	9	5	1.72	0.01604	0.12832	MF	Hti
+GO:0051537	2 iron, 2 sulfur cluster binding	49	16	9.35	0.01673	0.128692307692308	MF	Hti
+GO:0004672	protein kinase activity	902	207	172.18	0.01811	0.134148148148148	MF	Hti
+GO:0004694	eukaryotic translation initiation factor...	79	23	15.08	0.02029	0.139	MF	Hti
+GO:0004170	dUTP diphosphatase activity	23	9	4.39	0.02045	0.139	MF	Hti
+GO:0016290	palmitoyl-CoA hydrolase activity	16	7	3.05	0.02085	0.139	MF	Hti
+GO:0010333	terpene synthase activity	31	11	5.92	0.02366	0.148875	MF	Hti
+GO:0008569	minus-end-directed microtubule motor act...	4	3	0.76	0.02382	0.148875	MF	Hti
+GO:0008046	axon guidance receptor activity	10	5	1.91	0.0271	0.164242424242424	MF	Hti
+GO:0005112	Notch binding	7	4	1.34	0.02835	0.165111111111111	MF	Hti
+GO:0004185	serine-type carboxypeptidase activity	17	7	3.25	0.02972	0.165111111111111	MF	Hti
+GO:0047499	calcium-independent phospholipase A2 act...	17	7	3.25	0.02972	0.165111111111111	MF	Hti
+GO:0004127	cytidylate kinase activity	2	2	0.38	0.03643	0.17347619047619	MF	Hti
+GO:0004663	Rab geranylgeranyltransferase activity	2	2	0.38	0.03643	0.17347619047619	MF	Hti
+GO:0005464	UDP-xylose transmembrane transporter act...	2	2	0.38	0.03643	0.17347619047619	MF	Hti
+GO:0004705	JUN kinase activity	2	2	0.38	0.03643	0.17347619047619	MF	Hti
+GO:0004021	L-alanine:2-oxoglutarate aminotransferas...	2	2	0.38	0.03643	0.17347619047619	MF	Hti
+GO:0017005	3'-tyrosyl-DNA phosphodiesterase activit...	2	2	0.38	0.03643	0.17347619047619	MF	Hti
+GO:0006508	proteolysis	1640	351	292.08	1.5e-10	3e-08	BP	Hti
+GO:0006468	protein phosphorylation	940	208	167.41	8.9e-06	0.00089	BP	Hti
+GO:0055085	transmembrane transport	1129	241	201.07	2.5e-05	0.00166666666666667	BP	Hti
+GO:0008203	cholesterol metabolic process	27	13	4.81	5.9e-05	0.00295	BP	Hti
+GO:0015074	DNA integration	131	39	23.33	0.00052	0.0208	BP	Hti
+GO:0046166	glyceraldehyde-3-phosphate biosynthetic ...	6	5	1.07	0.00091	0.0303333333333333	BP	Hti
+GO:0035194	regulatory ncRNA-mediated post-transcrip...	35	13	6.23	0.00142	0.0405714285714286	BP	Hti
+GO:0006415	translational termination	32	13	5.7	0.00208	0.0504444444444444	BP	Hti
+GO:0006260	DNA replication	141	27	25.11	0.00227	0.0504444444444444	BP	Hti
+GO:0019563	glycerol catabolic process	7	5	1.25	0.00272	0.0544	BP	Hti
+GO:0008202	steroid metabolic process	152	48	27.07	0.00464	0.0843636363636364	BP	Hti
+GO:0051308	male meiosis chromosome separation	3	3	0.53	0.00564	0.094	BP	Hti
+GO:0097176	epoxide metabolic process	15	7	2.67	0.00954	0.146333333333333	BP	Hti
+GO:0016102	diterpenoid biosynthetic process	30	11	5.34	0.01105	0.146333333333333	BP	Hti
+GO:0042157	lipoprotein metabolic process	53	7	9.44	0.01119	0.146333333333333	BP	Hti
+GO:0006015	5-phosphoribose 1-diphosphate biosynthet...	9	5	1.6	0.01191	0.146333333333333	BP	Hti
+GO:0046081	dUTP catabolic process	23	9	4.1	0.01317	0.146333333333333	BP	Hti
+GO:0006226	dUMP biosynthetic process	23	9	4.1	0.01317	0.146333333333333	BP	Hti
+GO:2000304	positive regulation of ceramide biosynth...	16	7	2.85	0.01439	0.151473684210526	BP	Hti
+GO:0060294	cilium movement involved in cell motilit...	4	3	0.71	0.01956	0.186761904761905	BP	Hti
+GO:0007127	meiosis I	31	6	5.52	0.01961	0.186761904761905	BP	Hti
+GO:0030198	extracellular matrix organization	25	9	4.45	0.02354	0.20746511627907	BP	Hti
+GO:0006515	protein quality control for misfolded or...	24	9	4.27	0.02883	0.20746511627907	BP	Hti
+GO:0006096	glycolytic process	26	9	4.63	0.03047	0.20746511627907	BP	Hti
+GO:0046777	protein autophosphorylation	74	20	13.18	0.03168	0.20746511627907	BP	Hti
+GO:0001188	RNA polymerase I preinitiation complex a...	2	2	0.36	0.03171	0.20746511627907	BP	Hti
+GO:0150007	clathrin-dependent synaptic vesicle endo...	2	2	0.36	0.03171	0.20746511627907	BP	Hti
+GO:0043162	ubiquitin-dependent protein catabolic pr...	8	3	1.42	0.03171	0.20746511627907	BP	Hti
+GO:0007017	microtubule-based process	204	45	36.33	0.03383	0.20746511627907	BP	Hti
+GO:0005975	carbohydrate metabolic process	597	121	106.33	0.03903	0.20746511627907	BP	Hti
+GO:0006633	fatty acid biosynthetic process	207	38	36.87	0.0396	0.20746511627907	BP	Hti
+GO:0006166	purine ribonucleoside salvage	32	10	5.7	0.04613	0.20746511627907	BP	Hti
+GO:0016020	membrane	3416	627	572.21	2.2e-06	0.00044	CC	Hti
+GO:0097729	9+2 motile cilium	3	3	0.5	0.0047	0.47	CC	Hti
+GO:0002189	ribose phosphate diphosphokinase complex	9	5	1.51	0.0091	0.511428571428571	CC	Hti
+GO:0043186	P granule	46	14	7.71	0.0155	0.511428571428571	CC	Hti
+GO:0030286	dynein complex	50	16	8.38	0.0156	0.511428571428571	CC	Hti
+GO:0044295	axonal growth cone	4	3	0.67	0.0164	0.511428571428571	CC	Hti
+GO:0000813	ESCRT I complex	7	4	1.17	0.0179	0.511428571428571	CC	Hti
+GO:0005776	autophagosome	78	20	13.07	0.0254	0.572	CC	Hti
+GO:0061574	ASAP complex	2	2	0.34	0.028	0.572	CC	Hti
+GO:0097708	intracellular vesicle	277	31	46.4	0.0286	0.572	CC	Hti
+GO:0044614	nuclear pore cytoplasmic filaments	5	3	0.84	0.0359	0.588888888888889	CC	Hti

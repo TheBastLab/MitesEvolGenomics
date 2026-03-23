@@ -1,0 +1,26 @@
+
+VCFtools - 0.1.17
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--gzvcf Ppr.sniffles2_variants.annotated.filtered.vcf.gz
+	--freq2
+	--out Ppr.freq
+
+Using zlib version: 1.2.12
+Warning: Expected at least 2 parts in FORMAT entry: ID=PS,Number=1,Type=Integer,Description="Phase-block, zero if none or not phased">
+Warning: Expected at least 2 parts in INFO entry: ID=COVERAGE,Number=.,Type=Float,Description="Coverages near upstream, start, center, end, downstream of structural variation">
+Warning: Expected at least 2 parts in INFO entry: ID=COVERAGE,Number=.,Type=Float,Description="Coverages near upstream, start, center, end, downstream of structural variation">
+Warning: Expected at least 2 parts in INFO entry: ID=COVERAGE,Number=.,Type=Float,Description="Coverages near upstream, start, center, end, downstream of structural variation">
+Warning: Expected at least 2 parts in INFO entry: ID=COVERAGE,Number=.,Type=Float,Description="Coverages near upstream, start, center, end, downstream of structural variation">
+Warning: Expected at least 2 parts in INFO entry: ID=AC,Number=.,Type=Integer,Description="Allele count, summed up over all samples">
+Warning: Expected at least 2 parts in INFO entry: ID=PHASE,Number=.,Type=String,Description="Phasing information derived from supporting reads, represented as list of: HAPLOTYPE,PHASESET,HAPLOTYPE_SUPPORT,PHASESET_SUPPORT,HAPLOTYPE_FILTER,PHASESET_FILTER">
+Warning: Expected at least 2 parts in INFO entry: ID=PHASE,Number=.,Type=String,Description="Phasing information derived from supporting reads, represented as list of: HAPLOTYPE,PHASESET,HAPLOTYPE_SUPPORT,PHASESET_SUPPORT,HAPLOTYPE_FILTER,PHASESET_FILTER">
+Warning: Expected at least 2 parts in INFO entry: ID=PHASE,Number=.,Type=String,Description="Phasing information derived from supporting reads, represented as list of: HAPLOTYPE,PHASESET,HAPLOTYPE_SUPPORT,PHASESET_SUPPORT,HAPLOTYPE_FILTER,PHASESET_FILTER">
+Warning: Expected at least 2 parts in INFO entry: ID=PHASE,Number=.,Type=String,Description="Phasing information derived from supporting reads, represented as list of: HAPLOTYPE,PHASESET,HAPLOTYPE_SUPPORT,PHASESET_SUPPORT,HAPLOTYPE_FILTER,PHASESET_FILTER">
+Warning: Expected at least 2 parts in INFO entry: ID=PHASE,Number=.,Type=String,Description="Phasing information derived from supporting reads, represented as list of: HAPLOTYPE,PHASESET,HAPLOTYPE_SUPPORT,PHASESET_SUPPORT,HAPLOTYPE_FILTER,PHASESET_FILTER">
+Warning: Expected at least 2 parts in INFO entry: ID=PHASE,Number=.,Type=String,Description="Phasing information derived from supporting reads, represented as list of: HAPLOTYPE,PHASESET,HAPLOTYPE_SUPPORT,PHASESET_SUPPORT,HAPLOTYPE_FILTER,PHASESET_FILTER">
+After filtering, kept 6 out of 6 Individuals
+Outputting Frequency Statistics...
+After filtering, kept 34499 out of a possible 34499 Sites
+Run Time = 0.00 seconds

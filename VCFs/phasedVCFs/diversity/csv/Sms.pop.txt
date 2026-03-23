@@ -1,0 +1,16 @@
+Sms.479-195_sa_hap1	Sms1
+Sms.479-195_sa_hap2	Sms2
+Sms.479-196_hap1	Sms1
+Sms.479-196_hap2	Sms2
+Sms.479-198_hap1	Sms1
+Sms.479-198_hap2	Sms2
+Sms.479-199_sa_hap1	Sms1
+Sms.479-199_sa_hap2	Sms2
+Sms.479-200_hap1	Sms1
+Sms.479-200_hap2	Sms2
+Sms.479-201_hap1.sa	Sms1
+Sms.479-201_hap2.sa	Sms2
+Sms.479-202_sa_hap1	Sms1
+Sms.479-202_sa_hap2	Sms2
+Sms.479-203_hap1	Sms1
+Sms.479-203_hap2	Sms2

@@ -1,0 +1,14 @@
+Hrs.479-170_hap1	Hrs1
+Hrs.479-170_hap2	Hrs2
+Hrs.479-177_hap1.sa	Hrs1
+Hrs.479-177_hap2.sa	Hrs2
+Hrs.479-180_sa_hap1	Hrs1
+Hrs.479-180_sa_hap2	Hrs2
+Hrs.479-181_hap1.sa	Hrs1
+Hrs.479-181_hap2.sa	Hrs2
+Hrs.479-182_hap1.sa	Hrs1
+Hrs.479-182_hap2.sa	Hrs2
+Hrs.479-192_hap1.sa	Hrs1
+Hrs.479-192_hap2.sa	Hrs2
+Hrs.479-194_sa_hap1	Hrs1
+Hrs.479-194_sa_hap2	Hrs2

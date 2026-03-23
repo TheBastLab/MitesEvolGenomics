@@ -1,0 +1,28 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0003676",1,"GO:0003676",18.7958800173441,2260,"nucleic acid binding","nucleic acid binding",0.903962962962963,0.635666666666667,0
+"GO:0008194",2,"GO:0008194",4.92081875395237,106,"UDP-glycosyltransferase activity","UDP-glycosyltransferase activity",0.895740740740741,0.753333333333333,0
+"GO:0004177",3,"GO:0004177",4.55284196865778,28,"aminopeptidase activity","aminopeptidase activity",0.881074074074074,0.686,0
+"GO:0004301",4,"GO:0004301",4.09151498112135,4,"epoxide hydrolase activity","epoxide hydrolase activity",0.918518518518519,1,0
+"GO:0016705",5,"GO:0016705",3.48148606012211,174,"oxidoreductase activity, acting on paired donors, with incorporation or reduction of molecular oxygen","oxidoreductase activity, acting on paired donors, with incorporation or reduction of molecular oxygen",0.855,0.577,0
+"GO:0016614",5,"GO:0016705",3.431798275933,128,"oxidoreductase activity, acting on CH-OH group of donors","oxidoreductase activity, acting on paired donors, with incorporation or reduction of molecular oxygen",0.864777777777778,0.639,0.611
+"GO:0019202",6,"GO:0019202",3.2839966563652,3,"amino acid kinase activity","amino acid kinase activity",0.919407407407407,1,0
+"GO:0140359",7,"GO:0140359",3.01772876696043,51,"ABC-type transporter activity","ABC-type transporter activity",1,1,0
+"GO:0005506",8,"GO:0005506",2.89619627904404,157,"iron ion binding","iron ion binding",0.957740740740741,0.784,0
+"GO:0020037",1,"GO:0003676",2.8569851997459,137,"heme binding","nucleic acid binding",0.936444444444444,0.759,0.381
+"GO:0008395",5,"GO:0016705",2.75448733218585,5,"steroid hydroxylase activity","oxidoreductase activity, acting on paired donors, with incorporation or reduction of molecular oxygen",0.883777777777778,0.638,0.438
+"GO:0051880",10,"GO:0051880",2.74472749489669,2,"G-quadruplex DNA binding","G-quadruplex DNA binding",0.934666666666667,1,0
+"GO:0003691",9,"GO:0003691",2.74472749489669,1,"double-stranded telomeric DNA binding","double-stranded telomeric DNA binding",0.917481481481481,0.595,0
+"GO:0003677",1,"GO:0003676",2.68824613894425,1047,"DNA binding","nucleic acid binding",0.892925925925926,0.648666666666667,0.712
+"GO:0000014",11,"GO:0000014",2.67366413907125,15,"single-stranded DNA endodeoxyribonuclease activity","single-stranded DNA endodeoxyribonuclease activity",0.908481481481481,0.79,0
+"GO:0005044",12,"GO:0005044",2.66756154008439,22,"scavenger receptor activity","scavenger receptor activity",1,1,0
+"GO:0044547",13,"GO:0044547",2.48545224733971,3,"DNA topoisomerase binding","DNA topoisomerase binding",0.977592592592593,1,0
+"GO:0000254",5,"GO:0016705",2.48545224733971,2,"C-4 methylsterol oxidase activity","oxidoreductase activity, acting on paired donors, with incorporation or reduction of molecular oxygen",0.882074074074074,0.596,0.643
+"GO:0010436",14,"GO:0010436",2.38195190328791,1,"carotenoid dioxygenase activity","carotenoid dioxygenase activity",0.884444444444444,0.638,0
+"GO:0003834",14,"GO:0010436",2.38195190328791,1,"beta-carotene 15,15'-dioxygenase activity","carotenoid dioxygenase activity",0.888,0.638,0.724
+"GO:0008484",11,"GO:0000014",2.34775365899668,10,"sulfuric ester hydrolase activity","single-stranded DNA endodeoxyribonuclease activity",0.906962962962963,0.79,0.42
+"GO:0050660",8,"GO:0005506",2.29929628285498,71,"flavin adenine dinucleotide binding","iron ion binding",0.926259259259259,0.784,0.432
+"GO:0046975",2,"GO:0008194",2.28988263488818,6,"histone H3K36 methyltransferase activity","UDP-glycosyltransferase activity",0.902555555555556,0.790666666666667,0.306
+"GO:0043047",9,"GO:0003691",2.24718356881173,5,"single-stranded telomeric DNA binding","double-stranded telomeric DNA binding",0.911148148148148,0.595,0.81
+"GO:0004842",2,"GO:0008194",2.20134935455473,178,"ubiquitin-protein transferase activity","UDP-glycosyltransferase activity",0.87162962962963,0.748,0.434
+"GO:0008233",3,"GO:0004177",2.15676722190199,468,"peptidase activity","aminopeptidase activity",0.847851851851852,0.686,0.628
+"GO:0008476",15,"GO:0008476",2.01863449092146,1,"protein-tyrosine sulfotransferase activity","protein-tyrosine sulfotransferase activity",0.908888888888889,1,0

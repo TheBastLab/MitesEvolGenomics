@@ -1,0 +1,13 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0006508",1,"GO:0006508",9.82390874094432,956,"proteolysis","proteolysis",0.827083333333333,0.722333333333333,0
+"GO:0006468",1,"GO:0006508",5.05060999335509,323,"protein phosphorylation","proteolysis",0.805583333333333,0.731666666666667,0.498
+"GO:0055085",2,"GO:0055085",4.60205999132796,707,"transmembrane transport","transmembrane transport",0.9845,1,0
+"GO:0008203",3,"GO:0008203",4.22914798835786,6,"cholesterol metabolic process","cholesterol metabolic process",0.776666666666667,0.579,0
+"GO:0046166",4,"GO:0046166",3.04095860767891,1,"glyceraldehyde-3-phosphate biosynthetic process","glyceraldehyde-3-phosphate biosynthetic process",0.88325,1,0
+"GO:0035194",5,"GO:0035194",2.84771165561694,195,"regulatory ncRNA-mediated post-transcriptional gene silencing","regulatory ncRNA-mediated post-transcriptional gene silencing",0.86025,1,0
+"GO:0006415",1,"GO:0006508",2.68193666503724,9,"translational termination","proteolysis",0.837333333333333,0.786,0.335
+"GO:0006260",6,"GO:0006260",2.64397414280688,121,"DNA replication","DNA replication",0.832083333333333,1,0
+"GO:0019563",7,"GO:0019563",2.5654310959658,1,"glycerol catabolic process","glycerol catabolic process",0.858083333333333,0.842,0
+"GO:0008202",3,"GO:0008203",2.33348201944512,61,"steroid metabolic process","cholesterol metabolic process",0.813916666666667,0.579,0.842
+"GO:0051308",8,"GO:0051308",2.24872089601666,1,"male meiosis chromosome separation","male meiosis chromosome separation",0.97675,1,0
+"GO:0097176",7,"GO:0019563",2.0204516252959,3,"epoxide metabolic process","glycerol catabolic process",0.850833333333333,0.842,0.316

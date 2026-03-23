@@ -1,0 +1,13 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0005178",1,"GO:0005178",3.30980391997149,18,"integrin binding","integrin binding",0.98525,1,0
+"GO:0005524",2,"GO:0005524",3.16749108729376,639,"ATP binding","ATP binding",0.970583333333333,1,0
+"GO:0004497",3,"GO:0004497",2.89279003035213,111,"monooxygenase activity","monooxygenase activity",0.954,1,0
+"GO:0015276",4,"GO:0015276",2.77989191195995,144,"ligand-gated monoatomic ion channel activity","ligand-gated monoatomic ion channel activity",0.904083333333333,0.616333333333333,0
+"GO:0140359",4,"GO:0015276",2.76955107862173,51,"ABC-type transporter activity","ligand-gated monoatomic ion channel activity",0.925083333333333,0.700333333333333,0.478
+"GO:0003724",5,"GO:0003724",2.74472749489669,55,"RNA helicase activity","RNA helicase activity",0.9555,1,0
+"GO:0003872",6,"GO:0003872",2.63638802010786,1,"6-phosphofructokinase activity","6-phosphofructokinase activity",0.964,1,0
+"GO:0004181",7,"GO:0004181",2.39147396642281,22,"metallocarboxypeptidase activity","metallocarboxypeptidase activity",0.941666666666667,0.8335,0
+"GO:0008528",8,"GO:0008528",2.28483264215154,47,"G protein-coupled peptide receptor activity","G protein-coupled peptide receptor activity",1,1,0
+"GO:0005254",4,"GO:0015276",2.07468790850035,27,"chloride channel activity","ligand-gated monoatomic ion channel activity",0.908833333333333,0.635333333333333,0.673
+"GO:0003684",9,"GO:0003684",2.05060999335509,21,"damaged DNA binding","damaged DNA binding",0.972333333333333,1,0
+"GO:0016887",7,"GO:0004181",2.02965312376991,195,"ATP hydrolysis activity","metallocarboxypeptidase activity",0.937166666666667,0.8335,0.333

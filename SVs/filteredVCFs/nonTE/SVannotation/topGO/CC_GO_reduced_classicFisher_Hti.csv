@@ -1,0 +1,4 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0016020",1,"GO:0016020",5.65757731917779,2903,"membrane","membrane",0.998666666666667,1,0
+"GO:0097729",2,"GO:0097729",2.32790214206428,35,"9+2 motile cilium","9+2 motile cilium",0.998666666666667,1,0
+"GO:0002189",3,"GO:0002189",2.04095860767891,2,"ribose phosphate diphosphokinase complex","ribose phosphate diphosphokinase complex",1,1,0

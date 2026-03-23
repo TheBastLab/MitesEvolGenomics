@@ -1,0 +1,15 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0003676",1,"GO:0003676",6.25963731050576,2260,"nucleic acid binding","nucleic acid binding",0.928428571428571,0.703333333333333,0
+"GO:0016614",2,"GO:0016614",3.95860731484178,128,"oxidoreductase activity, acting on CH-OH group of donors","oxidoreductase activity, acting on CH-OH group of donors",0.916071428571429,1,0
+"GO:0004190",3,"GO:0004190",3.92081875395238,17,"aspartic-type endopeptidase activity","aspartic-type endopeptidase activity",0.866285714285714,0.666,0
+"GO:0000166",1,"GO:0003676",3.55284196865778,963,"nucleotide binding","nucleic acid binding",0.904785714285714,0.588666666666667,0.529
+"GO:0003887",4,"GO:0003887",3.45593195564972,9,"DNA-directed DNA polymerase activity","DNA-directed DNA polymerase activity",0.891928571428571,0.728,0
+"GO:0004252",3,"GO:0004190",3.45593195564972,214,"serine-type endopeptidase activity","aspartic-type endopeptidase activity",0.839428571428571,0.666,0.668
+"GO:0004672",4,"GO:0003887",3.36653154442041,219,"protein kinase activity","DNA-directed DNA polymerase activity",0.823642857142857,0.728,0.544
+"GO:0008417",5,"GO:0008417",3.1249387366083,7,"fucosyltransferase activity","fucosyltransferase activity",0.904285714285714,1,0
+"GO:0010997",6,"GO:0010997",2.79048498545737,5,"anaphase-promoting complex binding","anaphase-promoting complex binding",0.979071428571429,1,0
+"GO:0140359",7,"GO:0140359",2.60205999132796,51,"ABC-type transporter activity","ABC-type transporter activity",0.975142857142857,0.826,0
+"GO:0050660",1,"GO:0003676",2.52724355068279,71,"flavin adenine dinucleotide binding","nucleic acid binding",0.918,0.644666666666667,0.361
+"GO:0003990",8,"GO:0003990",2.44977164694491,1,"acetylcholinesterase activity","acetylcholinesterase activity",0.918428571428571,1,0
+"GO:0003824",9,"GO:0003824",2.40120949323688,3759,"catalytic activity","catalytic activity",0.8815,1,0
+"GO:0005251",7,"GO:0140359",2.04624030826677,4,"delayed rectifier potassium channel activity","ABC-type transporter activity",0.975142857142857,0.826,0.348

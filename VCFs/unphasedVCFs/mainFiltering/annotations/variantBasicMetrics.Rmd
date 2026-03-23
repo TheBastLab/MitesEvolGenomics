@@ -1,0 +1,179 @@
+---
+title: "Variant basic metrics density plots"
+output:
+  html_document:
+    df_print: paged
+---
+
+## Hard-filtering short variants:
+### Visualizing the distribution of annotation values:
+This a very important step that allows you to visualise annotation values of the parameters in the INFO field of your VCF file. The arguments to use with VariantFiltration according to GATK best practices are QD, FS, SOR, MQ, MQRankSum and ReadPosRankSum. You can then derive filtering thresholds based on what the distributions look like for each of the parameters.
+
+
+
+You can then decide on the filtering thresholds. Here are GATK recommendations (to be filtered) in this regard:
+
+* **For SNPs:**
+```
+QD < 2.0
+MQ < 40.0
+FS > 60.0
+SOR > 3.0
+MQRankSum < -12.5
+ReadPosRankSum < -8.0
+```
+
+* **For indels:**
+```
+QD < 2.0
+ReadPosRankSum < -20.0
+InbreedingCoeff < -0.8
+FS > 200.0
+SOR > 10.0
+```
+
+To generate the file containing annotation values for the density plots, use this command line. For each parameter, you will have to generate a separate file.
+
+```
+$ bcftools query -f '%INFO/DP\t%INFO/QD\t%INFO/FS\t%INFO/SOR\t%INFO/MQ\t%INFO/MQRankSum\t%INFO/ReadPosRankSum\n' INPUT.vcf.gz > info_density.txt
+```
+After extracting these files as shown above, density plots can then be generated using the ggplot2 library in R. On the x-axis are the annotation values, and on the y-axis are the density values. The area under the density plot gives you the probability of observing the annotation values. So, the entire area under all of the plots will be equal to 1. However, if you would like to know the probability of observing an annotation value between 0 and 1, you will have to take the area under the curve between 0 and 1.
+
+Here is how you can generate density plots in R and how the results should look like:
+
+* __Load libraries, set working directory and load the data:__
+
+```{R includde = FALSE}
+# loading libraries
+
+library(ggplot2)
+library(dplyr)
+```
+
+
+
+```{r}
+# Setting the working directory
+
+# Loading the data and add headers name
+
+info <- read.csv("~/sciebo/Postdoc/sexAsex/popGen/vcfs/mainFiltering/annotations/Hti.varSNPs.biall.info_QCs.txt", sep = "\t",header = FALSE)
+
+
+colnames(info) <- c("DP","QualDepth","FS","SOR","MQ","MQRankSum","ReadPosRankSum")
+
+```
+* **Generate the density plots:**
+
+
+#### QualByDepth (QD):
+
+This is the variant confidence (from the QUAL field) divided by the unfiltered depth of non-hom-ref samples. This annotation is intended to normalize the variant quality in order to avoid inflation caused when there is deep coverage. For filtering purposes it is better to use QD than either QUAL or DP directly.
+The generic filtering recommendation of GATK best practices for QD is to filter out variants with QD below 2. Why is that?
+
+```{R warning = FALSE}
+# I don't know why, but this variable is an int and doesn't work until you transform it to a double:
+info$QualDepth <- as.numeric(as.character(info$QualDepth))
+
+pQD <- ggplot(info, aes(x=QualDepth))+
+  geom_density()
+
+pQD
+```
+
+By looking at the QD values distribution for unfiltered variants that can be anywhere from 0-40. You will see that there are two peaks where the majority of variants are. These two peaks correspond to variants that are mostly observed in heterozygous (het) versus mostly homozygous-variant (hom-var) states, respectively, in the called samples. This is because hom-var samples contribute twice as many reads supporting the variant than do het variants.
+
+#### FisherStrand (FS):
+
+This is the Phred-scaled probability that there is strand bias at the site. Strand Bias tells us whether the alternate allele was seen more or less often on the forward or reverse strand than the reference allele. When there little to no strand bias at the site, the FS value will be close to 0.
+
+```{R warning = FALSE}
+info$FS <- as.numeric(as.character(info$FS))
+
+pFS <- ggplot(info, aes(x=FS))+
+  geom_density()#+
+  # xlim(0, 30)
+
+pFS
+
+# better log10 scalled
+
+pFSlog10 <- ggplot(info, aes(x=FS))+
+  geom_density()+
+  scale_x_continuous(trans = 'log10')
+
+pFSlog10
+
+```
+
+#### StrandOddsRatio (SOR):
+
+According to GATK documentation, this is another way to estimate strand bias using a test similar to the symmetric odds ratio test. SOR was created because FS tends to penalize variants that occur at the ends of exons. Reads at the ends of exons tend to only be covered by reads in one direction and FS gives those variants a bad score. SOR will take into account the ratios of reads that cover both alleles.
+
+```{R warning = FALSE}
+info$SOR <- as.numeric(as.character(info$SOR))
+
+pSOR <- ggplot(info, aes(x=SOR))+
+  geom_density()#+
+  # xlim(0, 10)
+pSOR
+```
+
+
+Looking at the SOR values for the unfiltered variants. The SOR values range from 0 to greater than 9. Notice most variants have an SOR value less than 3, and almost all variants have an SOR value less than 9. However, there is a long tail of variants with a value greater than 9.
+
+#### RMSMappingQuality (MQ):
+
+This is the root mean square mapping quality over all the reads at the site. Instead of the average mapping quality of the site, this annotation gives the square root of the average of the squares of the mapping qualities at the site. It is meant to include the standard deviation of the mapping qualities. Including the standard deviation allows us to include the variation in the dataset. A low standard deviation means the values are all close to the mean, whereas a high standard deviation means the values are all far from the mean.When the mapping qualities are good at a site, the MQ will be around 60.
+
+```{R warning = FALSE}
+# I don't know why, but this variable is an int and doesn't work until you transform it to a double:
+typeof(info$MQ)
+info$MQ <- as.numeric(as.character(info$MQ))
+
+pMQ <- ggplot(info, aes(x=MQ))+
+  geom_density()#+
+  # xlim(20, 70)
+
+pMQ
+```
+
+By checking out the graph of MQ values for the unfiltered variants you will notice the very large peak around MQ = 60. GATK's recommendation is to fail any variant with an MQ value less than 40.0. You may argue that hard filtering any variant with an MQ value less than 50 is fine as well. This brings up an excellent point that GATK's hard filtering recommendations are meant to be very lenient. They prefer to keep all potentially decent variants rather than get rid of a few bad variants. But I guess having a look on the plot will help you better decide on the thresholds you can use.
+
+#### MappingQualityRankSumTest (MQRankSum):
+
+This is the u-based z-approximation from the Rank Sum Test for mapping qualities. It compares the mapping qualities of the reads supporting the reference allele and the alternate allele. A positive value means the mapping qualities of the reads supporting the alternate allele are higher than those supporting the reference allele; a negative value indicates the mapping qualities of the reference allele are higher than those supporting the alternate allele. A value close to zero is best and indicates little difference between the mapping qualities.
+
+```{R warning = FALSE}
+# I don't know why, but this variable is an int and doesn't work until you transform it to a double:
+typeof(info$MQRankSum)
+info$MQRankSum <- as.numeric(as.character(info$MQRankSum))
+
+pMQRunSum <- ggplot(info, aes(x=MQRankSum))+
+  geom_density()#+
+  # xlim(-10, 5)
+
+pMQRunSum
+```
+
+GATK recommend to filter out everything bellow -12.5. Remember, GATK's hard filtering recommendations are meant to be very lenient. If you do plot your annotation values for your samples and find none of your variants have MQRankSum less than -12.5, you may want to refine your hard filters. Our recommendations are indeed recommendations that you the scientist will want to refine yourself.
+
+#### ReadPosRankSumTest (ReadPosRankSum):
+
+This annotation is the u-based z-approximation from the Rank Sum Test for site position within reads that compares whether the positions of the reference and alternate alleles are different within the reads. Seeing an allele only near the ends of reads is indicative of error, because that is where sequencers tend to make the most errors. A negative value indicates that the alternate allele is found at the ends of reads more often than the reference allele; a positive value indicates that the reference allele is found at the ends of reads more often than the alternate allele. A value close to zero is best because it indicates there is little difference between the positions of the reference and alternate alleles in the reads.
+
+```{R warning = FALSE}
+# I don't know why, but this variable is an int and doesn't work until you transform it to a double:
+typeof(info$ReadPosRankSum) #is a factor, not a numeric vector. Transform it first
+info$ReadPosRankSum <- as.numeric(as.character(info$ReadPosRankSum))
+
+pReadPosRankSum <- ggplot(info, aes(x=ReadPosRankSum))+
+  geom_density()#+
+  # xlim(-5, 5)
+
+pReadPosRankSum
+
+```
+
+GATK's hard filtering threshold removes any variant with a ReadPosRankSum value less than -8.0. If you plot your variant annotations and find there are no variants that have a value less than or greater than one of our recommended cutoffs, you will have to refine them yourself based on your annotation plots.
+

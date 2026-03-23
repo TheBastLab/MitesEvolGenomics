@@ -1,0 +1,30 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0006508",1,"GO:0006508",6.95860731484177,956,"proteolysis","proteolysis",0.842379310344828,0.793,0
+"GO:0016310",2,"GO:0016310",4.38721614328026,364,"phosphorylation","phosphorylation",0.837724137931035,0.700666666666667,0
+"GO:0043171",3,"GO:0043171",4.29242982390206,18,"peptide catabolic process","peptide catabolic process",0.854896551724138,1,0
+"GO:0006657",4,"GO:0006657",3.3767507096021,3,"CDP-choline pathway","CDP-choline pathway",0.794793103448276,0.596,0
+"GO:0000722",5,"GO:0000722",3.2518119729938,2,"telomere maintenance via recombination","telomere maintenance via recombination",0.784551724137931,0.56575,0
+"GO:0032508",5,"GO:0000722",3.24412514432751,22,"DNA duplex unwinding","telomere maintenance via recombination",0.926068965517241,0.591,0.514
+"GO:0044774",6,"GO:0044774",2.92081875395238,29,"mitotic DNA integrity checkpoint signaling","mitotic DNA integrity checkpoint signaling",0.937,1,0
+"GO:0090305",7,"GO:0090305",2.91721462968355,19,"nucleic acid phosphodiester bond hydrolysis","nucleic acid phosphodiester bond hydrolysis",0.863689655172414,1,0
+"GO:0008344",8,"GO:0008344",2.87942606879415,91,"adult locomotory behavior","adult locomotory behavior",0.979241379310345,0.699,0
+"GO:0048512",8,"GO:0008344",2.87942606879415,121,"circadian behavior","adult locomotory behavior",0.979241379310345,0.699,0.602
+"GO:0070192",5,"GO:0000722",2.73282827159699,52,"chromosome organization involved in meiotic cell cycle","telomere maintenance via recombination",0.907551724137931,0.58075,0.535
+"GO:0016126",4,"GO:0006657",2.71444269099223,21,"sterol biosynthetic process","CDP-choline pathway",0.805448275862069,0.5945,0.515
+"GO:0016121",4,"GO:0006657",2.6615435063954,1,"carotene catabolic process","CDP-choline pathway",0.829758620689655,0.618666666666667,0.39
+"GO:0042574",4,"GO:0006657",2.6615435063954,8,"retinal metabolic process","CDP-choline pathway",0.842206896551724,0.583166666666667,0.436
+"GO:0019216",4,"GO:0006657",2.58838029403677,52,"regulation of lipid metabolic process","CDP-choline pathway",0.842241379310345,0.61,0.447
+"GO:0006303",9,"GO:0006303",2.58670023591875,9,"double-strand break repair via nonhomologous end joining","double-strand break repair via nonhomologous end joining",0.790896551724138,0.4958,0
+"GO:0000729",9,"GO:0006303",2.53165266958784,6,"DNA double-strand break processing","double-strand break repair via nonhomologous end joining",0.799448275862069,0.5142,0.673
+"GO:0006646",4,"GO:0006657",2.48678239993206,7,"phosphatidylethanolamine biosynthetic process","CDP-choline pathway",0.800310344827586,0.574666666666667,0.636
+"GO:0007004",5,"GO:0000722",2.45345733652187,2,"telomere maintenance via telomerase","telomere maintenance via recombination",0.780344827586207,0.572,0.688
+"GO:0006869",10,"GO:0006869",2.44129142946683,97,"lipid transport","lipid transport",0.984344827586207,0.773,0
+"GO:0046081",2,"GO:0016310",2.37059040089728,1,"dUTP catabolic process","phosphorylation",0.781379310344828,0.580666666666667,0.449
+"GO:0006226",2,"GO:0016310",2.37059040089728,1,"dUMP biosynthetic process","phosphorylation",0.798793103448276,0.580666666666667,0.449
+"GO:0006478",11,"GO:0006478",2.36251027048749,1,"peptidyl-tyrosine sulfation","peptidyl-tyrosine sulfation",0.891586206896552,1,0
+"GO:0055085",10,"GO:0006869",2.35457773065091,707,"transmembrane transport","lipid transport",0.966793103448276,0.773,0.454
+"GO:0006260",9,"GO:0006303",2.34969247686806,121,"DNA replication","double-strand break repair via nonhomologous end joining",0.773793103448276,0.4914,0.591
+"GO:0043137",9,"GO:0006303",2.21538270736712,2,"DNA replication, removal of RNA primer","double-strand break repair via nonhomologous end joining",0.79948275862069,0.597,0.431
+"GO:0006302",9,"GO:0006303",2.17134010346468,102,"double-strand break repair","double-strand break repair via nonhomologous end joining",0.759137931034483,0.4352,0.826
+"GO:0042157",1,"GO:0006508",2.10237290870956,76,"lipoprotein metabolic process","proteolysis",0.868448275862069,0.793,0.414
+"GO:0006038",12,"GO:0006038",2.01772876696043,2,"cell wall chitin biosynthetic process","cell wall chitin biosynthetic process",0.856655172413793,1,0

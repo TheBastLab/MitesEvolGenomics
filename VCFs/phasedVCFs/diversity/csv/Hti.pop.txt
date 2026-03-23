@@ -1,0 +1,8 @@
+Hti.479-160m_hap1	Hti1
+Hti.479-160m_hap2	Hti2
+Hti.479-50_sa_hap1	Hti1
+Hti.479-50_sa_hap2	Hti2
+Hti.479-52_hap1	Hti1
+Hti.479-52_hap2	Hti2
+Hti.479-58_hap1	Hti1
+Hti.479-58_hap2	Hti2

@@ -1,0 +1,18 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0003676",1,"GO:0003676",7.63827216398241,2260,"nucleic acid binding","nucleic acid binding",0.960058823529412,0.8095,0
+"GO:0004190",2,"GO:0004190",4.16749108729376,17,"aspartic-type endopeptidase activity","aspartic-type endopeptidase activity",0.921588235294118,1,0
+"GO:0038023",3,"GO:0038023",4.08092190762393,405,"signaling receptor activity","signaling receptor activity",0.929411764705882,0.6,0
+"GO:0003990",4,"GO:0003990",3.88605664769316,1,"acetylcholinesterase activity","acetylcholinesterase activity",0.949882352941177,1,0
+"GO:0003887",5,"GO:0003887",3.58502665202918,9,"DNA-directed DNA polymerase activity","DNA-directed DNA polymerase activity",0.881588235294118,0.657,0
+"GO:0044389",6,"GO:0044389",3.431798275933,72,"ubiquitin-like protein ligase binding","ubiquitin-like protein ligase binding",0.979823529411765,1,0
+"GO:0004694",7,"GO:0004694",2.97061622231479,2,"eukaryotic translation initiation factor 2alpha kinase activity","eukaryotic translation initiation factor 2alpha kinase activity",0.908,0.7175,0
+"GO:0005230",8,"GO:0005230",2.90657831483776,48,"extracellular ligand-gated monoatomic ion channel activity","extracellular ligand-gated monoatomic ion channel activity",1,1,0
+"GO:0004672",7,"GO:0004694",2.67985371388895,219,"protein kinase activity","eukaryotic translation initiation factor 2alpha kinase activity",0.879588235294118,0.7175,0.565
+"GO:0020037",1,"GO:0003676",2.61798295742513,137,"heme binding","nucleic acid binding",0.965470588235294,0.8095,0.381
+"GO:0003678",5,"GO:0003887",2.46470587995723,30,"DNA helicase activity","DNA-directed DNA polymerase activity",0.917352941176471,0.657,0.686
+"GO:0003777",9,"GO:0003777",2.45222529461218,39,"microtubule motor activity","microtubule motor activity",1,1,0
+"GO:0004890",3,"GO:0038023",2.23807216157947,4,"GABA-A receptor activity","signaling receptor activity",0.941823529411765,0.670333333333333,0.532
+"GO:0005506",10,"GO:0005506",2.20830935097988,157,"iron ion binding","iron ion binding",0.978647058823529,1,0
+"GO:0008066",3,"GO:0038023",2.16621562534352,25,"glutamate receptor activity","signaling receptor activity",0.933823529411765,0.625,0.668
+"GO:0003939",11,"GO:0003939",2.09691001300806,3,"L-iditol 2-dehydrogenase activity","L-iditol 2-dehydrogenase activity",0.943411764705882,0.835,0
+"GO:0016712",11,"GO:0003939",2.00348832784582,4,"oxidoreductase activity, acting on paired donors, with incorporation or reduction of molecular oxygen, reduced flavin or flavoprotein as one donor, and incorporation of one atom of oxygen","L-iditol 2-dehydrogenase activity",0.943882352941177,0.835,0.33

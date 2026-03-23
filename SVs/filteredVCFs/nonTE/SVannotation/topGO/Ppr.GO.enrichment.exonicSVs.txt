@@ -1,0 +1,188 @@
+GO.ID	Term	Annotated	Significant	Expected	classicFisher	FDR	ontology	Species
+GO:0003676	nucleic acid binding	2656	470	497.51	2.3e-22	4.6e-20	MF	Ppr
+GO:0140359	ABC-type transporter activity	191	65	35.78	3.1e-07	3.1e-05	MF	Ppr
+GO:0020037	heme binding	269	83	50.39	9.4e-07	6.26666666666667e-05	MF	Ppr
+GO:0004694	eukaryotic translation initiation factor...	73	31	13.67	2.4e-06	1e-04	MF	Ppr
+GO:0004672	protein kinase activity	689	171	129.06	2.5e-06	1e-04	MF	Ppr
+GO:0016705	oxidoreductase activity, acting on paire...	361	97	67.62	8.3e-06	0.000276666666666667	MF	Ppr
+GO:0005506	iron ion binding	321	88	60.13	1.3e-05	0.000371428571428571	MF	Ppr
+GO:0008395	steroid hydroxylase activity	68	27	12.74	5.3e-05	0.00124	MF	Ppr
+GO:0016491	oxidoreductase activity	1133	286	212.23	6e-05	0.00124	MF	Ppr
+GO:0008146	sulfotransferase activity	67	28	12.55	6.2e-05	0.00124	MF	Ppr
+GO:0005524	ATP binding	1412	318	264.49	9.2e-05	0.00167272727272727	MF	Ppr
+GO:0016887	ATP hydrolysis activity	392	102	73.43	0.00019	0.00316666666666667	MF	Ppr
+GO:0016671	oxidoreductase activity, acting on a sul...	42	18	7.87	0.00027	0.00415384615384615	MF	Ppr
+GO:0004586	ornithine decarboxylase activity	12	8	2.25	0.00036	0.00514285714285714	MF	Ppr
+GO:0044547	DNA topoisomerase binding	47	19	8.8	0.00045	0.00575	MF	Ppr
+GO:0004867	serine-type endopeptidase inhibitor acti...	69	25	12.92	0.00046	0.00575	MF	Ppr
+GO:0000014	single-stranded DNA endodeoxyribonucleas...	51	20	9.55	0.00051	0.006	MF	Ppr
+GO:0046975	histone H3K36 methyltransferase activity	48	19	8.99	0.00061	0.00677777777777778	MF	Ppr
+GO:0070012	oligopeptidase activity	8	6	1.5	0.00085	0.00894736842105263	MF	Ppr
+GO:0000166	nucleotide binding	2015	446	377.44	0.00118	0.0118	MF	Ppr
+GO:0016614	oxidoreductase activity, acting on CH-OH...	185	42	34.65	0.00137	0.013047619047619	MF	Ppr
+GO:0042800	histone H3K4 methyltransferase activity	51	19	9.55	0.00146	0.0132727272727273	MF	Ppr
+GO:0004714	transmembrane receptor protein tyrosine ...	62	23	11.61	0.00207	0.0174166666666667	MF	Ppr
+GO:0004497	monooxygenase activity	283	85	53.01	0.00209	0.0174166666666667	MF	Ppr
+GO:0003990	acetylcholinesterase activity	57	20	10.68	0.00255	0.0204	MF	Ppr
+GO:0004558	alpha-1,4-glucosidase activity	25	11	4.68	0.00325	0.025	MF	Ppr
+GO:0004709	MAP kinase kinase kinase activity	7	5	1.31	0.00344	0.0254814814814815	MF	Ppr
+GO:0035252	UDP-xylosyltransferase activity	22	10	4.12	0.00373	0.0260689655172414	MF	Ppr
+GO:0004565	beta-galactosidase activity	36	14	6.74	0.00378	0.0260689655172414	MF	Ppr
+GO:0004348	glucosylceramidase activity	40	15	7.49	0.00416	0.0277333333333333	MF	Ppr
+GO:0015926	glucosidase activity	45	20	8.43	0.00444	0.0286451612903226	MF	Ppr
+GO:0016747	acyltransferase activity, transferring g...	367	75	68.75	0.00478	0.0291515151515152	MF	Ppr
+GO:0008061	chitin binding	215	56	40.27	0.00481	0.0291515151515152	MF	Ppr
+GO:0016405	CoA-ligase activity	90	25	16.86	0.00617	0.0362941176470588	MF	Ppr
+GO:0003824	catalytic activity	7051	1497	1320.77	0.00804	0.0459428571428571	MF	Ppr
+GO:0005319	lipid transporter activity	104	31	19.48	0.01033	0.0573888888888889	MF	Ppr
+GO:0004252	serine-type endopeptidase activity	205	52	38.4	0.01098	0.0593513513513513	MF	Ppr
+GO:0004557	alpha-galactosidase activity	15	7	2.81	0.01262	0.066421052631579	MF	Ppr
+GO:0004170	dUTP diphosphatase activity	6	4	1.12	0.01335	0.06675	MF	Ppr
+GO:0098882	structural constituent of presynaptic ac...	6	4	1.12	0.01335	0.06675	MF	Ppr
+GO:0004601	peroxidase activity	50	16	9.37	0.01389	0.0677560975609756	MF	Ppr
+GO:0008194	UDP-glycosyltransferase activity	137	37	25.66	0.01491	0.071	MF	Ppr
+GO:0004560	alpha-L-fucosidase activity	19	8	3.56	0.01586	0.0728181818181818	MF	Ppr
+GO:0004032	alditol:NADP+ 1-oxidoreductase activity	30	11	5.62	0.01602	0.0728181818181818	MF	Ppr
+GO:0016712	oxidoreductase activity, acting on paire...	50	16	9.37	0.01717	0.0763111111111111	MF	Ppr
+GO:0005178	integrin binding	23	9	4.31	0.01817	0.0783829787234042	MF	Ppr
+GO:0042626	ATPase-coupled transmembrane transporter...	326	98	61.07	0.01842	0.0783829787234042	MF	Ppr
+GO:0004103	choline kinase activity	39	13	7.31	0.02146	0.08836	MF	Ppr
+GO:0140293	ADP-ribosylglutamate hydrolase activity	13	6	2.44	0.02209	0.08836	MF	Ppr
+GO:0030020	extracellular matrix structural constitu...	13	6	2.44	0.02209	0.08836	MF	Ppr
+GO:0046921	alpha-(1->6)-fucosyltransferase activity	10	5	1.87	0.02508	0.0983529411764706	MF	Ppr
+GO:0019531	oxalate transmembrane transporter activi...	21	8	3.93	0.03008	0.109625	MF	Ppr
+GO:0015106	bicarbonate transmembrane transporter ac...	27	9	5.06	0.03009	0.109625	MF	Ppr
+GO:0015108	chloride transmembrane transporter activ...	108	19	20.23	0.03042	0.109625	MF	Ppr
+GO:0004435	phosphatidylinositol phospholipase C act...	14	6	2.62	0.03265	0.109625	MF	Ppr
+GO:0003677	DNA binding	1250	179	234.15	0.03268	0.109625	MF	Ppr
+GO:0004363	glutathione synthase activity	2	2	0.37	0.03508	0.109625	MF	Ppr
+GO:0008115	sarcosine oxidase activity	2	2	0.37	0.03508	0.109625	MF	Ppr
+GO:0005009	insulin receptor activity	2	2	0.37	0.03508	0.109625	MF	Ppr
+GO:0043560	insulin receptor substrate binding	2	2	0.37	0.03508	0.109625	MF	Ppr
+GO:0043295	glutathione binding	2	2	0.37	0.03508	0.109625	MF	Ppr
+GO:0002058	uracil binding	2	2	0.37	0.03508	0.109625	MF	Ppr
+GO:0030729	acetoacetate-CoA ligase activity	2	2	0.37	0.03508	0.109625	MF	Ppr
+GO:0017113	dihydropyrimidine dehydrogenase (NADP+) ...	2	2	0.37	0.03508	0.109625	MF	Ppr
+GO:0004650	polygalacturonase activity	11	5	2.06	0.03902	0.118242424242424	MF	Ppr
+GO:0017154	semaphorin receptor activity	11	5	2.06	0.03902	0.118242424242424	MF	Ppr
+GO:0070006	metalloaminopeptidase activity	22	8	4.12	0.03972	0.118567164179104	MF	Ppr
+GO:0005230	extracellular ligand-gated monoatomic io...	111	22	20.79	0.04148	0.122	MF	Ppr
+GO:0016504	peptidase activator activity	38	11	7.12	0.04525	0.124641025641026	MF	Ppr
+GO:0004100	chitin synthase activity	8	4	1.5	0.04533	0.124641025641026	MF	Ppr
+GO:0004930	G protein-coupled receptor activity	332	67	62.19	0.04533	0.124641025641026	MF	Ppr
+GO:0005044	scavenger receptor activity	15	6	2.81	0.046	0.124641025641026	MF	Ppr
+GO:0008241	peptidyl-dipeptidase activity	15	6	2.81	0.046	0.124641025641026	MF	Ppr
+GO:0016772	transferase activity, transferring phosp...	992	222	185.82	0.04681	0.124641025641026	MF	Ppr
+GO:0050660	flavin adenine dinucleotide binding	132	32	24.73	0.04712	0.124641025641026	MF	Ppr
+GO:0001733	galactosylceramide sulfotransferase acti...	5	3	0.94	0.04861	0.124641025641026	MF	Ppr
+GO:0070573	metallodipeptidase activity	5	3	0.94	0.04861	0.124641025641026	MF	Ppr
+GO:0004573	Glc3Man9GlcNAc2 oligosaccharide glucosid...	5	3	0.94	0.04861	0.124641025641026	MF	Ppr
+GO:0015074	DNA integration	138	67	21.5	6.5e-20	1.3e-17	BP	Ppr
+GO:0006468	protein phosphorylation	733	173	114.18	5.6e-13	5.6e-11	BP	Ppr
+GO:0055085	transmembrane transport	1101	223	171.51	7.2e-12	4.8e-10	BP	Ppr
+GO:0006313	DNA transposition	45	27	7.01	1.3e-11	6.5e-10	BP	Ppr
+GO:0051923	sulfation	46	25	7.17	1.4e-09	5.6e-08	BP	Ppr
+GO:0005975	carbohydrate metabolic process	605	151	94.24	2.7e-07	9e-06	BP	Ppr
+GO:0006869	lipid transport	144	41	22.43	5.8e-06	0.000165714285714286	BP	Ppr
+GO:0006508	proteolysis	1229	221	191.45	7.1e-06	0.0001775	BP	Ppr
+GO:0044774	mitotic DNA integrity checkpoint signali...	83	23	12.93	3.6e-05	8e-04	BP	Ppr
+GO:0000729	DNA double-strand break processing	49	19	7.63	7e-05	0.0014	BP	Ppr
+GO:0033387	putrescine biosynthetic process from orn...	12	8	1.87	9.4e-05	0.00170909090909091	BP	Ppr
+GO:0007017	microtubule-based process	298	49	46.42	0.00022	0.00328571428571429	BP	Ppr
+GO:0006581	acetylcholine catabolic process	57	20	8.88	0.00023	0.00328571428571429	BP	Ppr
+GO:0019695	choline metabolic process	57	20	8.88	0.00023	0.00328571428571429	BP	Ppr
+GO:0007160	cell-matrix adhesion	32	14	4.98	0.00027	0.0036	BP	Ppr
+GO:0043171	peptide catabolic process	24	11	3.74	0.00044	0.0055	BP	Ppr
+GO:0033674	positive regulation of kinase activity	73	23	11.37	0.00049	0.00576470588235294	BP	Ppr
+GO:0006680	glucosylceramide catabolic process	40	15	6.23	0.00061	0.00677777777777778	BP	Ppr
+GO:0033627	cell adhesion mediated by integrin	18	9	2.8	0.00067	0.0068	BP	Ppr
+GO:0031297	replication fork processing	57	19	8.88	0.00068	0.0068	BP	Ppr
+GO:0006260	DNA replication	161	37	25.08	0.00079	0.00747826086956522	BP	Ppr
+GO:0007189	adenylate cyclase-activating G protein-c...	57	16	8.88	0.00083	0.00747826086956522	BP	Ppr
+GO:0006303	double-strand break repair via nonhomolo...	58	19	9.03	0.00086	0.00747826086956522	BP	Ppr
+GO:0007275	multicellular organism development	394	59	61.37	0.00138	0.0100689655172414	BP	Ppr
+GO:0055117	regulation of cardiac muscle contraction	7	5	1.09	0.00145	0.0100689655172414	BP	Ppr
+GO:0036371	protein localization to T-tubule	7	5	1.09	0.00145	0.0100689655172414	BP	Ppr
+GO:0045490	pectin catabolic process	7	5	1.09	0.00145	0.0100689655172414	BP	Ppr
+GO:0043123	positive regulation of canonical NF-kapp...	7	5	1.09	0.00145	0.0100689655172414	BP	Ppr
+GO:0006955	immune response	89	22	13.86	0.00146	0.0100689655172414	BP	Ppr
+GO:0007229	integrin-mediated signaling pathway	22	10	3.43	0.00173	0.0115333333333333	BP	Ppr
+GO:0016266	O-glycan processing	32	12	4.98	0.00196	0.0126451612903226	BP	Ppr
+GO:1904071	presynaptic active zone assembly	5	4	0.78	0.00257	0.0158181818181818	BP	Ppr
+GO:0016139	glycoside catabolic process	26	10	4.05	0.00261	0.0158181818181818	BP	Ppr
+GO:0051603	proteolysis involved in protein cataboli...	496	71	77.26	0.00275	0.0160555555555556	BP	Ppr
+GO:0006805	xenobiotic metabolic process	50	16	7.79	0.00283	0.0160555555555556	BP	Ppr
+GO:0006082	organic acid metabolic process	592	97	92.22	0.00289	0.0160555555555556	BP	Ppr
+GO:0030865	cortical cytoskeleton organization	21	7	3.27	0.00323	0.0174594594594595	BP	Ppr
+GO:0007169	transmembrane receptor protein tyrosine ...	94	26	14.64	0.00348	0.0183157894736842	BP	Ppr
+GO:1990573	potassium ion import across plasma membr...	47	15	7.32	0.0039	0.02	BP	Ppr
+GO:0007254	JNK cascade	9	5	1.4	0.00663	0.0321904761904762	BP	Ppr
+GO:0046081	dUTP catabolic process	6	4	0.93	0.00676	0.0321904761904762	BP	Ppr
+GO:0006226	dUMP biosynthetic process	6	4	0.93	0.00676	0.0321904761904762	BP	Ppr
+GO:0007029	endoplasmic reticulum organization	37	12	5.76	0.00818	0.038046511627907	BP	Ppr
+GO:0042278	purine nucleoside metabolic process	24	8	3.74	0.00904	0.0402222222222222	BP	Ppr
+GO:0140291	peptidyl-glutamate ADP-deribosylation	13	6	2.03	0.00905	0.0402222222222222	BP	Ppr
+GO:0009311	oligosaccharide metabolic process	29	10	4.52	0.00959	0.041695652173913	BP	Ppr
+GO:0051260	protein homooligomerization	38	12	5.92	0.01029	0.042875	BP	Ppr
+GO:0006013	mannose metabolic process	38	12	5.92	0.01029	0.042875	BP	Ppr
+GO:0006629	lipid metabolic process	943	174	146.89	0.01103	0.0450204081632653	BP	Ppr
+GO:0030198	extracellular matrix organization	43	13	6.7	0.01143	0.0453725490196078	BP	Ppr
+GO:0036071	N-glycan fucosylation	10	5	1.56	0.01157	0.0453725490196078	BP	Ppr
+GO:0006750	glutathione biosynthetic process	4	3	0.62	0.01334	0.0513076923076923	BP	Ppr
+GO:0097374	sensory neuron axon guidance	7	4	1.09	0.01383	0.051962962962963	BP	Ppr
+GO:0006952	defense response	99	22	15.42	0.01403	0.051962962962963	BP	Ppr
+GO:0006633	fatty acid biosynthetic process	177	35	27.57	0.01651	0.0600363636363636	BP	Ppr
+GO:1902287	semaphorin-plexin signaling pathway invo...	11	5	1.71	0.01853	0.0650175438596491	BP	Ppr
+GO:0006196	AMP catabolic process	11	5	1.71	0.01853	0.0650175438596491	BP	Ppr
+GO:0051209	release of sequestered calcium ion into ...	16	7	2.49	0.01995	0.0666333333333333	BP	Ppr
+GO:0007259	receptor signaling pathway via JAK-STAT	16	7	2.49	0.01995	0.0666333333333333	BP	Ppr
+GO:0008045	motor neuron axon guidance	15	6	2.34	0.01999	0.0666333333333333	BP	Ppr
+GO:0030007	intracellular potassium ion homeostasis	28	9	4.36	0.02215	0.0703174603174603	BP	Ppr
+GO:0036376	sodium ion export across plasma membrane	28	9	4.36	0.02215	0.0703174603174603	BP	Ppr
+GO:0006883	intracellular sodium ion homeostasis	28	9	4.36	0.02215	0.0703174603174603	BP	Ppr
+GO:0006212	uracil catabolic process	2	2	0.31	0.02425	0.0735757575757576	BP	Ppr
+GO:0006038	cell wall chitin biosynthetic process	8	4	1.25	0.02428	0.0735757575757576	BP	Ppr
+GO:0010499	proteasomal ubiquitin-independent protei...	8	4	1.25	0.02428	0.0735757575757576	BP	Ppr
+GO:0006979	response to oxidative stress	102	23	15.89	0.02509	0.0747352941176471	BP	Ppr
+GO:0016310	phosphorylation	782	186	121.81	0.02541	0.0747352941176471	BP	Ppr
+GO:0055078	sodium ion homeostasis	40	14	6.23	0.02747	0.0796231884057971	BP	Ppr
+GO:0032956	regulation of actin cytoskeleton organiz...	55	8	8.57	0.02799	0.0799714285714286	BP	Ppr
+GO:0016311	dephosphorylation	160	23	24.92	0.03271	0.0921408450704225	BP	Ppr
+GO:0006646	phosphatidylethanolamine biosynthetic pr...	54	14	8.41	0.0338	0.0938888888888889	BP	Ppr
+GO:0006685	sphingomyelin catabolic process	13	5	2.03	0.03946	0.107297297297297	BP	Ppr
+GO:0009247	glycolipid biosynthetic process	44	7	6.85	0.0397	0.107297297297297	BP	Ppr
+GO:0008360	regulation of cell shape	22	7	3.43	0.04399	0.117306666666667	BP	Ppr
+GO:0006032	chitin catabolic process	72	17	11.22	0.04792	0.117977528089888	BP	Ppr
+GO:0007166	cell surface receptor signaling pathway	346	73	53.9	0.04838	0.117977528089888	BP	Ppr
+GO:0055075	potassium ion homeostasis	46	15	7.17	0.04855	0.117977528089888	BP	Ppr
+GO:0006656	phosphatidylcholine biosynthetic process	42	13	6.54	0.04871	0.117977528089888	BP	Ppr
+GO:0055064	chloride ion homeostasis	18	6	2.8	0.04909	0.117977528089888	BP	Ppr
+GO:1904108	protein localization to ciliary inversin...	18	6	2.8	0.04909	0.117977528089888	BP	Ppr
+GO:0008203	cholesterol metabolic process	26	7	4.05	0.04912	0.117977528089888	BP	Ppr
+GO:0051156	glucose 6-phosphate metabolic process	30	7	4.67	0.0492	0.117977528089888	BP	Ppr
+GO:0016020	membrane	3546	620	542.1	6.9e-14	1.38e-11	CC	Ppr
+GO:0005615	extracellular space	578	155	88.36	1.4e-13	1.4e-11	CC	Ppr
+GO:0005764	lysosome	206	53	31.49	7.3e-07	4.86666666666667e-05	CC	Ppr
+GO:0005576	extracellular region	885	224	135.3	0.00012	0.006	CC	Ppr
+GO:0043235	receptor complex	138	45	21.1	0.00022	0.00875	CC	Ppr
+GO:0005773	vacuole	306	75	46.78	0.00031	0.00875	CC	Ppr
+GO:0030286	dynein complex	119	32	18.19	0.00032	0.00875	CC	Ppr
+GO:0035861	site of double-strand break	64	21	9.78	0.00035	0.00875	CC	Ppr
+GO:0008305	integrin complex	18	9	2.75	0.00058	0.0128888888888889	CC	Ppr
+GO:0030315	T-tubule	7	5	1.07	0.00133	0.0266	CC	Ppr
+GO:0098982	GABA-ergic synapse	5	4	0.76	0.00239	0.0417142857142857	CC	Ppr
+GO:0000793	condensed chromosome	93	21	14.22	0.00257	0.0417142857142857	CC	Ppr
+GO:0043231	intracellular membrane-bounded organelle	4808	575	735.03	0.00281	0.0417142857142857	CC	Ppr
+GO:0048788	cytoskeleton of presynaptic active zone	11	6	1.68	0.00292	0.0417142857142857	CC	Ppr
+GO:0002116	semaphorin receptor complex	11	5	1.68	0.01714	0.228533333333333	CC	Ppr
+GO:0031410	cytoplasmic vesicle	281	25	42.96	0.02156	0.2336	CC	Ppr
+GO:0098978	glutamatergic synapse	8	4	1.22	0.02276	0.2336	CC	Ppr
+GO:0030428	cell septum	8	4	1.22	0.02276	0.2336	CC	Ppr
+GO:0060076	excitatory synapse	2	2	0.31	0.02336	0.2336	CC	Ppr
+GO:0005899	insulin receptor complex	2	2	0.31	0.02336	0.2336	CC	Ppr
+GO:0042995	cell projection	367	52	56.11	0.03528	0.328	CC	Ppr
+GO:0005871	kinesin complex	9	4	1.38	0.03608	0.328	CC	Ppr
+GO:0009897	external side of plasma membrane	22	7	3.36	0.0402	0.349565217391304	CC	Ppr
+GO:0005925	focal adhesion	18	6	2.75	0.04531	0.36248	CC	Ppr
+GO:0097543	ciliary inversin compartment	18	6	2.75	0.04531	0.36248	CC	Ppr
+GO:0031012	extracellular matrix	163	29	24.92	0.04904	0.377037037037037	CC	Ppr

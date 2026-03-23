@@ -1,0 +1,129 @@
+GO.ID	Term	Annotated	Significant	Expected	classicFisher	FDR	ontology	Species
+GO:0003676	nucleic acid binding	2172	229	226.09	1.6e-19	3.2e-17	MF	Hrs
+GO:0008194	UDP-glycosyltransferase activity	221	46	23.01	1.2e-05	0.0012	MF	Hrs
+GO:0004177	aminopeptidase activity	35	10	3.64	2.8e-05	0.00186666666666667	MF	Hrs
+GO:0004301	epoxide hydrolase activity	20	9	2.08	8.1e-05	0.00405	MF	Hrs
+GO:0016705	oxidoreductase activity, acting on paire...	328	56	34.14	0.00033	0.0123333333333333	MF	Hrs
+GO:0016614	oxidoreductase activity, acting on CH-OH...	156	23	16.24	0.00037	0.0123333333333333	MF	Hrs
+GO:0019202	amino acid kinase activity	8	5	0.83	0.00052	0.0148571428571429	MF	Hrs
+GO:0140359	ABC-type transporter activity	174	32	18.11	0.00096	0.024	MF	Hrs
+GO:0005506	iron ion binding	251	42	26.13	0.00127	0.026875	MF	Hrs
+GO:0020037	heme binding	222	38	23.11	0.00139	0.026875	MF	Hrs
+GO:0008395	steroid hydroxylase activity	76	17	7.91	0.00176	0.026875	MF	Hrs
+GO:0003691	double-stranded telomeric DNA binding	14	6	1.46	0.0018	0.026875	MF	Hrs
+GO:0051880	G-quadruplex DNA binding	14	6	1.46	0.0018	0.026875	MF	Hrs
+GO:0003677	DNA binding	1052	91	109.51	0.00205	0.026875	MF	Hrs
+GO:0000014	single-stranded DNA endodeoxyribonucleas...	19	7	1.98	0.00212	0.026875	MF	Hrs
+GO:0005044	scavenger receptor activity	24	8	2.5	0.00215	0.026875	MF	Hrs
+GO:0000254	C-4 methylsterol oxidase activity	11	5	1.15	0.00327	0.0363333333333333	MF	Hrs
+GO:0044547	DNA topoisomerase binding	11	5	1.15	0.00327	0.0363333333333333	MF	Hrs
+GO:0003834	beta-carotene 15,15'-dioxygenase activit...	4	3	0.42	0.00415	0.0415	MF	Hrs
+GO:0010436	carotenoid dioxygenase activity	4	3	0.42	0.00415	0.0415	MF	Hrs
+GO:0008484	sulfuric ester hydrolase activity	44	11	4.58	0.00449	0.0427619047619048	MF	Hrs
+GO:0050660	flavin adenine dinucleotide binding	157	27	16.34	0.00502	0.0446086956521739	MF	Hrs
+GO:0046975	histone H3K36 methyltransferase activity	12	5	1.25	0.00513	0.0446086956521739	MF	Hrs
+GO:0043047	single-stranded telomeric DNA binding	17	6	1.77	0.00566	0.0471666666666667	MF	Hrs
+GO:0004842	ubiquitin-protein transferase activity	203	25	21.13	0.00629	0.05032	MF	Hrs
+GO:0008233	peptidase activity	632	94	65.79	0.00697	0.0536153846153846	MF	Hrs
+GO:0008476	protein-tyrosine sulfotransferase activi...	9	4	0.94	0.00958	0.070962962962963	MF	Hrs
+GO:0033691	sialic acid binding	2	2	0.21	0.01083	0.0749655172413793	MF	Hrs
+GO:0004170	dUTP diphosphatase activity	14	5	1.46	0.01087	0.0749655172413793	MF	Hrs
+GO:0004103	choline kinase activity	37	9	3.85	0.01177	0.0784666666666667	MF	Hrs
+GO:0042626	ATPase-coupled transmembrane transporter...	221	38	23.01	0.01433	0.0904848484848485	MF	Hrs
+GO:0140223	general transcription initiation factor ...	54	10	5.62	0.01488	0.0904848484848485	MF	Hrs
+GO:0042800	histone H3K4 methyltransferase activity	15	5	1.56	0.01493	0.0904848484848485	MF	Hrs
+GO:0004185	serine-type carboxypeptidase activity	33	8	3.44	0.01751	0.0971891891891892	MF	Hrs
+GO:0003824	catalytic activity	5773	693	600.94	0.0176	0.0971891891891892	MF	Hrs
+GO:0004100	chitin synthase activity	6	3	0.62	0.01767	0.0971891891891892	MF	Hrs
+GO:0004305	ethanolamine kinase activity	46	10	4.79	0.01798	0.0971891891891892	MF	Hrs
+GO:0004523	RNA-DNA hybrid ribonuclease activity	63	12	6.56	0.02747	0.137409090909091	MF	Hrs
+GO:0043531	ADP binding	7	3	0.73	0.02856	0.137409090909091	MF	Hrs
+GO:0004832	valine-tRNA ligase activity	7	3	0.73	0.02856	0.137409090909091	MF	Hrs
+GO:0034722	gamma-glutamyl-peptidase activity	7	3	0.73	0.02856	0.137409090909091	MF	Hrs
+GO:0004559	alpha-mannosidase activity	36	8	3.75	0.0289	0.137409090909091	MF	Hrs
+GO:1990269	RNA polymerase II C-terminal domain phos...	3	2	0.31	0.03023	0.137409090909091	MF	Hrs
+GO:0042609	CD4 receptor binding	3	2	0.31	0.03023	0.137409090909091	MF	Hrs
+GO:0004181	metallocarboxypeptidase activity	44	9	4.58	0.03482	0.154755555555556	MF	Hrs
+GO:0008237	metallopeptidase activity	223	35	23.21	0.03754	0.163217391304348	MF	Hrs
+GO:0004497	monooxygenase activity	248	51	25.82	0.04	0.166549019607843	MF	Hrs
+GO:0004500	dopamine beta-monooxygenase activity	19	5	1.98	0.04078	0.166549019607843	MF	Hrs
+GO:0004517	nitric-oxide synthase activity	8	3	0.83	0.04222	0.166549019607843	MF	Hrs
+GO:0015171	amino acid transmembrane transporter act...	59	8	6.14	0.04224	0.166549019607843	MF	Hrs
+GO:0016301	kinase activity	629	86	65.48	0.04247	0.166549019607843	MF	Hrs
+GO:0008270	zinc ion binding	429	56	44.66	0.04346	0.167153846153846	MF	Hrs
+GO:0003990	acetylcholinesterase activity	61	11	6.35	0.04824	0.181645161290323	MF	Hrs
+GO:0005230	extracellular ligand-gated monoatomic io...	89	12	9.26	0.04994	0.181645161290323	MF	Hrs
+GO:0004084	branched-chain-amino-acid transaminase a...	14	4	1.46	0.04996	0.181645161290323	MF	Hrs
+GO:0006508	proteolysis	943	120	78.82	1.1e-07	2.2e-05	BP	Hrs
+GO:0015074	DNA integration	40	13	3.34	1.3e-05	0.0013	BP	Hrs
+GO:0016310	phosphorylation	563	70	47.06	4.1e-05	0.00255	BP	Hrs
+GO:0043171	peptide catabolic process	28	10	2.34	5.1e-05	0.00255	BP	Hrs
+GO:0006657	CDP-choline pathway	35	10	2.93	0.00042	0.0162857142857143	BP	Hrs
+GO:0000722	telomere maintenance via recombination	14	6	1.17	0.00056	0.0162857142857143	BP	Hrs
+GO:0032508	DNA duplex unwinding	27	9	2.26	0.00057	0.0162857142857143	BP	Hrs
+GO:0006313	DNA transposition	26	8	2.17	0.00092	0.022	BP	Hrs
+GO:0044774	mitotic DNA integrity checkpoint signali...	50	11	4.18	0.0012	0.022	BP	Hrs
+GO:0090305	nucleic acid phosphodiester bond hydroly...	32	9	2.67	0.00121	0.022	BP	Hrs
+GO:0048512	circadian behavior	40	10	3.34	0.00132	0.022	BP	Hrs
+GO:0008344	adult locomotory behavior	40	10	3.34	0.00132	0.022	BP	Hrs
+GO:0070192	chromosome organization involved in meio...	27	7	2.26	0.00185	0.02725	BP	Hrs
+GO:0016126	sterol biosynthetic process	17	6	1.42	0.00193	0.02725	BP	Hrs
+GO:0042574	retinal metabolic process	4	3	0.33	0.00218	0.02725	BP	Hrs
+GO:0016121	carotene catabolic process	4	3	0.33	0.00218	0.02725	BP	Hrs
+GO:0019216	regulation of lipid metabolic process	34	8	2.84	0.00258	0.0287777777777778	BP	Hrs
+GO:0006303	double-strand break repair via nonhomolo...	18	6	1.5	0.00259	0.0287777777777778	BP	Hrs
+GO:0000729	DNA double-strand break processing	13	5	1.09	0.00294	0.0309473684210526	BP	Hrs
+GO:0006646	phosphatidylethanolamine biosynthetic pr...	52	11	4.35	0.00326	0.0326	BP	Hrs
+GO:0007004	telomere maintenance via telomerase	19	6	1.59	0.00352	0.0329090909090909	BP	Hrs
+GO:0006869	lipid transport	137	16	11.45	0.00362	0.0329090909090909	BP	Hrs
+GO:0006226	dUMP biosynthetic process	14	5	1.17	0.00426	0.0331111111111111	BP	Hrs
+GO:0046081	dUTP catabolic process	14	5	1.17	0.00426	0.0331111111111111	BP	Hrs
+GO:0006478	peptidyl-tyrosine sulfation	9	4	0.75	0.00434	0.0331111111111111	BP	Hrs
+GO:0055085	transmembrane transport	842	86	70.38	0.00442	0.0331111111111111	BP	Hrs
+GO:0006260	DNA replication	114	21	9.53	0.00447	0.0331111111111111	BP	Hrs
+GO:0043137	DNA replication, removal of RNA primer	21	6	1.76	0.00609	0.0435	BP	Hrs
+GO:0006302	double-strand break repair	112	21	9.36	0.00674	0.0450322580645161	BP	Hrs
+GO:0050859	negative regulation of B cell receptor s...	2	2	0.17	0.00698	0.0450322580645161	BP	Hrs
+GO:0030888	regulation of B cell proliferation	2	2	0.17	0.00698	0.0450322580645161	BP	Hrs
+GO:0042157	lipoprotein metabolic process	60	7	5.02	0.0079	0.049375	BP	Hrs
+GO:0006038	cell wall chitin biosynthetic process	6	3	0.5	0.0096	0.0581818181818182	BP	Hrs
+GO:0006013	mannose metabolic process	30	7	2.51	0.01028	0.0604705882352941	BP	Hrs
+GO:0031297	replication fork processing	17	5	1.42	0.01066	0.0609142857142857	BP	Hrs
+GO:0006581	acetylcholine catabolic process	61	11	5.1	0.01135	0.0613513513513514	BP	Hrs
+GO:0019695	choline metabolic process	61	11	5.1	0.01135	0.0613513513513514	BP	Hrs
+GO:0018105	peptidyl-serine phosphorylation	88	14	7.36	0.0139	0.0731578947368421	BP	Hrs
+GO:0006438	valyl-tRNA aminoacylation	7	3	0.59	0.01577	0.07885	BP	Hrs
+GO:0030050	vesicle transport along actin filament	7	3	0.59	0.01577	0.07885	BP	Hrs
+GO:1990116	ribosome-associated ubiquitin-dependent ...	3	2	0.25	0.01977	0.0941428571428571	BP	Hrs
+GO:0006035	cuticle chitin biosynthetic process	3	2	0.25	0.01977	0.0941428571428571	BP	Hrs
+GO:0046900	tetrahydrofolylpolyglutamate metabolic p...	8	3	0.67	0.02368	0.109377777777778	BP	Hrs
+GO:1902476	chloride transmembrane transport	43	8	3.59	0.0242	0.109377777777778	BP	Hrs
+GO:0006196	AMP catabolic process	14	4	1.17	0.02461	0.109377777777778	BP	Hrs
+GO:0006352	DNA-templated transcription initiation	89	10	7.44	0.03154	0.13364	BP	Hrs
+GO:0016266	O-glycan processing	26	6	2.17	0.03196	0.13364	BP	Hrs
+GO:0036071	N-glycan fucosylation	9	3	0.75	0.03335	0.13364	BP	Hrs
+GO:0006809	nitric oxide biosynthetic process	9	3	0.75	0.03335	0.13364	BP	Hrs
+GO:0046839	phospholipid dephosphorylation	28	4	2.34	0.03341	0.13364	BP	Hrs
+GO:0046777	protein autophosphorylation	38	7	3.18	0.03569	0.139960784313725	BP	Hrs
+GO:0007168	receptor guanylyl cyclase signaling path...	16	4	1.34	0.03916	0.150615384615385	BP	Hrs
+GO:0050877	nervous system process	99	15	8.28	0.04296	0.159555555555556	BP	Hrs
+GO:0044255	cellular lipid metabolic process	610	64	50.99	0.04308	0.159555555555556	BP	Hrs
+GO:0051603	proteolysis involved in protein cataboli...	378	40	31.6	0.04718	0.171563636363636	BP	Hrs
+GO:0016020	membrane	2858	245	226.89	2.7e-05	0.0054	CC	Hrs
+GO:0005615	extracellular space	417	56	33.1	0.00014	0.012	CC	Hrs
+GO:0030870	Mre11 complex	17	7	1.35	0.00018	0.012	CC	Hrs
+GO:0005576	extracellular region	644	88	51.13	0.00054	0.027	CC	Hrs
+GO:0008541	proteasome regulatory particle, lid subc...	21	7	1.67	0.00083	0.0332	CC	Hrs
+GO:0035861	site of double-strand break	36	9	2.86	0.00159	0.053	CC	Hrs
+GO:0000793	condensed chromosome	73	15	5.8	0.00226	0.061	CC	Hrs
+GO:0005773	vacuole	242	32	19.21	0.00244	0.061	CC	Hrs
+GO:0000794	condensed nuclear chromosome	28	7	2.22	0.0036	0.08	CC	Hrs
+GO:0005764	lysosome	159	19	12.62	0.00774	0.138333333333333	CC	Hrs
+GO:0005902	microvillus	6	3	0.48	0.0083	0.138333333333333	CC	Hrs
+GO:0030428	cell septum	6	3	0.48	0.0083	0.138333333333333	CC	Hrs
+GO:0071944	cell periphery	1152	93	91.46	0.01373	0.211230769230769	CC	Hrs
+GO:0016593	Cdc73/Paf1 complex	8	3	0.64	0.02061	0.294428571428571	CC	Hrs
+GO:0031982	vesicle	300	11	23.82	0.03086	0.376666666666667	CC	Hrs
+GO:1990112	RQC complex	4	2	0.32	0.0339	0.376666666666667	CC	Hrs
+GO:0034993	meiotic nuclear membrane microtubule tet...	4	2	0.32	0.0339	0.376666666666667	CC	Hrs
+GO:0043529	GET complex	4	2	0.32	0.0339	0.376666666666667	CC	Hrs

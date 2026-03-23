@@ -1,0 +1,12 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0006468",1,"GO:0006468",4.92081875395237,323,"protein phosphorylation","protein phosphorylation",0.719636363636364,0.6335,0
+"GO:0006508",2,"GO:0006508",4.56863623584101,956,"proteolysis","proteolysis",0.776363636363636,0.652,0
+"GO:0006260",3,"GO:0006260",4.42021640338319,121,"DNA replication","DNA replication",0.879090909090909,1,0
+"GO:0019695",5,"GO:0019695",2.67778070526608,1,"choline metabolic process","choline metabolic process",0.882363636363636,1,0
+"GO:0006581",4,"GO:0006581",2.67778070526608,1,"acetylcholine catabolic process","acetylcholine catabolic process",0.871272727272727,1,0
+"GO:0016579",2,"GO:0006508",2.44369749923271,50,"protein deubiquitination","proteolysis",0.777818181818182,0.622666666666667,0.683
+"GO:0044419",6,"GO:0044419",2.26760624017703,562,"biological process involved in interspecies interaction between organisms","biological process involved in interspecies interaction between organisms",1,1,0
+"GO:0007169",7,"GO:0007169",2.21467016498923,229,"transmembrane receptor protein tyrosine kinase signaling pathway","transmembrane receptor protein tyrosine kinase signaling pathway",0.938454545454545,0.8025,0
+"GO:0044773",7,"GO:0007169",2.19382002601611,23,"mitotic DNA damage checkpoint signaling","transmembrane receptor protein tyrosine kinase signaling pathway",0.943454545454545,0.8025,0.395
+"GO:0033674",1,"GO:0006468",2.16115090926274,42,"positive regulation of kinase activity","protein phosphorylation",0.831636363636364,0.6335,0.733
+"GO:0000413",2,"GO:0006508",2.08618614761628,21,"protein peptidyl-prolyl isomerization","proteolysis",0.817727272727273,0.73,0.361

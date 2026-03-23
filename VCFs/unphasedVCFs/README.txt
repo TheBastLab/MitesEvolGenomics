@@ -1,0 +1,1 @@
+Download the VCFs (variants and the final calls) available on figshare under:

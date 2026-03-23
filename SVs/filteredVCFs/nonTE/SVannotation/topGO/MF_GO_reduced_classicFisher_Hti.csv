@@ -1,0 +1,24 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0004252",1,"GO:0004252",7.60205999132796,214,"serine-type endopeptidase activity","serine-type endopeptidase activity",0.890086956521739,0.719,0
+"GO:0140359",2,"GO:0140359",7.4089353929735,51,"ABC-type transporter activity","ABC-type transporter activity",0.925695652173913,0.57275,0
+"GO:0004497",3,"GO:0004497",5.49485002168009,111,"monooxygenase activity","monooxygenase activity",0.889086956521739,0.575,0
+"GO:0020037",4,"GO:0020037",5.34678748622466,137,"heme binding","heme binding",0.938608695652174,0.749,0
+"GO:0016887",1,"GO:0004252",5.07058107428571,195,"ATP hydrolysis activity","serine-type endopeptidase activity",0.897304347826087,0.73,0.424
+"GO:0016705",3,"GO:0004497",4.65757731917779,174,"oxidoreductase activity, acting on paired donors, with incorporation or reduction of molecular oxygen","monooxygenase activity",0.883565217391304,0.557,0.58
+"GO:0016491",3,"GO:0004497",3.82390874094432,607,"oxidoreductase activity","monooxygenase activity",0.867652173913044,0.518666666666667,0.695
+"GO:0005524",4,"GO:0020037",3.79588001734407,639,"ATP binding","heme binding",0.875434782608696,0.5855,0.301
+"GO:0003676",4,"GO:0020037",3.56863623584101,2260,"nucleic acid binding","heme binding",0.912695652173913,0.654,0.381
+"GO:0015276",2,"GO:0140359",2.90308998699194,144,"ligand-gated monoatomic ion channel activity","ABC-type transporter activity",0.938521739130435,0.6465,0.478
+"GO:0000166",4,"GO:0020037",2.90308998699194,963,"nucleotide binding","heme binding",0.903260869565217,0.5665,0.322
+"GO:0004807",5,"GO:0004807",2.89279003035213,1,"triose-phosphate isomerase activity","triose-phosphate isomerase activity",0.946478260869565,1,0
+"GO:0004540",6,"GO:0004540",2.80410034759077,73,"RNA nuclease activity","RNA nuclease activity",0.882565217391304,0.724,0
+"GO:0000287",7,"GO:0000287",2.51999305704285,50,"magnesium ion binding","magnesium ion binding",0.938478260869565,0.7335,0
+"GO:0032574",6,"GO:0004540",2.50723961097316,4,"5'-3' RNA helicase activity","RNA nuclease activity",0.925478260869565,0.724,0.552
+"GO:0003887",8,"GO:0003887",2.431798275933,9,"DNA-directed DNA polymerase activity","DNA-directed DNA polymerase activity",0.932391304347826,1,0
+"GO:0003747",9,"GO:0003747",2.42136079003193,5,"translation release factor activity","translation release factor activity",0.94895652173913,1,0
+"GO:0042626",2,"GO:0140359",2.35163998901907,96,"ATPase-coupled transmembrane transporter activity","ABC-type transporter activity",0.921434782608696,0.54825,0.879
+"GO:0005506",7,"GO:0000287",2.34969247686806,157,"iron ion binding","magnesium ion binding",0.933521739130435,0.7335,0.533
+"GO:0005462",2,"GO:0140359",2.15801519540989,3,"UDP-N-acetylglucosamine transmembrane transporter activity","ABC-type transporter activity",0.950782608695652,0.717,0.352
+"GO:0016829",10,"GO:0016829",2.08301995267962,132,"lyase activity","lyase activity",0.924608695652174,1,0
+"GO:0004312",11,"GO:0004312",2.02410886359821,3,"fatty acid synthase activity","fatty acid synthase activity",0.93904347826087,1,0
+"GO:0004553",1,"GO:0004252",2.0204516252959,85,"hydrolase activity, hydrolyzing O-glycosyl compounds","serine-type endopeptidase activity",0.898086956521739,0.731666666666667,0.419

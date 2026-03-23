@@ -1,0 +1,43 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0006468",1,"GO:0006468",12.2518119729938,323,"protein phosphorylation","protein phosphorylation",0.829142857142857,0.6335,0
+"GO:0055085",2,"GO:0055085",11.1426675035687,707,"transmembrane transport","transmembrane transport",0.956190476190476,0.641,0
+"GO:0051923",3,"GO:0051923",8.85387196432176,5,"sulfation","sulfation",0.927952380952381,1,0
+"GO:0005975",4,"GO:0005975",6.56863623584101,253,"carbohydrate metabolic process","carbohydrate metabolic process",0.902642857142857,0.602,0
+"GO:0006869",2,"GO:0055085",5.23657200643706,97,"lipid transport","transmembrane transport",0.981690476190476,0.743666666666667,0.454
+"GO:0006508",5,"GO:0006508",5.14874165128092,956,"proteolysis","proteolysis",0.854047619047619,0.579,0
+"GO:0044774",6,"GO:0044774",4.44369749923271,29,"mitotic DNA integrity checkpoint signaling","mitotic DNA integrity checkpoint signaling",0.908380952380952,0.672666666666667,0
+"GO:0000729",7,"GO:0000729",4.15490195998574,6,"DNA double-strand break processing","DNA double-strand break processing",0.836690476190476,0.57725,0
+"GO:0033387",8,"GO:0033387",4.0268721464003,2,"putrescine biosynthetic process from ornithine","putrescine biosynthetic process from ornithine",0.878214285714286,0.721,0
+"GO:0007017",9,"GO:0007017",3.65757731917779,512,"microtubule-based process","microtubule-based process",0.981285714285714,1,0
+"GO:0019695",11,"GO:0019695",3.63827216398241,1,"choline metabolic process","choline metabolic process",0.91747619047619,1,0
+"GO:0006581",10,"GO:0006581",3.63827216398241,1,"acetylcholine catabolic process","acetylcholine catabolic process",0.875333333333333,0.7795,0
+"GO:0007160",12,"GO:0007160",3.56863623584101,23,"cell-matrix adhesion","cell-matrix adhesion",0.971047619047619,0.6785,0
+"GO:0043171",10,"GO:0006581",3.35654732351381,18,"peptide catabolic process","acetylcholine catabolic process",0.863928571428571,0.7795,0.441
+"GO:0033674",1,"GO:0006468",3.30980391997149,42,"positive regulation of kinase activity","protein phosphorylation",0.86752380952381,0.6335,0.733
+"GO:0006680",13,"GO:0006680",3.21467016498923,3,"glucosylceramide catabolic process","glucosylceramide catabolic process",0.847,0.575166666666667,0
+"GO:0033627",12,"GO:0007160",3.17392519729917,24,"cell adhesion mediated by integrin","cell-matrix adhesion",0.970857142857143,0.6785,0.643
+"GO:0031297",7,"GO:0000729",3.16749108729376,10,"replication fork processing","DNA double-strand break processing",0.882119047619048,0.5735,0.459
+"GO:0006260",7,"GO:0000729",3.10237290870956,121,"DNA replication","DNA double-strand break processing",0.857619047619048,0.52075,0.559
+"GO:0007189",14,"GO:0007189",3.08092190762393,43,"adenylate cyclase-activating G protein-coupled receptor signaling pathway","adenylate cyclase-activating G protein-coupled receptor signaling pathway",0.915642857142857,0.756666666666667,0
+"GO:0006303",7,"GO:0000729",3.06550154875643,9,"double-strand break repair via nonhomologous end joining","DNA double-strand break processing",0.829142857142857,0.564,0.673
+"GO:0007275",15,"GO:0007275",2.86012091359876,2414,"multicellular organism development","multicellular organism development",0.98902380952381,1,0
+"GO:0055117",16,"GO:0055117",2.83863199776503,3,"regulation of cardiac muscle contraction","regulation of cardiac muscle contraction",0.972690476190476,1,0
+"GO:0043123",6,"GO:0044774",2.83863199776503,2,"positive regulation of canonical NF-kappaB signal transduction","mitotic DNA integrity checkpoint signaling",0.919047619047619,0.708,0.425
+"GO:0006955",17,"GO:0006955",2.83564714421556,350,"immune response","immune response",0.941738095238095,1,0
+"GO:0007229",14,"GO:0007189",2.7619538968712,15,"integrin-mediated signaling pathway","adenylate cyclase-activating G protein-coupled receptor signaling pathway",0.91797619047619,0.716,0.317
+"GO:0016266",13,"GO:0006680",2.70774392864352,16,"O-glycan processing","glucosylceramide catabolic process",0.847619047619048,0.609166666666667,0.445
+"GO:1904071",18,"GO:1904071",2.59006687666871,2,"presynaptic active zone assembly","presynaptic active zone assembly",0.970238095238095,1,0
+"GO:0016139",13,"GO:0006680",2.58335949266172,6,"glycoside catabolic process","glucosylceramide catabolic process",0.862714285714286,0.5065,0.64
+"GO:0051603",5,"GO:0006508",2.56066730616974,375,"proteolysis involved in protein catabolic process","proteolysis",0.825571428571429,0.579,0.842
+"GO:0006805",19,"GO:0006805",2.54821356447571,19,"xenobiotic metabolic process","xenobiotic metabolic process",0.875357142857143,1,0
+"GO:0006082",8,"GO:0033387",2.53910215724345,387,"organic acid metabolic process","putrescine biosynthetic process from ornithine",0.864309523809524,0.721,0.558
+"GO:0030865",20,"GO:0030865",2.4907974776689,72,"cortical cytoskeleton organization","cortical cytoskeleton organization",0.972357142857143,0.8175,0
+"GO:0007169",14,"GO:0007189",2.45842075605342,229,"transmembrane receptor protein tyrosine kinase signaling pathway","adenylate cyclase-activating G protein-coupled receptor signaling pathway",0.89752380952381,0.684,0.413
+"GO:1990573",2,"GO:0055085",2.4089353929735,17,"potassium ion import across plasma membrane","transmembrane transport",0.964619047619048,0.687333333333333,0.623
+"GO:0007254",6,"GO:0044774",2.17848647159523,82,"JNK cascade","mitotic DNA integrity checkpoint signaling",0.891761904761905,0.664,0.557
+"GO:0006226",13,"GO:0006680",2.17005330405836,1,"dUMP biosynthetic process","glucosylceramide catabolic process",0.834619047619048,0.563333333333333,0.396
+"GO:0046081",13,"GO:0006680",2.17005330405836,1,"dUTP catabolic process","glucosylceramide catabolic process",0.807785714285714,0.5005,0.605
+"GO:0007029",20,"GO:0030865",2.08724669632868,44,"endoplasmic reticulum organization","cortical cytoskeleton organization",0.972785714285714,0.8175,0.365
+"GO:0042278",13,"GO:0006680",2.04383156952464,21,"purine nucleoside metabolic process","glucosylceramide catabolic process",0.820880952380952,0.526,0.463
+"GO:0140291",21,"GO:0140291",2.0433514207948,3,"peptidyl-glutamate ADP-deribosylation","peptidyl-glutamate ADP-deribosylation",0.905452380952381,1,0
+"GO:0009311",4,"GO:0005975",2.01818139282934,30,"oligosaccharide metabolic process","carbohydrate metabolic process",0.915761904761905,0.602,0.796

@@ -1,0 +1,14 @@
+"go","cluster","parent","score","size","term","parentTerm","termUniqueness","termUniquenessWithinCluster","termDispensability"
+"GO:0016020",1,"GO:0016020",13.1611509092627,2903,"membrane","membrane",0.952615384615385,1,0
+"GO:0005615",2,"GO:0005615",12.8538719643218,702,"extracellular space","extracellular space",0.929538461538462,0.5625,0
+"GO:0005764",3,"GO:0005764",6.13667713987954,117,"lysosome","lysosome",0.883384615384615,0.534,0
+"GO:0005576",2,"GO:0005615",3.92081875395238,1041,"extracellular region","extracellular space",0.929384615384615,0.5625,0.875
+"GO:0043235",4,"GO:0043235",3.65757731917779,71,"receptor complex","receptor complex",0.915384615384615,0.553,0
+"GO:0005773",3,"GO:0005764",3.50863830616573,186,"vacuole","lysosome",0.880153846153846,0.534,0.932
+"GO:0030286",5,"GO:0030286",3.49485002168009,57,"dynein complex","dynein complex",0.870615384615385,0.7735,0
+"GO:0035861",6,"GO:0035861",3.45593195564972,10,"site of double-strand break","site of double-strand break",0.916384615384615,0.7945,0
+"GO:0008305",4,"GO:0043235",3.23657200643706,7,"integrin complex","receptor complex",0.845153846153846,0.553,0.894
+"GO:0030315",7,"GO:0030315",2.87614835903291,3,"T-tubule","T-tubule",0.936461538461538,1,0
+"GO:0000793",6,"GO:0035861",2.59006687666871,96,"condensed chromosome","site of double-strand break",0.901846153846154,0.7945,0.411
+"GO:0043231",8,"GO:0043231",2.55129368009492,5099,"intracellular membrane-bounded organelle","intracellular membrane-bounded organelle",0.926846153846154,1,0
+"GO:0048788",5,"GO:0030286",2.53461714855158,8,"cytoskeleton of presynaptic active zone","dynein complex",0.861769230769231,0.7735,0.453
